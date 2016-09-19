@@ -1,0 +1,392 @@
+
+
+\part{Martingales}
+
+Martingales can be thought of the stochastic analog of monotonic sequences of numbers. In particular,  a fundamental feature of a monotonic sequences of numbers is that they always has a limit and that limit is finite when the sequence is bounded. In a way, most of limit theorems in martingale theory have this type of flavor, given some kind of a stochastic bound on a sub-martingale, it is bound to have  a limit of some sort.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Martingales
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Basic Theory}
+
+
+\begin{sectionassumption}
+For this section let $(\Omega, \mathcal F, P)$ denote an arbitrary probability space.
+\end{sectionassumption}
+
+\begin{definition}
+A sequence of sub-$\sigma$-fields $(\mathcal F_n)_{n\in\Bbb N}$ is called a {\bf filtration} if $\mathcal F_n\subset \mathcal F_{n+1}$ for all $n\in\Bbb N$.
+\end{definition}
+
+\begin{definition}
+A sequence $(X_n)_{n\in\Bbb N}$ of random variables is said to be {\bf adapted to the filtration $(\mathcal F_n)_{n\in\Bbb N}$} if $X_n$ is $\mathcal F_n$-measurable for each $n\in \Bbb N$.
+\end{definition}
+
+\begin{definition}
+A sequence $(X_n)_{n\in\Bbb N}$ of random variables is said to be {\bf a martingale with respect to a filtration $(\mathcal F_n)_{n\in\Bbb N}$} if $(X_n)_{n\in\Bbb N}$ is adapted to $(\mathcal F_n)_{n\in\Bbb N}$, each $X_n$ is integrable and
+\[  E^{\mathcal F_n}(X_{n+1})=_{\tiny a.e.} X_n ,\quad\text{for $n\in \Bbb N$}. \]
+\end{definition}
+
+
+
+\begin{definition}
+A sequence $(X_n)_{n\in\Bbb N}$ of random variables is said to be {\bf a submartingale with respect to a filtration $(\mathcal F_n)_{n\in\Bbb N}$} if $(X_n)_{n\in\Bbb N}$ is adapted to $(\mathcal F_n)_{n\in\Bbb N}$, each $X_n$ is integrable and
+\[ E^{\mathcal F_n} (X_{n+1})  \geq_{\tiny a.e.} X_n,\quad\text{for $n\in \Bbb N$}. \]
+\end{definition}
+
+
+
+\begin{definition}
+A sequence $(X_n)_{n\in\Bbb N}$ of random variables is said to be {\bf a supermartingale with respect to a filtration $(\mathcal F_n)_{n\in\Bbb N}$} if $(X_n)_{n\in\Bbb N}$ is adapted to $(\mathcal F_n)_{n\in\Bbb N}$, each $X_n$ is integrable and
+\[E^{\mathcal F_n} (X_{n+1}) \leq_{\tiny a.e.}X_n  ,\quad\text{for $n\in \Bbb N$}. \]
+\end{definition}
+
+
+
+\begin{definition}
+The {\bf natural filtration} of a sequence $(X_n)_{n\in\Bbb N}$ of random variables is $\mathcal F_n:= \sigma\langle X_1, X_2, \ldots, X_n\rangle$
+\end{definition}
+
+\begin{example}[{\bf Random Walk Martingale}]
+\end{example}
+
+\begin{example}[{\bf Multiplicative Martingale}]
+\end{example}
+
+\begin{example}[{\bf Moment Generating Function Martingale}]
+\end{example}
+
+\begin{example}[{\bf Smoothing Martingale}]
+\end{example}
+
+\begin{example}[{\bf Averaging Martingale}]
+\end{example}
+
+\begin{example}[{\bf Radon-Nikodym Derivative Martingale}]
+\end{example}
+
+
+\begin{theorem}[{\bf Some basic transformations}]
+$\phantom{asdf}$
+\begin{enumerate}
+\item If $X_n$ and $Y_n$ are submartingales wrt a filtration $\mathcal F_n$, then so are $X_n+Y_n$ and $\max(X_n, Y_n)$.
+\item Suppose $X_n$ is a martingale wrt a filtration $\mathcal F_n$, $f\colon\Bbb R\rightarrow \Bbb R$ is convex, and $Y_n:= f(X_n)$ is integrable for each $n\in\Bbb N$. Then $Y_n$ is a submartingale wrt $\mathcal F_n$.
+\item Suppose $X_n$ is a submartingale wrt a filtration $\mathcal F_n$, $f\colon\Bbb R\rightarrow \Bbb R$  is convex and nondecreasing, and $Y_n:= f(X_n)$ is integrable for each $n\in\Bbb N$. Then $Y_n$ is a submartingale wrt $\mathcal F_n$.
+\item If $X_{n,1}, \ldots, X_{n,k}$ are $k$ submartingales wrt a common filtration $\mathcal F_n$ and $w_1, \ldots, w_k$ are nonnegative weights, then the process $Y_n:=\sum_{j=1}^k w_j X_{n,j}$ is also a submartingale wrt $\mathcal F_n$.
+\end{enumerate}
+\end{theorem}
+
+
+
+\begin{example}[{\bf Gambler's strategy}]
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Stopping Times
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Stopping times and the optional sampling theorem}
+
+\begin{definition} An extended random variable $\tau:\Omega \rightarrow \Bbb N\cup\{\infty \}$ is called a {\bf stopping time} with respect to a filtration $(\mathcal F_n)_{n\in\Bbb N}$ if
+\[
+\{\tau = n \}\in \mathcal F_n\text{ for all $n\in\Bbb N$.}
+\]
+\end{definition}
+
+\begin{definition}[{\bf The information at $\tau$}]
+Let $\tau$ be a stopping time wrt a filtration $(\mathcal F_n)_{n\in\Bbb N}$. Then $\mathcal F_\tau$ denotes the, so called, {\bf pre-$\tau$ $\sigma$-field}, which is defined as the set of all subsets $A$ of $\Omega$ such that
+\begin{align*}
+&A \cap\{\tau = n  \}\in \mathcal F_n \text{ for all $n\in \Bbb N$ and }\\
+&A \cap\{\tau = \infty  \}\in \mathcal F.
+\end{align*}
+\end{definition}
+
+
+\begin{theorem}[{\bf Basic properties of the stopped $\sigma$-field}]
+Suppose $\tau$ and $\sigma$ are stopping times wrt a a filtration $(\mathcal F_n)_{n\in\Bbb N}$. Then,
+\begin{enumerate}
+\item $\mathcal F_\tau$ is a sub $\sigma$-field of $\mathcal F$ and
+\begin{align*}
+A\in \mathcal F_\tau
+&\Longleftrightarrow A\in \mathcal F \text{ and } A \cap\{\tau = n  \}\in \mathcal F_n,\forall n\in \Bbb N\\
+&\Longleftrightarrow A\in \mathcal F \text{ and } A \cap\{\tau \leq n  \}\in \mathcal F_n,\forall n\in \Bbb N;
+\end{align*}
+\item $\{\sigma\leq \tau\}\in \mathcal F_\tau\cap \mathcal F_\sigma$;
+\item If $\{\sigma\leq \tau\}=\Omega$ then $\mathcal F_\sigma \subset \mathcal F_\tau$;
+\item If $\tau<\infty$ and $(X_n)_{n\in \Bbb N}$ is adapted to $(\mathcal F_n)_{n\in\Bbb N}$ then $X_\tau$ is $\mathcal F_\tau$-measurable;
+\item If  $(X_n)_{n\in \Bbb N}$ is adapted to $(\mathcal F_n)_{n\in\Bbb N}$  then $Y:=\inf\{ X_{\tau\wedge n}\colon n\in \Bbb N\}$ is $\mathcal F_\tau$-measurable.
+\end{enumerate}
+\end{theorem}
+
+% \begin{lemma}
+% If $\tau$ be a stopping time wrt a filtration $(\mathcal F_n)_{n\in\Bbb N}$ then $\mathcal F_\tau$ is a $\sigma$-field and $X_\tau$ is $\mathcal F_\tau$-measurable.
+%  \end{lemma}
+
+
+\begin{theorem}[{\bf Finite optional sampling (FOST)}]
+Let $(X_1,\ldots, X_n)$ be a submartingale wrt a filtration $(\mathcal F_1,\ldots, \mathcal F_n)$. Let $\sigma$ and $\tau$ be stopping times wrt $(\mathcal F_1,\ldots, \mathcal F_n)$  such that $\sigma\leq \tau\leq n$. Then
+\[
+\text{
+$(X_\sigma, X_\tau)$ is a submartingale wrt the filtration $(\mathcal F_\sigma, \mathcal F_\tau)$.
+}
+\]
+\end{theorem}
+
+
+
+\begin{theorem}[{\bf Kolmogorov's inequality for submartingales}]
+Let $(X_1,\ldots, X_n)$ be a  submartingale wrt the filtration $(\mathcal F_1,\ldots, \mathcal F_n)$ and set $M_n:= \max(X_1, \ldots, X_n)$.  For each $c>0$ one has
+\begin{equation}
+P(M_n \geq c)\leq \frac{E(X_nI_{\{M_n\geq c\}})}{c} \leq \frac{E(X^+_n)}{c}.
+\end{equation}
+\end{theorem}
+
+
+\begin{theorem}[{\bf Azuma's inequality}]
+Let $(X_1,\ldots, X_n)$ be a martingale wrt the filtration $(\mathcal F_1,\ldots, \mathcal F_n)$ and set $M_n:= \max(X_1, \ldots, X_n)$.  In addition, for each $k=1,\ldots, n$, suppose  $E(X_k)=0$ and there exists finite $\alpha_k,\beta_k>0$ such that
+\[
+-\alpha_k \leq X_k - X_{k-1} \leq \beta_k.
+\]
+Then for each $c>0$
+\begin{align*}
+P(M_n \geq c)
+&\leq \inf_{a>0}\Bigl(e^{-ac}\prod_{k=1}^n\frac{\beta_k e^{-\alpha_k a}+\alpha_k e^{\beta_k a}}{\alpha_k + \beta_k} \Bigr) \leq \exp\Bigl(-\frac{c^2}{2\tau^2}\Bigr)
+\end{align*}
+where $\tau^2:= \frac{1}{4}\sum_{k=1}^n (\alpha_k+\beta_k)^2$
+\end{theorem}
+
+
+\begin{theorem}[{\bf Hoeffding's inequality}]
+Let $D_1,\ldots, D_n$ be independent bounded random variables such that $D_k\in [a_k, b_k]$ for  finite $a_k\leq b_k$, $k=1,\ldots, n$. Let $S_n:= D_1 + \cdots + D_n$. Then for any $c>0$
+\[
+P\bigl(S_n - ES_n \geq c\bigr) \leq \exp\Bigl(-\frac{c^2}{2\tau^2}\Bigr)
+\]
+where $\tau^2:= \frac{1}{4}\sum_{k=1}^n (b_k-a_k)^2$.
+\end{theorem}
+
+
+\begin{theorem}[{\bf McDiarmid's inequality}]
+Let $D_1,\ldots, D_n$ be independent random variables taking values in ranges $R_1, \ldots, R_n$. Let $F\colon R_1\times \cdots \times R_n\rightarrow \Bbb R$ have the property that for all $k=1,\ldots, n$  there exists a finite constant $c_k>0$ such that
+\begin{align*}
+\bigl|F(x_1,\ldots, x_{k-1}, a, &x_{k+1},\ldots, x_n) \\
+&- F(x_1,\ldots, x_{k-1}, b, x_{k+1},\ldots, x_n)\bigr|\leq c_k
+\end{align*}
+for all $a,b \in R_k$ and $x_j\in R_j$.  Then for any $c>0$
+\[
+P\bigl(F(D_1,\ldots, D_n) - E(F(D_1,\ldots, D_n)) \geq c\bigr) \leq \exp\Bigl(-\frac{c^2}{2\tau^2}\Bigr)
+\]
+where $\tau^2:= \sum_{k=1}^n c_k^2$.
+\end{theorem}
+
+
+
+\begin{theorem}[{\bf Doob's upcrossing}]
+If $(X_1, \ldots, X_n)$ is a non-negative submartingale wrt the filtration $(\mathcal F_1, \ldots, \mathcal F_n)$, then for every $c > 0$ the number $U$ of upcrossings of $[0,c]$ satisfies
+\begin{equation}
+E(U)\leq \frac{E(X_n)- E(X_1)}{c}
+\end{equation}
+\end{theorem}
+
+
+
+\begin{corollary}
+If $(X_1, \ldots, X_n)$ is a  submartingale wrt the filtration $(\mathcal F_1, \ldots, \mathcal F_n)$, then for every $b > a$ the number $U$ of upcrossings of $[a,b]$ satisfies
+\[
+E(U)\leq \frac{E(X_n-a)^+ - E(X_1 - a)^+ }{b - a}\leq \frac{E(X_n^+) + a^-}{b-a}
+\]
+\end{corollary}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Martingale Limit Theorems
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Martingale Limit Theorems}
+
+
+
+
+\begin{sectionassumption}
+For the remainder of this section let $(X_n)_{n\in \Bbb N}$ be a submartingale wrt the filtration $\mathcal F_n$ and let $\mathcal F_\infty:=\sigma\langle \mathcal F_1, \mathcal F_2, \ldots \rangle$.
+\end{sectionassumption}
+
+
+
+
+\begin{theorem}[{\bf Almost sure convergence (ASCT)}] $\phantom{asdf}$
+If $\sup_n E (X_n^+)<\infty$ then there exists an $\mathcal F_\infty$-measurable and integrable random variable $X_\infty$ such that
+\[
+X_n\aerightarrow X_\infty.
+\]
+\end{theorem}
+
+
+\begin{theorem}[{\bf Martingale smoothing}]
+Let $X$ be an $\mathcal F$-measurable integrable random variable. Then  the collection of random variables $(E^{\mathcal F_n} X)_{n\in\mathcal F_n}$ is UI and
+\[
+E^{\mathcal F_n} X \longrightarrow  E^{\mathcal F_\infty} X
+\]
+a.e. and in $L_1$
+as $n \rightarrow \infty$.
+\end{theorem}
+
+
+
+
+\begin{definition}[{\bf A closer}]
+ A pair $(X_\bullet, \mathcal F_\bullet)$ consisting of a random variable $X_\bullet$ and a sub-$\sigma$-field $\mathcal F_\bullet$ of $\mathcal F$ is said to {\bf close the sub-martingale $(X_n)_{n\in\Bbb N}$ on the right} if
+ \[
+ X_1, X_2, \ldots, X_n,\ldots, X_\bullet
+ \]
+ is a sub-martingale wrt the filtration
+ \[
+ \mathcal F_1, \mathcal F_2, \ldots, \mathcal F_n,\ldots, \mathcal F_\bullet.
+ \]
+ The pair $(X_\circ, \mathcal F_\circ)$ is said to be  {\bf the nearest closer of $(X_n)_{n\in\Bbb N}$ on the right} if
+ \[
+ X_1, X_2, \ldots, X_n,\ldots, X_\circ, X_\bullet
+ \]
+ is a sub-martingale wrt the filtration
+ \[
+ \mathcal F_1, \mathcal F_2, \ldots, \mathcal F_n,\ldots,\mathcal F_\circ,  \mathcal F_\bullet
+ \]
+ for every closer $(X_\bullet, \mathcal F_\bullet)$
+\end{definition}
+
+
+
+
+\begin{theorem}[{\bf A closer of  $(X_n)_{n\in \Bbb N}$ }]
+If there exists a closer of $(X_n)_{n\in \Bbb N}$  then there exists an $\mathcal F_\infty$-measurable and integrable random variable $X_\infty$ such that
+\[
+X_n\aerightarrow X_\infty.
+\]
+and $X_\infty$ is the nearest closer of $(X_n)_{n\in \Bbb N}$.
+\end{theorem}
+
+
+
+
+\begin{theorem}[{\bf subM $L_p$ convergence theorem }]
+If  $|X_n|^p$ are UI where $1\leq p < \infty$ then there exists an $\mathcal F_\infty$-measurable random variable $X_\infty$  such that $X_\infty\in L_p$
+\[
+X_n\aerightarrow X_\infty \text{ and } X_n\Lprightarrow X_\infty
+\]
+and $X_\infty$ is the nearest closer of $(X_n)_{n\in \Bbb N}$.
+\end{theorem}
+
+
+
+
+\begin{theorem}[{\bf Equivalence of some convergence criterion}]$\phantom{a}$
+\begin{itemize}
+\item There exists a closer of  $(X_n)_{n\in \Bbb N}$ $\Longleftrightarrow$  $X_n^+$ are UI
+\item If the $X_n$'s are non-negative and $p>1$ then
+\begin{align*}
+\text{$|X_n|^p$ are UI} & \Longleftrightarrow  \sup_n E(|X_n|^p)<\infty \Longleftrightarrow  E(\sup_n |X_n|^p)<\infty.
+\end{align*}
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}[{\bf Application to likelihood ratios}]
+Let $Q$ be another probability measure on $(\Omega, \mathcal F)$. For $n\in \Bbb N \cup\{\infty \}$ define
+\[
+Q_n:=Q\bigr|_{\mathcal F_n}\text{ and }\, P_n:=P\bigr|_{\mathcal F_n}.
+\]
+Consider the Lebesque decomposition of $Q_n$ with respect to $P_n$:
+\begin{align*}
+Q_n(\bullet) &= Q_n^a (\bullet) + Q_n^s(\bullet) =  \int_\bullet \rho_n dP_n + Q_n(\bullet \cap N_n)
+\end{align*}
+where $\rho_n = \frac{dQ_n^a}{dP_n}$ and $N_n$ is $P_n$-null. Then $(\rho_n)_{n\in \Bbb N}$ is a non-negative super-martinagle  and
+\[
+\rho_n\aerightarrow \rho_\infty
+\]
+\end{theorem}
+
+Notice that when $\mathcal F_n=\sigma\langle X_1, \ldots, X_n\rangle$ for {\em any} sequence of random variables $X_1, X_2, \ldots$ on $(\Omega, \mathcal F, P)$, not just (sub)martingales, then $\rho_n$ has the form
+\[
+\rho_n =_{a.e.} I_{\{p_n(X_1,\ldots, X_n)>0\}}\frac{q_n(X_1,\ldots, X_n)}{p_n(X_1,\ldots, X_n)}
+\]
+where $q_n$ and $p_n$ are densities of $P_n(X_1,\ldots, X_n)^{-1}$ and $Q_n(X_1,\ldots, X_n)^{-1}$   with respect to some measure $\mu_n$, respectively.  Also, note that there always exists some such  measure $\mu_n$ since one can take $\mu_n = Q_n(X_1,\ldots, X_n)^{-1} + P_n(X_1,\ldots, X_n)^{-1}$.
+
+
+\begin{exercise}
+Let $X_1, X_2, \ldots$ be random variables defined on a probability space $(\Omega, \mathcal F, P)$ and let $Q$ be another probabilty measure on $(\Omega, \mathcal F)$. Let $\mathcal F_n:=\sigma\langle X_1,\ldots, X_n\rangle$,  $\mathcal F_\infty :=\sigma\langle  X_n\colon n\in \Bbb N\rangle $ and
+\[ P_n = P\bigr|_{\mathcal F_n}\text{ and }\,  Q_n = Q\bigr|_{\mathcal F_n}\]
+for all $n\in \Bbb N\cup\{\infty\}$. Let $Q_n = Q_n^a + Q_n^s$ be the Lebesque decomposition of $Q_n$ with respect to $P_n$ and
+\[
+\rho_n := \frac{dQ^a_n}{dP_n} \text{ for all $\,n\in \Bbb N\cup\{\infty\}$.}
+\]
+\begin{itemize}
+\item  Show that the process $(\sqrt{\rho_n})_{n\in \Bbb N}$ is UI, is in $L_2(P)$ and is a super-martingale.
+\item
+Show that $E(\sqrt{\rho_n})\downarrow E(\sqrt{\rho_\infty})$ as $n\rightarrow \infty$.
+\item
+Show that $Q_\infty\perp P_\infty\Longleftrightarrow \lim_n E(\sqrt{\rho_n}) = 0$.
+\item
+Show that the following statements are equivalent
+\begin{enumerate}
+\item $Q_\infty\ll P_\infty$
+\item $Q_n\ll P_n$ for all $n\in \Bbb N$ and the $\rho_n$'s are UI
+\item $Q_n\ll P_n$ for all $n\in \Bbb N$ and the $\sqrt{\rho_n}$'s converge in $L_2$
+\item $Q_n\ll P_n$ for all $n\in \Bbb N$ and the $\sqrt{\rho_n}$'s are Cauchy in $L_2$
+\item $Q_n\ll P_n$ for all $n\in \Bbb N$ and the $\lim_{n,m}E(\sqrt{\rho_m}\sqrt{\rho_n})=1$.
+\end{enumerate}
+Remark: The condition $\lim_{n,m}E(\sqrt{\rho_m}\sqrt{\rho_n})=1$ is related to a Cauchy criterion for Hellinger distance.
+\end{itemize}
+\end{exercise}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Backward submartingales
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Backward sub-martingales}
+
+\begin{definition}[{\bf Backward sub-martingales}]
+A submartingale indexed by the negative integers is called a backward sub-martingale. In particular, $(X_{-n})_{n\in\Bbb N}$ is said to be {\bf a backward sub-martingale with respect to filtration $(\mathcal F_{-n})_{n\in \Bbb N}$} if for each $n\in \Bbb N$
+\begin{itemize}
+ \item  $\mathcal F_{-n}\subset \mathcal \mathcal F_{-n+1}$
+ \item $X_{-n}$ is $\mathcal F_{-n}$-measurable and integrable
+ \item $E^{\mathcal F_{-n}} (X_{-n+1})\geq_{a.e.} X_{-n}$
+ \end{itemize}
+\end{definition}
+
+
+
+\begin{theorem}[{\bf Backward almost sure convergence}]
+If $(X_{-n})_{n\in\Bbb N}$ is a backward sub-martingale with respect to filtration $(\mathcal F_{-n})_{n\in \Bbb N}$  then there exists an extended random variable $X_{-\infty}$ such that
+\[
+X_n\aerightarrow X_\infty.
+\]
+as $n\rightarrow \infty$ where $X_{-\infty}\in Q^+$ and is measurable with respect to
+\[
+\mathcal F_{-\infty}:=\bigcap_{n\in \Bbb N} \mathcal F_{-n}.
+\]
+\end{theorem}
+
+\begin{theorem}[{\bf Backward closer}]
+If $(X_{-n})_{n\in\Bbb N}$ is a backward sub-martingale with respect to filtration $(\mathcal F_{-n})_{n\in \Bbb N}$ which has a left closer then there exists $X_{-\infty}\in L_1(P, \mathcal F_{-\infty})$ such that
+\[
+X_{-n}\aerightarrow X_{-\infty} \text{ and } X_{-n}\Lonerightarrow X_{-\infty}
+\]
+as $n\rightarrow \infty$ where $X_{-\infty}$ is the nearest left closer of $(X_{-n})_{n\in \Bbb N}$.
+\end{theorem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Continuous time martingales
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Continuous time martingales}

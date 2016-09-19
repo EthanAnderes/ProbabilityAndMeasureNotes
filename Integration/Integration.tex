@@ -1,0 +1,1269 @@
+%-------------------------------'
+%---------section  ---------------'
+%-------------------------------'
+\part{Integration}
+%-------------------------------'
+%---------section  ---------------'
+%-------------------------------'
+
+
+\section{Construction of $\int_\Omega f d\mu$}
+
+
+\begin{definition}[{\bf Definition of $\int_\Omega f d\mu$ for $f\in\mathscr N_s$}]
+Let $(\Omega, \mathcal F, \mu)$ be a measure space and $f:\Omega\rightarrow \bar{\Bbb R}$ be in $\mathscr N_s$.  Then $f=\sum_{i=1}^n c_i I_{A_i}$ for some $c_1,\ldots, c_n \in[0,\infty]$ and disjoint $\mathcal F$-sets $A_1,\ldots, A_n$. The  integral of $f$ with respect to $\mu$ is defined as
+\[ \int_{\Omega} f d\mu:= \sum_{i=1}^n c_i \mu(A_i). \]
+\end{definition}
+
+
+\begin{theorem}[{\bf The simple 3}]
+Let $(\Omega, \mathcal F, \mu)$ be a measure space. Then
+\begin{enumerate}
+\item If $f\in \mathscr N_s$ then $\int_\Omega f d\mu$ is well defined.
+\item {\bf Monotonicity:} If $f, g\in \mathscr N_s$ then
+\[ \text{$f\leq g$}\Longrightarrow \int_\Omega fd\mu\leq \int_\Omega g d\mu.  \]
+\item {\bf Linearity:}
+If both $f, g\in \mathscr N_s$ then
+\begin{equation}
+\label{llin}
+\int_\Omega \alpha f + \beta g d\mu =  \alpha \int_\Omega fd\mu + \beta \int_\Omega gd\mu
+\end{equation}
+for all $ \alpha, \beta\in[0,\infty]$.
+\item {\bf Continuous from below:} If $f_1, f_2,\ldots$ and $f$ are in $\mathscr N_s$ then
+\[ \text{$ f_n\uparrow f$}\Longrightarrow \int_\Omega f_n d\mu\uparrow \int_\Omega f d\mu.  \]
+\end{enumerate}
+\end{theorem}
+
+
+
+
+\begin{definition}[{\bf Definition of $\int_\Omega f d\mu$ for $f\in\mathscr N$}]
+Let $(\Omega, \mathcal F, \mu)$ be a measure space and $f:\Omega\rightarrow \bar{\Bbb R}$ be in $\mathscr N$. Then  there exists $f_n\in\mathscr N_s$ such that $f_n\uparrow f$.
+The integral of $f$ with respect to $\mu$ is defined as
+\[ \int_{\Omega} f d\mu:=\lim_{n\rightarrow \infty} \int_\Omega f_n d\mu. \]
+\end{definition}
+
+
+
+
+%%%%%%%%
+%\subsection{The little 3}
+
+
+\begin{theorem}[{\bf The little 3}] Let $(\Omega, \mathcal F, \mu)$ be a measure space. Then
+\begin{enumerate}
+\item If $f\in \mathscr N$ then $\int_\Omega f d\mu$ is well defined.
+\item {\bf Monotonicity:} If $f, g\in \mathscr N$ then
+\[ \text{$f\leq g$}\Longrightarrow \int_\Omega fd\mu\leq \int_\Omega g d\mu.  \]
+\item {\bf Linearity:}
+If both $f, g\in \mathscr N$ then
+\begin{equation}
+\label{llin}
+\int_\Omega \alpha f + \beta g d\mu =  \alpha \int_\Omega fd\mu + \beta \int_\Omega gd\mu
+\end{equation}
+for all $ \alpha, \beta\in[0,\infty]$.
+\item {\bf Continuous from below:} If $f_1, f_2,\ldots$ and $f$ are in $\mathscr N$ then
+\[ \text{$ f_n\uparrow f$}\Longrightarrow \int_\Omega f_n d\mu\uparrow \int_\Omega f d\mu.  \]
+\end{enumerate}
+\end{theorem}
+
+%
+%%
+%\begin{theorem}[{\bf Good functions (0-1-2-3)}]
+%Let $(\Omega, \mathcal F,\mu)$ be a measure space. Let $\mathcal G$ denote a set of functions mapping $\Omega$ into $\bar{\Bbb R}$.
+%If
+%\begin{enumerate}
+%\item  $I_A\in \mathcal G$ for all $A\in\mathcal F$;
+%\item $\sum_{i=1}^n c_n I_{A_i}\in \mathcal G$ whenever $c_1,\ldots, c_n\in\bar{\Bbb R}$ and the $A_i$'s form a $\mathcal F$-set partition f $\Omega$.
+%\item  $f_n\in\mathcal G\text{ and } 0\leq f_n\uparrow f \Longrightarrow f\in \mathcal G$
+%\end{enumerate}
+%then $\mathscr N\subset \mathcal G$. If, in addition,
+%\begin{enumerate}
+%\item[(iv)] $\int f^+d\mu<\infty$ or $\int f^- d\mu<\infty \Longrightarrow f\in\mathcal G$
+%\end{enumerate}
+%then  $ Q(\mu)\subset\mathcal G$.
+%\end{theorem}
+%%%%
+%%%%
+%%
+%%
+
+\begin{theorem}[{\bf Useful side facts}] \label{US}
+ Let $(\Omega, \mathcal F, \mu)$ be a measure space.
+\begin{enumerate}
+\item If $f\in \mathscr N$ and $\int_\Omega f d\mu<\infty$ then $f<\infty $ $\mu$-a.e..
+\item If $f\in \mathscr N$ then
+\[ \int_\Omega fd\mu =0 \Longleftrightarrow f=0   \text{ $\mu$-a.e..}
+\]
+\item  If $f,g\in \mathscr N$ and $f=g$ $\mu$-a.e. then $ \int_\Omega f d\mu = \int_\Omega g d\mu $.
+\end{enumerate}
+\end{theorem}
+
+
+
+
+
+\begin{definition}[{\bf  Extending $\int_\Omega f d\mu$ to some--but not all--$\mcirc \mathcal F$ functions}]
+Let $(\Omega, \mathcal F, \mu)$ be a measure space and $f:\Omega\rightarrow \bar{\Bbb R}$ be an $\mathcal F$ measurable function  such that either $\int_{\Omega} f^+ d\mu<\infty $ or $\int_{\Omega} f^- d\mu<\infty $ .   The  integral of $f$ with respect to $\mu$ is defined as
+\[ \int_{\Omega} f d\mu:= \int_{\Omega} f^+ d\mu-\int_{\Omega} f^- d\mu. \]
+\end{definition}
+
+\begin{remark}
+One consequence of Theorem \ref{US} $(ii)$ is that for any function $f\colon \Omega \rightarrow \bar{\Bbb R}$, such that $\int f d\mu$ is defined,  we are free to change the value of $f(w)$ on a $\mu$-negligible set without changing the value of the integral so long as the new function is still measurable.
+\end{remark}
+
+
+
+
+
+\begin{definition}[{\bf Quasi-integrable and integrable}]
+Let $(\Omega, \mathcal F, \mu)$ be a measure space. Then
+\begin{itemize}
+\item  $Q^+( \mu)$ denotes the set of  functions $f:\Omega\rightarrow \bR$ which are measurable $\mathcal F$ and $\int_\Omega f^+ d\mu<\infty$ \\
+(use $Q^+(\Omega, \mathcal F, \mu)$ if we want to be specific about $\Omega$ and $\mathcal F$);
+\item
+$ Q^-( \mu)$ denotes the set of  functions $f:\Omega\rightarrow \bR$ which are measurable $\mathcal F$ and $\int_\Omega f^- d\mu<\infty$;
+%\\
+%(use $Q^-( \mu)$ or just $Q^-$ for short);
+\item  $Q(\mu):=Q^+(\mu)\cup  Q^-(\mu)$;
+%\\
+%(use $Q( \mu)$ or just $Q$ for short);
+\item $L_1(\mu):= Q^+(\mu)\cap Q^-(\mu)$.
+%\\
+%(use $L_1( \mu)$ or just $L_1$ for short).
+\end{itemize}
+\end{definition}
+
+
+
+
+\begin{definition}[{\bf  Extending $\int_\Omega f d\mu$ to some--but not all--functions only defined $\mu$-a.e.}]
+Let $(\Omega, \mathcal F, \mu)$ be a measure space and let $f: \Omega\cap A \rightarrow \bar{\Bbb R}$ where $A^c$ is a $\mu$-null set (i.e. $f$ is defined $\mu$-a.e.). If it is possible to change or define $f$ on a $\mu$-null cover of $A^c$, to yield a function $f^*:\Omega\rightarrow \bar{\Bbb R}$ which is $f\in Q(\mu)$, then we define
+\[  \int_{\Omega} f d\mu:= \int_{\Omega} f^* d\mu. \]
+\end{definition}
+
+
+\begin{remark}
+The above definition is useful for the next theorem since it allows us to potentially  integrate functions such as $f+g$ even when there is a $\mu$-null set of $w$'s such that $f(w)+ g(w)=\infty - \infty$.
+\end{remark}
+
+
+
+%%%%%%%%%%%%%%%%%
+\section{The Big Three: monotonicity, linearity and continuity from below}
+
+
+
+
+
+
+\begin{theorem}[{\bf The Big Three}] Let $(\Omega, \mathcal F, \mu)$ be a measure space. Then
+\begin{enumerate}
+\item {\bf Monotonicity:} If $f, g \in Q(\mu)$ then
+\[ \text{$f\leq g$ $\mu$-a.e.}\Longrightarrow \int_\Omega fd\mu\leq \int_\Omega g d\mu.  \]
+\item {\bf Linearity:}\\
+If $f\in Q(\mu)$ and $\alpha \in \Bbb R$ then $\alpha f\in Q(\mu)$ and
+\[
+%\begin{equation}
+%\label{llin2}
+\int_\Omega \alpha f \,d\mu =  \alpha \int_\Omega f\,d\mu.
+%\end{equation}
+\]
+If $f\in \mathscr N$ and $\alpha \in \{-\infty, \infty\}$ then $\alpha f\in Q(\mu)$ and
+\[
+%\begin{equation}
+%\label{llin2}
+\int_\Omega \alpha f \,d\mu =  \alpha \int_\Omega f\,d\mu.
+%\end{equation}
+\]
+If $f$ and $g$ are such that the sum $ \int_\Omega f\,d\mu + \int_\Omega g\,d\mu$ is defined (if both $f,g\in Q^+(\mu)$ or if both $f,g \in Q^-(\mu)$) then \mbox{$f+g\in Q(\mu)$} and
+\[
+%\begin{equation}
+%\label{llin1}
+\int_\Omega f +  g \,d\mu =  \int_\Omega f\,d\mu + \int_\Omega g\,d\mu.
+%\end{equation}
+\]
+
+
+%Moreover, (\ref{llin}) holds for all $f,g\in\mathscr N$ and for all $\alpha,\beta\in [0,\infty]$.
+\item {\bf Continuous from below:} If $f_1, f_2,\ldots$ are measurable $\mathcal F$ then
+\[ \text{$0\leq f_n\uparrow f$ $\mu$-a.e.}\Longrightarrow \int_\Omega f_nd\mu\uparrow \int_\Omega f d\mu.  \]
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}[{\bf Facts embedded in the proof of Big 3}]
+$\vphantom{asdf}$
+\begin{itemize}
+\item If $g\in Q^+(\mu)$, $f$ is  $\mcirc \mathcal F$ and $f\leq g$ a.e. then $f\in Q^+(\mu)$;
+\item If $f\in Q^-(\mu)$, $g$ is  $\mcirc \mathcal F$ and $f\leq g$ a.e. then $g\in Q^-(\mu)$;
+\item If $f\in Q^\pm(\mu)$ and $\alpha\in [0,\infty)$ then $\alpha f\in Q^\pm(\mu)$;
+\item If $f\in Q^\pm(\mu)$ and $\alpha\in (-\infty,0)$  then $\alpha f\in Q^\mp(\mu)$;
+\item If $f, g\in Q^\pm(\mu)$  then $f+g\in Q^\pm(\mu)$;
+%\item If $f,g \in Q^-(\mu)$  then $f+g\in Q^-(\mu)$;
+\end{itemize}
+\end{corollary}
+
+\begin{corollary}
+\label{B3whenL1}
+Suppose $f, g\in Q(\mu)$ and either $f \in L_1(\mu)$ or $g \in L_1(\mu)$. Then if $\alpha, \beta\in \Bbb R$ one has that $\alpha f+ \beta g \in Q(\mu)$ and
+\[ \int_\Omega \alpha f+ \beta g \, d\mu =  \alpha \int_\Omega f \, d\mu + \beta \int_\Omega  g \, d\mu. \]
+\end{corollary}
+
+\begin{corollary}
+$\vphantom{asdf}$
+\begin{itemize}
+\item $\left| \int fd\mu \right|\leq \int |f|d\mu$ for all $f\in Q(\mu)$;
+\item If $f$ is $\mcirc \mathcal F$ and $\int |f|d\mu<\infty$ then $f\in L_1(\mu)$.
+\end{itemize}
+\end{corollary}
+
+
+
+
+
+\begin{exercise}[{\bf Relate with Billingsley's definition of $\int_\Omega fd\mu$}]
+Show that for any $f\in\mathscr N$
+\[ \int_\Omega f d\mu = \sup\left\{ \sum_i\bigl[ \mu(A_i) \inf_{w\in A_i} f(w) \bigr]\colon \{ A_i \}\in\mathcal A  \right\} \]
+where $\mathcal A$ is the collection of finite $\mathcal F$-partitions $\{ A_i\}$ of $\Omega$.
+\end{exercise}
+
+%\begin{exercise} Let $f, g$ and $h$ be measurable $\mathcal F$ functions. Show that if $f=g+h$ and the product $gh=0$, then $f\in Q^\pm$ if and only if $g\in Q^\pm$ and $h\in Q^\pm$. Moreover, $f\in Q$ implies that
+%\[ \int_\Omega f \,d\mu = \int_\Omega g\,d\mu +  \int_\Omega h \,d\mu. \]
+%\end{exercise}
+
+\begin{exercise}[{\bf More general continuity results for $\int_\Omega f d\mu$}]
+Suppose $f_1, f_2, \ldots$ are measurable $\mathcal F$ functions on $\Omega$.
+Show the following two statements:
+\begin{enumerate}
+\item If $f_1\in Q^-(\mu)$ and $f_n\uparrow f$ then $f_n\in Q^-(\mu)$ for all $n\geq 1$, $f\in Q^-(\mu)$ and $\int_\Omega f_n \,d\mu \uparrow \int_\Omega f \, d\mu$.
+\item If $f_1\in Q^+(\mu)$ and $f_n\downarrow f$ then $f_n\in Q^+(\mu)$ for all $n\geq 1$, $f\in Q^+(\mu)$ and $\int_\Omega f_n \,d\mu \downarrow \int_\Omega f \, d\mu$.
+\end{enumerate}
+% Hint: for (i) start by noticing $0\leq f_n+ f_n^-\leq f_n + f_1^-$ a.e. (why?); for (ii) multiply by $-1$.
+\end{exercise}
+
+\begin{exercise}[{\bf Piecewise monotonicity}]
+Let $f_1, f_2, \ldots$ be a sequence of measurable $\mathcal F$ functions on $\Omega$. Show that if:
+\begin{itemize}
+\item there exists an $\mathcal F$-set $B\subset \Omega$;
+\item $f_n(w)\uparrow f(w)$ for each $w\in B$;
+\item $f_n(w)\downarrow f(w)$ for each $w\in B^c$;
+\item $f_1\in L_1(\mu)$ and $f\in Q(\mu)$,
+\end{itemize}
+then $f_n\in Q(\mu)$ for all $n$ and $\int f_n \,d\mu \rightarrow \int f \,d\mu$.
+\end{exercise}
+
+
+
+\clearpage
+%%%%%%%%%%
+\section{Change of variables and densities}
+
+\subsection{Basic theory}
+
+\begin{theorem}[{\bf Change of variables}]
+\label{thm: change of variables}
+Let $(\Omega, \mathcal F,\mu)$ be a measure space and $(\Omega^\prime, \mathcal F^\prime)$ be measurable space.
+Suppose \mbox{$\Omega \overset T \rightarrow \Omega^\prime \overset f \rightarrow \bR$} where $
+T$ is measurable $\mathcal F/\mathcal F^\prime$ and $f$ is measurable $\mathcal F^\prime/\mathcal B$. Then \mbox{$f\in Q^\pm(\Omega^\prime, \mathcal F^\prime, \mu T^{-1})$} if and only if \mbox{$f\circ T\in Q^\pm(\Omega, \mathcal F, \mu)$} and either one imply that
+\[  \int_\Omega f\circ T d\mu = \int_{\Omega^\prime} f d\mu T^{-1}. \]
+\end{theorem}
+
+\begin{definition}[{\bf Indefinite integral}]
+If $f\in  Q(\mu)$ then the set function $\int_\bullet fd\mu: \mathcal F\rightarrow \bR$ defined as
+\[A\mapsto \int_A fd\mu:= \int_\Omega f I_A d\mu\]
+for all $A\in \mathcal F$ is called the {\bf indefinite integral} of $f$ with respect to $\mu$.
+\end{definition}
+
+\begin{theorem} If $f\in Q(\mu)$ then $\int_\bullet fd\mu$ is countably additive over disjoint sets.
+\end{theorem}
+
+\begin{proof}
+Let $F_1, F_2, \ldots$ are disjoint $\mathcal F$-sets. We use the 2-3 argument.
+
+\begin{flushleft}
+({\sl Step 2, prove for $f\in \mathscr N$ })
+\begin{align*}
+\int_{\cup_k F_k} fd\mu
+&:= \int_{\Omega} f I_{\cup_k F_k} d\mu \\
+&= \int_{\Omega} f \sum_{k=1}^\infty I_{F_k} d\mu,\,\text{ disjoint $F_k$} \\
+&= \int_{\Omega} \sum_{k=1}^\infty f I_{F_k} d\mu \\
+&= \int_{\Omega} \setlimup{n}\sum_{k=1}^n f I_{ F_k} d\mu,\,\text{$f I_{ F_k}\geq 0$}\\
+&= \setlimup{n} \int_{\Omega} \sum_{k=1}^n f I_{ F_k} d\mu\,\text{ by Big 3 and $\sum_{k=1}^n f I_{ F_k}\geq 0$} \\
+&= \setlimup{n} \sum_{k=1}^n \int_{\Omega}  f I_{ F_k} d\mu\,\text{ by Big 3 and $f I_{ F_k}\geq 0$} \\
+&=  \sum_{k=1}^\infty \int_{F_k}fd\mu
+\end{align*}
+\end{flushleft}
+
+\begin{flushleft}
+({\sl Step 3, prove for $f\in Q(\mu)$})
+\begin{align*}
+\int_{\cup_k F_k} fd\mu
+&= \int_{\cup_k F_k} f^+d\mu  - \int_{\cup_k F_k} f^-d\mu  \\
+& \qquad\text{At least one term above is finite by $f\in Q(\mu)$}  \\
+&= \sum_{k=1}^\infty \int_{F_k} f^+d\mu - \sum_{k=1}^\infty \int_{F_k} f^-d\mu,\,\text{by Step 2}\\
+& = \sum_{k=1}^\infty \Bigl[\int_{F_k} f^+d\mu -  \int_{F_k} f^-d\mu\Bigr] \\
+& \qquad\qquad\text{By Corollary \ref{B3whenL1} with counting measure since}  \\
+& \qquad\qquad\text{both sequences $\{\textstyle\int_{F_k} f^\pm d\mu \}_{k=1}^\infty$ are }  \\
+& \qquad\qquad\text{in $Q^-(\#)$ and at least one is in  $L_1(\#)$.} \\
+& = \sum_{k=1}^\infty \int_{F_k} fd\mu
+\end{align*}
+\end{flushleft}
+
+
+\end{proof}
+
+
+
+\begin{corollary}[{\bf Indefinite integrals are measures}] If $f\in \mathscr N$ then $\int_\bullet fd\mu$ is a measure. If, in addition, $\int_\Omega f\,d\mu =1$  then $\int_\bullet fd\mu$ is a probability measure.
+\end{corollary}
+
+\begin{definition}[{\bf Densities}]
+For any measure $\nu$ on the measurable space $(\Omega, \mathcal F)$, if there exists $\delta\in\mathscr N$  such that $\nu(\bullet)=\int_\bullet \delta d\mu$ over $\mathcal F$
+ then we say that {\bf $\delta$ is the density of $\nu$ with respect to $\mu$}.
+\end{definition}
+
+
+\begin{theorem} Let $f,g\in  Q(\mu)$. If $f\in  L_1(\mu)$ or $g\in  L_1(\mu)$ or $\mu$ is $\sigma$-finite then
+\[ \text{$\int_\bullet fd\mu\leq \int_\bullet gd\mu$ on $\mathcal F$} \Longleftrightarrow \text{$f\leq g$ $\mu$-a.e}. \]
+\end{theorem}
+It is clear that the above theorem does not hold without some condition like $f\in  L_1(\mu)$ or $g\in  L_1(\mu)$ or $\mu$ is $\sigma$-finite. Indeed a counter example can be found by
+\begin{align*}
+\Omega & := \Bbb R \\
+\mathcal F &:= \{\varnothing, \Omega, (-\infty, 0), [0,\infty) \} \\
+\mu &:= \text{$\mathcal L_1$ on $\mathcal F$}  \\
+f&:= 2\\
+g&:= 1.
+\end{align*}
+Now clearly $f\not\leq g$ but $\int_\bullet fd\mu\leq \int_\bullet gd\mu$ on $\mathcal F$.
+
+\begin{proof}
+The direction ($\Longleftarrow$) follows directly by monotonicity in Big 3. To show ($\Longrightarrow$) assume $\textstyle\int_\bullet fd\mu \leq \textstyle\int_\bullet gd\mu$ on $\mathcal F$. We show $\mu(f>g)=0$.
+
+\begin{flushleft}
+\textbullet({\sl Case 1: $f\in L_1(\mu)$ or $g\in L_1(\mu)$})
+\begin{align*}
+f &I_{\{ f>g \} }\geq g I_{\{ f>g \} } \\
+&\Longrightarrow \int_{\{ f>g\}} fd\mu \geq \int_{\{ f>g\}} gd\mu,\,\text{ Big 3} \\
+&\Longrightarrow \int_{\{ f>g\}} fd\mu = \int_{\{ f>g\}} gd\mu,\,\text{ since $\textstyle\int_\bullet fd\mu \leq \textstyle\int_\bullet gd\mu$} \\
+&\Longrightarrow \int f I_{\{ f>g\}} d\mu =  \int gI_{\{ f>g\}} d\mu  \\
+&\Longrightarrow \int \underbrace{(f - g)I_{\{ f>g\}}}_{\in\mathscr N} d\mu = 0, \text{ since  $f\in L_1(\mu)$ or $g\in L_1(\mu)$}  \\
+&\Longrightarrow  (f - g)I_{\{ f>g\}} = 0\,\text{ $\mu$-a.e.  by Useful facts}\\
+&\Longrightarrow  \mu(\{ f>g\}) = 0,\,\text{since $(f-g)>0$ when $I_{\{ f>g\}}=1$ }
+\end{align*}
+\end{flushleft}
+
+\begin{flushleft}
+\textbullet({\sl Case 2: $\mu$ is finite}) Let $A_n:=\{|f|<n\}$. Now since $\mu$ is a finite measure $fI_{A_n}\in L_1(\mu)$ and $gI_{A_n}\in Q(\mu)$ . Moreover
+\[\int_\bullet fI_{A_n} d\mu = \int_{\bullet\cap A_n} f d\mu \leq \int_{\bullet\cap A_n} g d\mu = \int_\bullet gI_{A_n} d\mu\]
+ on $\mathcal F$.
+Therefore by case 1, $fI_{A_n}\leq gI_{A_n}$ $\mu$-a.e. for every $n$. This gives
+\begin{equation}
+\text{$f\leq g$ $\mu$-a.e on $\bigcup_{n=1}^\infty A_n=\{|f|<\infty \}$}. \label{eq: indef set1}\end{equation}
+Similary we can define $B_n:=\{|g|<n\}$ and using the same argument as above conclude that
+\begin{equation} \text{$f\leq g$ $\mu$-a.e on $\bigcup_{n=1}^\infty B_n=\{|g|<\infty \}$}. \label{eq: indef set2}\end{equation}
+We also have that
+\begin{align}
+&\text{$f\leq g$ on $\{f = \infty\}\cap \{g = \infty \}$}\label{eq: indef set2}\\
+&\text{$f\leq g$ on $\{f = -\infty\}\cap \{g = \infty \}$}\label{eq: indef set2}\\
+&\text{$f\leq g$ on $\{f = -\infty\}\cap \{g = -\infty \}$}\label{eq: indef set2}\\
+\end{align}
+The last case $\{f = \infty\}\cap \{g = -\infty \}$ must have $\mu$-measure zeros or else it would contradict $\int_\bullet fd\mu\leq \int_\bullet gd\mu$. Considering the union of all the sets in (\ref{eq: indef set1})-(\ref{eq: indef set2}) gives
+\[
+\text{$f\leq g$ $\mu$-a.e.}
+\]
+as was to be shown.
+\end{flushleft}
+
+\begin{flushleft}
+\textbullet({\sl Case 3: $\mu$ is $\sigma$-finite})
+Let $\Omega = \bigcup_{n=1}^\infty F_n$ where $F_n$ are disjoint $\mathcal F$-sets having finite $\mu$-measure. Notice that
+\begin{align*}
+\mu(f>g ) &= \sum_{n=1}^\infty \underbrace{\mu( \{f>g\} \cap F_n)}_{=:\mu_n (f>g)}
+\end{align*}
+where $\mu_n$ is a finite measure. Case 2 now implies $\mu_n(f>g ) = 0$ since
+\begin{align*}
+\int_\bullet f d\mu_n
+&= \int_\bullet fI_{F_n} d\mu\,\text{ by 1-2-3 argument} \\
+&= \int_{\bullet\cap F_n} f d\mu \\
+&\leq \int_{\bullet\cap F_n} g d\mu,\,\text{by assumption} \\
+&= \int_\bullet g d\mu_n \,\text{ by 1-2-3 argument}
+\end{align*}
+\end{flushleft}
+\end{proof}
+
+
+\begin{corollary}[{\bf Uniqueness of densities}]
+\label{thm: uniqueness of densities}
+  Let $f,g\in  Q(\mu)$. If $f\in  L_1(\mu)$ or $g\in  L_1(\mu)$ or  $\mu$ is $\sigma$-finite then
+\[ \text{$\int_\bullet fd\mu= \int_\bullet gd\mu$ on $\mathcal F$} \Longleftrightarrow \text{$f= g$ $\mu$-a.e}. \]
+\end{corollary}
+
+
+\begin{corollary}[{\bf Uniqueness of densities for probabilities}]
+\label{thm: uniqueness of densities 2 }
+The density of any finite measure is unique.
+\end{corollary}
+
+The next theorem tells us how to compute $\int_\Omega f d\nu$ when $\nu(\bullet) = \int_\bullet \delta d\mu$ for some density $\delta$.
+
+
+\begin{theorem}[{\bf Slap in the density: $d\nu = \delta d\mu$}]
+\label{thm: slap}
+Let $\nu$ and $\mu$ be measures on the measurable space $(\Omega,\mathcal F)$. Suppose $\nu$ has density $\delta$ with respect to $\mu$.  Then $f\in Q^\pm(\nu)$ if and only if $f \delta \in Q^\pm(\mu)$ and either one implies
+\begin{equation}
+\label{eqn: slap}
+\int_\Omega f d\nu = \int_\Omega f \delta d\mu.
+\end{equation}
+\end{theorem}
+\begin{proof}
+We use the 1-2-3 argument.
+
+\begin{flushleft}
+\textbullet({\sl Step 1: Show (\ref{eqn: slap}) for $f\in\mathscr N_s$}) By non-negativity and closure theorem for $\mcirc$ both $f$ and $f\delta$ are quasi-integrable from below. Therefore
+\begin{align*}
+\int_\Omega f d\nu
+&= \int_\Omega \sum_{i=1}^n c_i I_{A_i} d\nu,\,\text{by Structure Thm}\\
+&=  \sum_{i=1}^n  c_i\nu(A_i),\,\text{definition of $\int_\Omega$} \\
+&=  \sum_{i=1}^n  c_i\int_\Omega \delta I_{A_i} d\mu \\
+&=  \int_\Omega \delta \sum_{i=1}^n  c_iI_{A_i} d\mu,\,\text{by Little 3}\\
+&=  \int_\Omega \delta f d\mu.
+\end{align*}
+Notice the integrals in the above equality could all be $\infty$.
+%This then implies (\ref{eqn: slap}) and also  $f\in Q^\pm(\nu) \Longleftrightarrow f \delta \in Q^\pm(\mu)$.
+\end{flushleft}
+
+
+\begin{flushleft}
+\textbullet({\sl Step 2: Show (\ref{eqn: slap}) for $f\in\mathscr N$}) The follows directly by monotonicity in Little 3.
+\end{flushleft}
+
+
+\begin{flushleft}
+\textbullet({\sl Step 3: Show the whole theorem for general $f$})  From step 2 we have
+\begin{align*}
+\int_\Omega f^\pm d\nu = \int f^\pm \delta d\mu = \int (f\delta)^\pm d\mu.
+\end{align*}
+Therefore $f\in Q^\pm(\nu) \Longleftrightarrow f \delta \in Q^\pm(\mu)$ and either implies (\ref{eqn: slap}).
+\end{flushleft}
+
+\end{proof}
+
+
+ The previous theorem gives more motivation for the notation that a density $\delta$ of $\nu$ wrt $\mu$ should be written $\frac{d\nu}{d\mu}$. Indeed ``slap in the density'' says $d\nu = \delta d\mu$. At times, I will write $d\nu = \delta d\mu$ as short hand for the statement that $\nu$ has a density $\delta$ with respect to $\mu$.
+I will also, at times, say that $\frac{d\nu}{d\mu}$ exists, by which I mean that there exists a density $\frac{d\nu}{d\mu}$ of $\nu$ with respect to $\mu$.
+ Note that $\frac{d\nu}{d\mu}$ is unique when either $\mu$ is $\sigma$-finite or $\frac{d\nu}{d\mu}\in L_1(\mu)$.
+
+\begin{theorem}[{\bf The chain rule for densities}]
+\label{thm: chain rule for sigma finite}
+Let $\rho$, $\nu$ and $\mu$ be measures on the measurable space $(\Omega,\mathcal F)$ such that $\mu$ is $\sigma$-finite.   If $\frac{d\rho}{d\nu}$ is a density of $\rho$ with respect to  $\nu$
+and $\frac{d\nu}{d\mu}$ is the density of $\nu$ with respect to $\mu$, then $\frac{d\rho}{d\mu}$ exists and
+\[ \frac{d\rho}{d\mu}=\frac{d\rho}{d\nu} \frac{d\nu}{d\mu},\text{ $\mu $-a.e.}\]
+\end{theorem}
+\begin{proof}
+We simply need to check that $\int_\bullet\frac{d\rho}{d\nu} \frac{d\nu}{d\mu} d\mu$ gives $\rho(\bullet)$ and then the $\sigma$-finite assumption tells us that it is $\mu $-a.e.\! unique. Indeed, for any $A\in \mathcal F$
+\begin{align*}
+\int_A \frac{d\rho}{d\nu} \frac{d\nu}{d\mu} d\mu
+&= \int_A \frac{d\rho}{d\nu} d\nu,\,\text{ by ``slap in the density''} \\
+&= \int_A d\rho,\,\text{ by ``slap in the density''} \\
+&= \rho(A).
+\end{align*}
+\end{proof}
+
+
+
+\begin{theorem}[{\bf The chain rule for densities${}^*$}] Let $\rho$, $\nu$ and $\mu$ be measures on the measurable space $(\Omega,\mathcal F)$.   If $\frac{d\rho}{d\nu}$ is a density of $\rho$ with respect to $\nu$
+and $\frac{d\nu}{d\mu}$ is a density of $\nu$ with respect to $\mu$, then $ \frac{d\rho}{d\nu} \frac{d\nu}{d\mu}$ serves as a (possibly non-unique)  density of $\rho$  with respect to $\mu$.
+\end{theorem}
+
+\begin{theorem}[{\bf Change of variables for densities}] Let $(\Omega, \mathcal F)$ and $(\Omega^\prime, \mathcal F^\prime)$  be measurable spaces and let $\mu$ and $\rho$ be two measures on $(\Omega, \mathcal F)$ such that $\mu$ is $\sigma$-finite. Let $T:\Omega \rightarrow \Omega^\prime$ be an invertable map of $\Omega$ onto $\Omega^\prime$ such that $T$ is measurable $\mathcal F/\mathcal F^\prime$  and $T^{-1}$ is measurable $\mathcal F^\prime/\mathcal F$. If $\rho$ has density $\frac{d\rho}{d\mu}$ w.r.t $\mu$ then $\rho T^{-1}$ has density  $\frac{d\rho T^{-1}}{d\mu T^{-1}}$ with respect to $\mu T^{-1}$ and
+\[ \frac{d\rho T^{-1}}{d\mu T^{-1}} = \frac{d\rho}{d\mu}\circ T^{-1},\text{ $\mu T^{-1}$-a.e.} \]
+\end{theorem}
+\begin{proof}
+$\phantom{asdf}$
+
+
+\begin{flushleft}
+\textbullet({\sl Show that $\frac{d\rho}{d\mu}\circ T^{-1}$ serves as a density of $\rho T^{-1}$ wrt $\mu T^{-1}$}) Let $A\in \mathcal F^\prime$. Clearly $\frac{d\rho}{d\mu}\circ T^{-1}\in Q^-(\mu T^{-1})$ by positivity and the fact that composition of measurable functions is measurable. Now
+\begin{align*}
+\int_A \frac{d\rho}{d\mu}\circ T^{-1} d\mu T^{-1}
+&= \int_{T^{-1}(A)} \frac{d\rho}{d\mu}\circ T^{-1}\circ T d\mu,\\
+&\qquad\qquad\text{ by change of variable thm}\\
+&= \int_{T^{-1}(A)} \frac{d\rho}{d\mu} d\mu\\
+&=  \rho(T^{-1}(A))
+\end{align*}
+\end{flushleft}
+
+\begin{flushleft}
+\textbullet({\sl Show that $\mu T^{-1}$ is $\sigma$-finite})
+Once we establish this we get uniqueness and hence conclude the proof. Notice this result would not necessarily be true if we did not have the additional assumption on $T^{-1}$. Let $\Omega = \bigcup_{k=1}^\infty A_k$ be a $\sigma$-finite cover wrt $\mu$. We show $\Omega^\prime = \bigcup_{k=1}^\infty T(A_k)$ gives a $\sigma$-finite cover wrt $\mu T^{-1}$.
+\begin{itemize}
+\item[--] Since $T$ maps onto $\Omega^\prime$, $\{ T(A_k) \}_{k=1}^\infty$  covers $\Omega^\prime$.
+\item[--] Notice that $T(A_k)\in \mathcal F^\prime$ since  $T(A_k) = (T^{-1})^{-1}(A_k)$ and $T^{-1}$ is $\mcirc \mathcal F^\prime/\mathcal F$.
+\item[--] Finally notice that $\mu T^{-1}(T(A_k)) = \mu(T^{-1}\circ T(A_k))=\mu(A_k)<\infty$.
+\end{itemize}
+Therefore $\mu T^{-1}$ is $\sigma$-finite.
+\end{flushleft}
+\end{proof}
+
+
+
+\begin{theorem}[{\bf Change of variables for densities${}^*$}] Let $(\Omega, \mathcal F)$ and $(\Omega^\prime, \mathcal F^\prime)$  be measurable spaces and let $\mu$ and $\rho$ be  measures on $(\Omega, \mathcal F)$. Let $T:\Omega \rightarrow \Omega^\prime$ be an invertible map of $\Omega$ onto $\Omega^\prime$ such that $T$ is measurable $\mathcal F/\mathcal F^\prime$  and $T^{-1}$ is measurable $\mathcal F^\prime/\mathcal F$. If $\rho$ has a density $\frac{d\rho}{d\mu}$ with respect to $\mu$ then $ \frac{d\rho}{d\mu}\circ T^{-1}$ serves as a (possibly non-unique) density for $\rho$  with respect to $\mu T^{-1}$.
+\end{theorem}
+
+
+
+
+
+
+\begin{theorem}[{\bf Probabilist's world view of measure theory}]
+\label{thm: world view}
+If $\mu$ is a nontrivial (i.e. $\mu\not\equiv 0$) $\sigma$-finite measure on the measurable space $(\Omega, \mathcal F)$, then there exists a density $\delta:\Omega\rightarrow (0,\infty)$ and a probability measure $P$ on $(\Omega, \mathcal F)$ such that
+\[ \mu(A):= \int_A \delta dP \]
+for all $A\in\mathcal F$ (i.e.,  $\delta =\frac{d\mu}{dP}$).
+\end{theorem}
+
+\begin{proof}
+Let $\Omega=\bigcup_{k=1}^\infty A_k$ be a $\sigma$-finite partition wrt $\mu$. Additionally suppose $0<\mu(A_k)<\infty$ for each $k$ by absorbing any $A_j$ such that $\mu(A_j)=0$ into a $A_k$ with $\mu(A_k)>0$.
+
+
+Now set
+\begin{align*}
+\delta^*   &:= \sum_{k=1}^\infty \frac{w_k}{\mu(A_k) }I_{A_k} \\
+P(\bullet) &:=\int_\bullet \delta^* d\mu
+\end{align*}
+where $w_k>0$ and $\sum_{k=1}^\infty w_k = 1$. Notice that $P$ is a probability measure since
+\begin{align*}
+P(\Omega) & = \int_\Omega \delta^* d\mu \\
+& = \int_\Omega \setlimup{n}\sum_{k=1}^n\frac{w_k}{\mu(A_k) }I_{A_k}d\mu \\
+& = \setlimup{n}\sum_{k=1}^n \int_\Omega \frac{w_k}{\mu(A_k) }I_{A_k} d\mu,\,\text{ by L3}\\
+& = \sum_{k=1}^\infty w_k = 1.
+\end{align*}
+Now define $\delta:=1/\delta^* = \sum_{k=1}^\infty \frac{\mu(A_k)}{w_k} I_{A_k}$ and notice that
+\begin{align*}
+\int_A \delta dP \overset{\text{slap}}= \int_A \delta \delta ^* d\mu = \mu(A).
+\end{align*}
+Therefore $\mu$ has density $\delta$ wrt $P$.
+\end{proof}
+
+
+\begin{exercise}[{\bf When is $\int_\bullet \delta d\mu$ finite or $\sigma$-finite?}]
+Suppose that $\rho$ is a measure with density $\delta$ with respect to a measure $\mu$. Show that:
+\begin{enumerate}
+\item $\rho$ is finite if and only if $\delta$ is integrable;
+\item If $\rho$ is $\sigma$-finite then $\delta<\infty$ $\mu$-a.e.;
+\item If $\delta<\infty$ $\mu$-a.e. and $\mu$ is $\sigma$-finite, then $\rho$ is $\sigma$-finite;
+\item Show by example that the conclusion to 3 may fail if the assumption that $\mu$ is $\sigma$-finite is dropped.
+\end{enumerate}
+
+\begin{exercise}[{\bf Conditions for $d\mu/d\rho= 1/(d\rho/d\mu)$}]
+\label{ex: 1/density}
+Suppose that $\rho$ is a measure  with  density $\delta$ with respect to $\mu$ .
+Show that:
+\begin{enumerate}
+\item $\mu$ has density $1/\delta$ with respect to $\rho$ if and only if $0<\delta<\infty$ $\mu$-a.e.;
+\item If $\mu$ is $\sigma$-finite and $\mu$ has some density, say $f$, with respect to $\rho$ then  $f=1/\delta$ $\rho$-a.e and $\mu$-a.e..
+\end{enumerate}
+Hint for 1: first find $\int_\bullet 1/\delta d\rho$.
+\end{exercise}
+
+\end{exercise}
+
+
+
+\begin{exercise}[{\bf Approximating functions in $L_1(\mu)$}]
+Let $(\Omega, \mathcal F, \mu)$ be a measure space. Show the following statements:
+\begin{enumerate}
+\item If $f\in L_1(\mu)$ then for each $\epsilon>0$ there exists an integrable simple function $g$ such that $\int |f-g|d\mu\leq \epsilon$;
+\item If $\mathcal F_0$ is a field generating $\mathcal F$ and $\mu$ is finite on $\mathcal F_0$, then the function $g$ from (i) can be taken to be of the form $g=\sum_{k=1}^n c_k I_{A_k}$ where each $A_k\in \mathcal F_0$.
+\item Show by example that the conclusion to part 2 may be false if $\mu$ is not $\sigma$-finite on $\mathcal F_0$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Suppose $f\colon \Bbb R\rightarrow \Bbb R$ and $f\in L_1(\mathcal L^1)$. Show that
+\[\lim_{t\rightarrow 0} \int |f(x+t)- f(x)| dx=0. \]
+\end{exercise}
+
+
+
+
+
+
+
+%-------------------------------'
+%---------section  ---------------'
+%-------------------------------'
+\subsection{Application to random variables: Expected value and densities}
+\label{app1}
+%-------------------------------'
+%---------section  ---------------'
+%-------------------------------'
+
+\begin{sectionassumption} For the rest of this Section let $(\Omega, \mathcal F, P)$ denote a probability space.
+\end{sectionassumption}
+
+\begin{definition}[\bf Distribution of $X$]
+If $X\colon \Omega\rightarrow \Bbb R$ is a random variable, then the induced probability measure $P\!X^{-1}$ on $(\Bbb R, \mathcal B^{\Bbb R})$ is called the {\bf law} or {\bf distribution} of $X$ and is sometimes denoted $\mathcal L_X$.
+\end{definition}
+
+Notice that the theory on densities developed above unifies probability density functions and probabilty mass functions for continuous versus discrete random variables. For example a binomial random variable has an induced distribution on $\Bbb R$ which has density
+\[
+\delta(x):= {n \choose x} p^x (1-p)^x I_{\Bbb Z^+}(x)
+\]
+with respect to counting measure on $\mathcal B^{\Bbb R}$.
+In particular for any even $B\in \mathcal B^{\Bbb R}$ and any $X\sim Bin(n, p)$ we have
+\begin{align*}
+\int_B \delta(x)d\#(x)
+& =\int {n \choose x} p^x (1-p)^x I_{\Bbb Z^+}(x)I_B(x) d\#(x)  \\
+& =\int  \sum_{k=0}^n {n \choose k} p^k (1-p)^k I_{\{k\}\cap B}(x)  d\#(x)  \\
+&= \sum_{k=0}^n {n \choose k} p^k (1-p)^k \#\bigl[\{k\}\cap B\bigr]\\
+&= P(X\in B) \\
+& = PX^{-1}(B)
+\end{align*}
+A probability density function for a continouos univariate random variable is simply a density on $(\Bbb R, \mathcal B^{\Bbb R})$ with respect to $\mathcal L^1$ (recall that $d\mathcal L^1(x)\equiv dx$).
+
+
+
+\begin{definition}[{\bf Expected value}] If $X\in Q(P)$ is a random variable, then the {\bf expected value of $X$}, denoted $E(X)$, is defined as
+\[ E(X):=\int_\Omega XdP. \]
+\end{definition}
+
+
+\begin{theorem}[{\bf Some undergrad facts}]
+If $X\colon \Omega\rightarrow \Bbb R$ is a random variable on $(\Omega,\mathcal F, P)$ then
+\begin{itemize}
+\item $\varphi(E(X))\leq E(\varphi(X))$ for any  convex function $\varphi:\Bbb R\rightarrow \Bbb R$ such that $X\in L_1(P)$.
+\item $P(X\geq \alpha)\leq \frac{E(X)}{\alpha}$ if $X\in \mathscr N$ and $\alpha\geq 0$.
+\item The cumulative distribution function, defined by $F(x):=P(X\leq x)$, uniquely determines the distribution of $X$.
+\item $E(X)= \int_0^\infty P(X>t)dt=\int_0^\infty P(X\geq t)dt$ if $X\in \mathscr N$.
+\end{itemize}
+If, in addition, the law of $X$ has density $f_X$ with respect to Lebsesque measure (i.e.\! $f_X= \frac{dP\!X^{-1}}{ d\mathcal L^1}$), then
+\begin{itemize}
+\item $f_X$ is unique $\mathcal L^1$-a.e.
+\item $E(X)=\int_{\Bbb R} x f_X(x)d x$ if $X\in Q(P)$;
+% ($dx$ is shorthand for $d\mathcal L^1 = \mathcal L^1(dx)$ where $\mathcal L^1$ denotes integration with respect to Lebesque measure);
+\item $E(g(X))=\int_{\Bbb R} g(x) f_X(x)dx$ if $g(X)\in Q(P)$ and $g$ is measurable;
+\item  If $T\colon \Bbb R\rightarrow \Bbb R$ is an invertible map from $\Bbb R$ onto $\Bbb R$ for which both $T$ and $T^{-1}$ are measurable and  $T^{-1}$ is continuously differentiable on $\Bbb R$, then the random variable $T(X)$ has a density, $f_{T(X)}$, with respect to Lebesque measure that satisfies
+\[ f_{T(X)} =  \bigl|(T^{-1})^\prime\bigr| f_X\circ T^{-1}. \]
+\end{itemize}
+\end{theorem}
+
+
+
+
+\clearpage
+%-------------------------------'
+%---------section  ---------------'
+%-------------------------------'
+\section{Integration to the limit}
+%-------------------------------'
+%---------section  ---------------'
+%-------------------------------'
+
+\subsection{Basic theory}
+
+\begin{sectionassumption} For the remainder of this section let $(\Omega, \mathcal F,\mu)$ be a measure space and let $f_1, f_2, \ldots$  be measurable $\mathcal F/\mathcal B$ functions of $\Omega$.
+\end{sectionassumption}
+
+
+% \begin{remark} Many of the following theorems suppose there exists a function $f:\Omega\rightarrow \bar{\Bbb R}$  such that $f_n\rightarrow f$ a.e. as $n\rightarrow \infty$. Since $\liminf_n f_n$ and $
+% \limsup_n f_n$ are both measurable and $\liminf_n f_n=\limsup_n f_n=f$ a.e. (meaning that the subset of $\Omega$ where the equality fails is covered by an $\mathcal F$-set with $\mu$-measure 0) we are free to change $f$ on a set of $\mu$-measure $0$ to ensure that the resulting new $f$ is also measurable $\mathcal F/\mathcal B$ while preserving the limiting condition $f_n\rightarrow f$ a.e. as $n\rightarrow \infty$. It is this new measurable $f$ which appears in the conclusions of the following theorems.
+% \end{remark}
+
+\begin{theorem}[{\bf Fatou's Lemma}] %Let $f_1, f_2, \ldots$  be measurable $\mathcal F/\mathcal B$ functions of $\Omega$ such that
+If  $f_n\geq 0$ $\mu$-a.e. then
+\[ \int_\Omega \liminf_{n\rightarrow \infty} f_n  d\mu \leq \liminf_{n\rightarrow \infty} \int_\Omega  f_n  d\mu\]
+\end{theorem}
+
+
+
+
+\begin{theorem}[{\bf Dominated Convergence Theorem}]
+%Let $f_1, f_2, \ldots$ and $f$  be measurable $\mathcal F/\mathcal B$ functions of $\Omega$ such that
+If $f_n\rightarrow f$ $\mu$-a.e. and there exists a function $g\in L_1(\mu)$ such that $\sup_n|f_n|\leq g$ $\mu$-a.e. then $f_n, f\in L_1(\mu)$ and
+\[\lim_{n\rightarrow \infty}\int_\Omega f_n \,d\mu = \int_\Omega f\, d\mu.\]
+\end{theorem}
+
+
+
+\begin{corollary}[{\bf Bounded Convergence Theorem}]
+%Let $f_1, f_2, \ldots$ and $f$  be measurable $\mathcal F/\mathcal B$ functions of $\Omega$ such that
+If $\mu(\Omega)<\infty$, $f_n\rightarrow f$ $\mu$-a.e.
+  and there exists a constant $B<\infty$ such that $\sup_n|f_n|\leq B$. Then $f_n, f\in L_1(\mu)$ and
+\[\lim_{n\rightarrow \infty}\int_\Omega f_n \,d\mu = \int_\Omega f\, d\mu.\]
+\end{corollary}
+
+
+\begin{definition}[{\bf Uniform Integrability}]
+\label{first def of UI}
+The sequence $f_1, f_2, \ldots$   is said to be {\bf uniformly integrable} if
+\[ \lim_{c \rightarrow \infty} \sup_n \int_\Omega |f_n|I_{\{ |f_n|\geq c\}} d\mu = 0. \]
+\end{definition}
+
+
+
+
+\begin{theorem}[{\bf Dilatation criterion for UI}]
+If  there exists an $\epsilon>0$ such that $\sup_{n} \int_\Omega |f_n|^{1+\epsilon} d\mu < \infty $
+then $X_n$ are UI.
+\end{theorem}
+\begin{proof}
+\begin{align*}
+\int_\Omega |X_n| I_{\{|X_n|\geq c\}}  d\mu
+&\leq\int_\Omega  |X_n|\Bigl[\frac{|X_n|}{c}\Bigr]^\epsilon I_{\{|X_n|\geq c\}}d\mu \\
+&\leq\frac{1}{c^\epsilon}\int_\Omega  |X_n|^{1+\epsilon} d\mu.
+\end{align*}
+\end{proof}
+
+
+
+
+
+\begin{theorem}[{\bf UI theorem}]\label{UITHM}
+If $\mu(\Omega)<\infty$, $f_n\rightarrow f$ $\mu$-a.e. and  the $f_n$ are uniformly integrable, then $f_n, f\in L_1(\mu)$ and
+\[\lim_{n\rightarrow \infty}\int_\Omega f_n \,d\mu = \int_\Omega f\, d\mu.\]
+\end{theorem}
+
+
+
+\begin{theorem}[{\bf UI converse}]\label{UITHM2}
+If
+\begin{enumerate}
+\item $\mu(\Omega)<\infty$
+\item $f_n\rightarrow f$ $\mu$-a.e.
+\item $f_n, f \in \mathscr N\cap L_1(\mu)$
+\item  $\displaystyle\lim_{n\rightarrow \infty}\int_\Omega f_n \,d\mu = \int_\Omega f\, d\mu$
+\end{enumerate}
+then the $f_n$ are uniformly integrable.
+\end{theorem}
+
+
+
+\begin{theorem}[{\bf Scheff\'e's theorem}]
+Suppose $P_n$ and $P$ are probability measures on a measurable space $(\Omega, \mathcal F)$ having densities $\delta_n$ and $\delta$ with respect to $\mu$. If
+\[ \delta_n\rightarrow \delta\text{ $\mu$-a.e.} \]
+then
+\[
+\| P_n - P\|_{TV}:=
+\sup_{A\in \mathcal F}|P_n(A)-P(A)|\leq \int_\Omega |\delta_n - \delta| d\mu \rightarrow 0. \]
+\end{theorem}
+
+\begin{corollary}
+If $X$ is a random variable with a beta density $f_{\alpha, \beta}$ (with respect to Lebesque measure) given by
+\[f_{\alpha,\beta}(x):=\frac{\Gamma (\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}I_{(0,1)}(x) \]
+for $\alpha>0$ and $\beta>0$.
+Then the law  of the random variable $(X - E(X))/\text{sd}(X)$ converges, in  norm $\| \cdot \|_{TV}$, to a standard Gaussian distribution as $\alpha\rightarrow\infty$ and $\beta\rightarrow\infty$.
+\end{corollary}
+
+
+\begin{theorem}[{\bf Differentiability of $\int_\Omega f_t \,d\mu$}]
+Let $(a,b)$ be an open interval of $\Bbb R$ and
+ $\{f_t\}_{t\in(a,b)}$ be a collection of  functions on $\Omega$. Suppose  there exists $\Omega_0\in \mathcal F$  such that:
+ \begin{itemize}
+\item $\mu(\Omega_0^c)=0$;
+\item For every $w\in\Omega_0$, $f_t(w)$ is  differentiable at each $t\in (a,b)$;
+\item  For every $w\in \Omega_0$, $\sup_{t\in(a,b)}\left |\frac{d}{dt} f_t(w)\right|\leq g(w)$;
+\item $f_t\in  L_1(\mu)$,  $\forall t\in(a,b)$;
+\item $g\in L_1(\mu)$.
+\end{itemize}
+Then $\frac{d}{dt} f_t \in L_1(\mu)$, $ \int_\Omega f_t \,d\mu$ is differentiable at each $t\in (a,b)$  and
+\[ \frac{d}{dt} \int_\Omega\! f_t \, d\mu =  \int_\Omega \frac{d}{dt} f_t \, d\mu\]
+at each $t\in(a,b)$.
+\end{theorem}
+
+%\begin{theorem}[{\bf Differentiable convex integrands}]
+%Let $(a,b)$ be an open interval of $\Bbb R$ and
+% $\{f_t\}_{t\in(a,b)}$ be a collection of  functions on $\Omega$. Suppose  there exists $\Omega_0\in \mathcal F$  such that:
+%\begin{itemize}
+%\item $\mu(\Omega_0^c)=0$;
+%\item $f_t\in  L_1(\mu)$, $\forall t\in(a,b)$;
+%\item $f_t(w)$ is differentiable at $t$,  $\forall t\in(a,b)$, $\forall w\in \Omega_0$;
+%\item $f_t(w)$ is convex in $t$ over $(a,b)$, $\forall w\in \Omega_0$.
+%\end{itemize}
+%Then $ \int f_t \,d\mu$ is differentiable at each point $t\in (a,b)$, $\frac{d}{dt} f_t \in L_1(\mu)$ and
+%\[ \frac{d}{dt} \int_\Omega\! f_t \, d\mu =  \int_\Omega \frac{d}{dt} f_t \, d\mu\]
+%at each $t\in(a,b)$.
+%\end{theorem}
+%
+
+
+
+
+
+\begin{exercise}
+Suppose that $f_1, f_2, \ldots$ and $f$ are integrable and that $f_n\rightarrow f$ $\mu$-a.e. Show that $\lim_n \int |f_n - f|d\mu=0$ if and only if $\int |f_n| d\mu\rightarrow \int |f|d\mu$. Hint: for `$\Leftarrow$' study the proof of the DCT to show that $\limsup_n\int |f_n - f|d\mu\leq \int \limsup_n |f_n-f|d\mu$. In particular, show that $\int 2|f|d\mu -\int \limsup_n|f_n-f|d\mu\leq \int 2|f|d\mu - \limsup_n\int|f_n-f|d\mu $.
+\end{exercise}
+
+\begin{exercise}[{\bf Sterling's formula for the Gamma function}]
+The Gamma function is defined by the equality $\Gamma(r+1):=\int_0^\infty y^r e^{-y} dy$ for $r\in(0,\infty)$. Use the change of variable $z=(y-r)/\sqrt{r}$ to show that
+\[ \rho_r:= \frac{\Gamma(r+1)}{r^{r} e^{-r}\sqrt{r}} = \int_{-\sqrt{r}}^\infty e^{-\psi_r(z)}dz \]
+where $\psi_r(z):=r\phi(z/\sqrt{r})$ with $\phi(u):= u -\log(1+u)$. Next show that
+\[ \lim_{r\rightarrow \infty} \psi_r(z)=z^2/2\text{  and  }\psi_r(z)\geq c\min(z^2,\sqrt{r}|z|) \]
+for some constant $c>0$ (the largest admissible $c$ is $\phi(1)$, but any $c$ will work for the next step). Finally use the DCT to deduce that
+\[ \lim_{r\rightarrow\infty} \rho_r= \int_{-\infty}^\infty e^{-z^2/2}dz = \sqrt{2\pi}. \]
+\end{exercise}
+
+
+
+
+
+\begin{exercise}[{\bf $L^1$ is complete}]
+Let $f_1, f_2, \ldots$ be integrable functions such that $\alpha_{m,n}:=\int |f_n-f_m|d\mu$ tends to $0$ as $m$ and $n$ tend to $\infty$. Show that there exists an integrable function $f$ such that $\beta_n:=\int |f-f_n|d\mu$ tends to $0$ as $n$ tends to $\infty$. Hint: inductively choose indices $n_k> n_{k-1}$ such that $\alpha_{m,n}\leq 2^{-k}$ for all $m,n\geq n_k$ and set $f=\sum_{k=1}^\infty (f_{n_k}- f_{n_{k-1}})$ with $f_{n_0}=0$.
+\end{exercise}
+
+\begin{exercise}
+Suppose that $\Omega = (0,1)$, $\mathcal F$ is the Borel $\sigma$-field of $\Omega$ and $\mu$ is Lebesque measure on $\Omega$. For $t\in T:=(0,1)$, set $f_t(w)= I_{(0,t]}(w)$ and $J(t):= \int f_t d\mu$. Show that for each $t\in T$, $J(t)$ is differentiable at $t$ but the derivative can not be computed under the integral sign, even though $f_t^\prime$ exists $\mu$-a.e. and is integrable.
+\end{exercise}
+
+
+
+\clearpage
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{shaded}
+%-------------------------------'
+%---------section  ---------------'
+%-------------------------------'
+\subsection{Application for random variables: Complex generating functions}
+%-------------------------------'
+%---------section  ---------------'
+%-------------------------------'
+% In this section we unify both moment generating functions and complex generating functions. Inversion for integrable char funs by Fourier analysis. General inversion by convolving densities.
+
+% The main idea is the a complex generating function is finite on a cylender containing zero (where the width of the cycleder is an interval: open, closed, half open or just a point. but it always contains zero.) The moment generating function is just the complex generatin function, but traced out on the real line.
+
+
+% If $i :=\sqrt{-1}$ then  one can define the ...
+
+
+
+
+\begin{definition}[{\bf Complex generating function}]
+For any measure $\nu$ on $(\Bbb R,\mathcal B^{\Bbb R})$ the function $G_\nu\colon \Bbb C \rightarrow \Bbb C$ defined by
+\[G_\nu(z):= \int_{\Bbb R} e^{zx}\,d\nu(x)\text{ for $z\in\Bbb C$}  \]
+is called the {\bf complex generating function of $\nu$}. If $X$ is a random variable then the complex generating function of $X$ is defined as
+\[
+G_{X}(z):= E(e^{zX}).
+\]
+\end{definition}
+
+
+Note that integration of functions taking values in $\Bbb C$ is simply done individually on the real and imaginary parts (treating $i=\sqrt{-1}$ as a constant). In particular, if $Z$ is a complex random variable then $Z= X+iY$ where $X,Y$ are both real random variables. Then, if $X$ and $Y$ are both in $Q(P)$ then we define
+\[
+\int_\Omega ZdP: = \int_\Omega XdP + i\int_\Omega YdP.
+\]
+Now, many of our results for integrating real random variable carry over to complex random variables.
+
+\begin{definition}
+If $X$ is a random variable then the {\bf moment generating function of $X$} is defined as
+\[
+M_X(t):= G_X(t)\text{  for $t\in \Bbb R$}
+\]
+and the {\bf characteristic function of $X$} is defined as
+\[
+\phi_X(t):= G_X(it)\text{  for $t\in \Bbb R$.}
+\]
+\end{definition}
+
+
+
+
+% \begin{definition}
+% A subset $D$ of $\Bbb C$ is called a {\bf cylinder} if there exists a non-empty interval $B\subset \Bbb R$ (perhaps empty, closed,  open, half open or perhaps just a point)  such that
+% \[
+% D=\{u+iv\colon u\in B, v\in \Bbb R \}.
+% \]
+% The {\bf interior of $D$}, denoted $D^o$, is the largest open subset of $D$.
+% \end{definition}
+
+
+
+\begin{definition}[{\bf Domain of $G_X$ and $M_X$}]
+If $X$ is a random variable then {\bf the domain of $G_X$} is defined as
+\[
+\mathfrak G_{X}:=\{z\in \Bbb C\colon |G_X(z)|<\infty \}
+\]
+and {\bf the domain of $M_X$} is defined as
+\[
+\mathfrak M_{X}:=\{t\in \Bbb R\colon |M_X(t)|<\infty \}.
+\]
+\end{definition}
+
+
+\begin{theorem}[{\bf Characterize $\mathfrak M_{X}$}]
+If $X$ is a random variable then $\mathfrak M_{X}$ is an interval containing $0$ (perhaps empty, closed,  open, half open or perhaps just the point $0$).
+\end{theorem}
+
+
+
+\begin{theorem}[{\bf $\mathfrak G_{X}$ is a cylinder above $\mathfrak M_{X}$}]
+If $X$ be a random variable then the domain of $G_X$ is the cylinder above the domain of $M_X$. In particular
+\[
+\mathfrak G_{X} = \{z\in \Bbb C\colon \text{real}(z)\in \mathfrak M_{X}  \}.
+\]
+\end{theorem}
+
+
+Notice that the results on $\mathfrak M_X$ and and $\mathfrak G_x$  imply that $M_X$ is only guaranteed to be finite at $0$ whereas $\phi_\nu(t)$ is defined and finite for all $t\in \Bbb R$. In part, this explains the need to work with characteristic function rather than the moment generating function in that the latter is sometime degenerate.
+
+
+\begin{theorem}[{\bf $G_X$ is analytic on $\mathfrak G_{X}$}]
+If $X$ be a random variable then $G_X$ is analytic on $\mathfrak G_{X}^o:= \text{the interior of $\mathfrak G_{X}$}$.
+\end{theorem}
+
+
+
+
+\subsubsection{Moments from $G_X$ }
+
+
+
+
+
+\begin{theorem}
+If $X$ is a random variable then for any $z\in \mathfrak G^o_X$ one has that $ X^n e^{zX} \in L_1(P)$ and
+\[
+G_X^{(n)}(z) = E(X^n e^{zX})
+\]
+\end{theorem}
+
+
+\begin{theorem}
+If $X$ is a random variable then for any $t\in \mathfrak M_{X}^o$ one has that $ X^n e^{tX} \in L_1(P)$ and
+\[ M^{(n)}_{X}(t)= E(X^n e^{tX}).\]
+\end{theorem}
+
+
+
+
+\begin{theorem}
+If $X$ is a random variable such that $M_X(t)$ has a right handed derivative at $t=0$ then $X\in Q^+(P)$ and
+\[ \Bigl.\frac{d^+M_X(t)}{dt}\Bigr|_{t=0}= E(X).\]
+\end{theorem}
+
+
+
+
+\end{shaded}
+
+
+\clearpage
+%-------------------------------'
+%---------section  ---------------'
+%-------------------------------'
+\section{Product measures and Fubini}
+%-------------------------------'
+%---------section  ---------------'
+%-------------------------------'
+
+\subsection{Basic theory}
+
+
+% \begin{definition}[{\bf Measurable product space}]
+% Let $(\Omega_1,\mathcal F_1)$ and $(\Omega_2,\mathcal F_2)$ denote two measurable spaces. The measurable product  space $(\Omega_1\times \Omega_2,\mathcal F_1\otimes \mathcal F_2 )$  has sample space given by \mbox{$\Omega_1\times\Omega_2:=\{ (w_1,w_2): w_1\in\Omega_1, w_2\in\Omega_2 \}$} and $\sigma$-field on $\Omega_1\times\Omega_2$ given by
+% \[ \mathcal F_1\otimes\mathcal F_2:= \sigma\bigl\langle \underbrace{A_1\times A_2}_{\shortstack{ \text{\rm \footnotesize measurable} \\ \text{\rm \footnotesize rectangles} }}: A_1\in \mathcal F_1, A_2\in\mathcal F_2 \bigr\rangle.\]
+
+% %The above generators of $\mathcal F_1\otimes \mathcal F_2$ are called the \underline{measurable rectangles} in $\mathcal F_1\otimes\mathcal F_2$.
+% \end{definition}
+
+
+\begin{definition}[{\bf The section of a set}]
+For any set $A\in \Omega_1\times \Omega_2$ the section of $A$ determined by $w_1$ is defined as $A_{w_1}:=\{ w_2\in\Omega_2: (w_1,w_2)\in A \}$.
+Similarly, the section of $A$ determined by $w_2$ is defined  as $A_{w_2}:=\{ w_1\in\Omega_2: (w_1,w_2)\in A \}$.
+\end{definition}
+
+
+\begin{definition}[{\bf The section of a function}]
+For any function $f\colon\Omega_1\times \Omega_2\rightarrow \Omega$ define the section of $f$ determined by $w_1$ as $f(w_1, \cdot):\Omega_2\rightarrow \Omega$.
+Similarly, the  section of $f$ determined by $w_1$ is defined as $f(\cdot, w_2):\Omega_1\rightarrow \Omega$.
+\end{definition}
+
+
+\begin{theorem}[{\bf Sections are measurable}]
+\label{thm: sections are measurable}
+Let $(\Omega_1\times \Omega_2,\mathcal F_1\otimes \mathcal F_2 )$ be a measurable product space. Let $A$ be a set in $\mathcal F_1\otimes \mathcal F_2$ and $f$ be a measurable $\mathcal F_1\otimes \mathcal F_2/\mathcal B$ function. Then for any $w_1\in\Omega$ and  $w_2\in\Omega_2$  then the sections $A_{w_1}\in\mathcal F_2$, $A_{w_2}\in\mathcal F_1$, $f(\cdot, w_2)$ is measurable $\mathcal F_1/\mathcal B$ and $f(w_1,\cdot)$ is measurable $\mathcal F_2/\mathcal B$.
+\end{theorem}
+
+
+\begin{theorem}[{\bf Product probablities}]
+Let $P_1$ and $P_2$ be probability measures on the measurable spaces $(\Omega_1,\mathcal F_1)$ and $(\Omega_2,\mathcal F_2)$ respectively. Then there exists a unique probability measure $P_1\otimes P_2$ on $(\Omega_1\times \Omega_2,\mathcal F_1\otimes \mathcal F_2 )$ such that
+\[ P_1\otimes P_2(A_1\times A_2)= P_1(A_1)P_2(A_2) \]
+ for all $A_1\in\mathcal F_1$ and $A_2\in \mathcal F_2$.
+\end{theorem}
+
+\begin{theorem}[{\bf Fubinito}] \label{fubinito}
+Let $P_1$ and $P_2$ be probability measures on the measurable spaces $(\Omega_1,\mathcal F_1)$ and $(\Omega_2,\mathcal F_2)$ respectively. If $f:\Omega_1\times\Omega_2\rightarrow \bar{\Bbb R}$ is $\mathcal F_1\otimes \mathcal F_2/\mathcal B$ measurable and $P_1\otimes P_2$-quasi-integrable, then
+ \begin{align}
+ \label{ff1}
+   \int_{\Omega_1\times\Omega_2} f dP_1\otimes P_2 &=\int_{\Omega_2}\Bigl[ \int_{\Omega_1} f(\cdot,w_2) dP_1 \Bigr] dP_2(w_2)\\
+   &=   \int_{\Omega_1}\Bigl[ \int_{\Omega_2} f(w_1,\cdot) dP_2 \Bigr] dP_1(w_1) \label{ff2}
+  \end{align}
+The inner integrals on the right hand side of (\ref{ff1}) and (\ref{ff2}) exist almost everywhere and are measurable, quasi-integrable functions of the sectioning variable.
+\end{theorem}
+
+
+\begin{theorem}[{\bf Product measures}]
+Let $\mu_1$ and $\mu_2$ be $\sigma$-finite measures on the measurable spaces $(\Omega_1,\mathcal F_1)$ and $(\Omega_2,\mathcal F_2)$ respectively. Then there exists a unique $\sigma$-finite measure $\mu_1\otimes \mu_2$ on $(\Omega_1\times \Omega_2,\mathcal F_1\otimes \mathcal F_2 )$ such that
+\[ \mu_1\otimes \mu_2(A_1\times A_2)= \mu_1(A_1)\mu_2(A_2) \]
+ for all $A_1\in\mathcal F_1$ and $A_2\in \mathcal F_2$.
+\end{theorem}
+
+\begin{theorem}[{\bf Fubini}]
+Theorem \ref{fubinito} (Fubinito) holds with the term ``probability measure" replaced by ``$\sigma$-finite measure".
+\end{theorem}
+
+
+
+\begin{corollary}[{\bf Useful re-wording of Fubini}] Suppose $\nu_1$ and $\nu_2$ are $\sigma$-finite measures on the measurable spaces $(\Omega_1,\mathcal F_1)$ and  $( \Omega_2, \mathcal F_2)$ respectively. Let $f:\Omega_1\times\Omega_2\rightarrow \bar{\Bbb R}$ is $\mathcal F_1\otimes \mathcal F_2/\mathcal B$ measurable. Consider the three integrals:
+\begin{align*}
+D(f)&:= \int_{\Omega_1\times\Omega_2} f d\nu_1\otimes \nu_2 \\
+ I_{1,2}(f)&:= \int_{\Omega_1}\Bigl[ \int_{\Omega_2} f(w_1,\cdot) dP_2 \Bigr] d\nu_1(w_1)\\
+ I_{2,1}(f)&:=\int_{\Omega_2}\Bigl[ \int_{\Omega_1} f(\cdot,w_2) dP_1 \Bigr] d\nu_2(w_2).
+\end{align*}
+Then
+\begin{align*}
+\text{\small $D(f)$ is well defined} &\Longrightarrow \text{\small $I_{1,2}(f)$ and $I_{2,1}(f)$ are well defined}\\
+&\qquad\qquad\text{\small and $D(f)= I_{1,2}(f)= I_{2,1}(f)$}.
+ \end{align*}
+Moreover
+\begin{align*}
+\text{\small $D(f)$ is well defined} &\Longleftrightarrow\text{\small either $D(f^+)$ or $D(f^-)$ is finite}\\
+&\Longleftrightarrow\text{\small at least one of $I_{1,2}(f^+)$, $I_{1,2}(f^-)$,}\\
+&\qquad\quad\text{\small $I_{2,1}(f^+)$ or $I_{2,1}(f^-)$ is finite}\\
+&\Longleftarrow \text{\small either $I_{1,2}(|f|)$ or $I_{2,1}(|f|)$ is finite.}\\
+\end{align*}
+\end{corollary}
+
+
+Here is a nice corollary of Fubini
+
+\begin{corollary}[{\bf Integration term by term}]
+\label{thm: Integration term by term}
+Suppose $\mu$ is a $\sigma$-finite measure
+\begin{enumerate}
+\item If $f_n\geq 0$ $\mu$-a.e.  then  $\sum_{n=1}^\infty f_n\in Q(\mu)$ and
+\[\int_\Omega \sum_{n=1}^\infty f_n  \, d\mu= \sum_{n=1}^\infty \int_\Omega  f_n  \, d\mu.\]
+\item If $\sum_{n=1}^\infty \int_\Omega |f_n| d\mu<\infty$ then $\sum_{n=1}^\infty |f_n|<\infty$ $\mu$-a.e.,  $\sum_{n=1}^\infty f_n\in L_1(\mu)$ and
+\[\int_\Omega \sum_{n=1}^\infty f_n  \, d\mu= \sum_{n=1}^\infty \int_\Omega  f_n  \, d\mu.\]
+\end{enumerate}
+\end{corollary}
+
+
+\begin{corollary}[{\bf Using sectioning to compute product probabilities}] Suppose $\nu_1$ and $\nu_2$ are $\sigma$-finite measures on the measurable spaces $(\Omega_1,\mathcal F_1)$ and  $( \Omega_2, \mathcal F_2)$ respectively. If $A\in \mathcal F_1\otimes \mathcal F_2$ then
+\[\nu_1\otimes\nu_2(A) = \int_{\Omega_1} \nu_2(A_{w_1})d\nu_1(w_1)=  \int_{\Omega_2} \nu_1(A_{w_2})d\nu_2(w_2). \]
+\end{corollary}
+
+
+
+
+
+\begin{corollary}[{\bf Integrals that factor}] Suppose $\nu_1$ and $\nu_2$ are $\sigma$-finite measures on the measurable spaces $(\Omega_1,\mathcal F_1)$ and  $( \Omega_2, \mathcal F_2)$ respectively.
+Let $f_1:\Omega_1\rightarrow \bar{\Bbb R}$ be $\mathcal F_1/\mathcal B$ measurable and $f_2:\Omega_2\rightarrow \bar{\Bbb R}$ be $\mathcal F_2/\mathcal B$. Then
+\[ \int_{\Omega_1\times\Omega_2} \!\!\!\!f_1(w_1)f_2(w_2) d \nu_1\otimes\nu_2(w_1,w_2) = \prod_{i=1}^2 \int_{\Omega_i} f_i(w_i)d \nu_i(w_i)\]
+provided each $f_i$ is nonnegative or each $f_i$ is $\nu_i$-integrable
+\end{corollary}
+
+
+% \begin{definition}[{\bf Products of higher order}]
+% Let $(\Omega_i,\mathcal F_i)$ be measurable spaces for $i=1,\ldots, n$. Then $\mathcal F_1\otimes \cdots \otimes \mathcal F_n:= \bigotimes_{i=1}^n\mathcal F_i$  is the $\sigma$-field on  the produce space $\prod_{i=1}^n \Omega_i:=\{ ( w_1,\ldots, w_n ): w_i\in \Omega_i\}$ which is defined as
+% \begin{align*}
+% %\prod_{i\in\mathcal I} \Omega_i&:=\bigl\{ ( w_i )_{i\in\mathcal I}: w_i\in \Omega_i,\forall i\in\mathcal I\bigr\} \\
+% \text{\small $\bigotimes_{i=1}^n$}\mathcal F_i:=\sigma \bigl\langle \text{\small $\prod_{i=1}^n$} F_i: F_i\in\mathcal F_i ,\forall i\in\mathcal I\bigr\rangle.
+% \end{align*}
+% \end{definition}
+
+
+
+\begin{theorem}[{\bf Associativity of product measures}]
+If $(\Omega_i,\mathcal F_i,\nu_i)$ are $\sigma$-finite measure spaces for each $i=1,2, 3$ then
+$\nu_1\otimes (\nu_2\otimes\nu_3) = (\nu_1\otimes \nu_2)\otimes\nu_3$ and
+\mbox{$\mathcal F_1\otimes (\mathcal F_2\otimes\mathcal F_3) = (\mathcal F_1\otimes \mathcal F_2)\otimes\mathcal F_3=\mathcal F_1\otimes \mathcal F_2\otimes\mathcal F_3$}.
+\end{theorem}
+
+
+The following theorem only covers the basics when working with finite dimensional product spaces. Once needs to get a bit more fancy in the definition when working with infinite product spaces
+
+\begin{definition}[{\bf Product measure of higher order}]
+\label{def: Product measure of higher order}
+Let $(\Omega_i,\mathcal F_i,\nu_i)$ be $\sigma$-finite measure spaces for each $i=1,2,\ldots, n$. The measure $\nu_1\otimes \cdots \otimes \nu_n$ on $(\prod_{i=1}^n \Omega_i, \bigotimes_{i=1}^n \mathcal F_i)$, also denoted $\bigotimes_{i=1}^n  \nu_i$, is defined as the $\sigma$-finite measure $\nu_1\otimes (\nu_2\otimes\nu_3)$ when $n=3$ and extended recursively when $n>3$.
+\end{definition}
+
+
+
+
+
+\begin{theorem}[{\bf Higher order Fubini}]
+Let $(\Omega_i,\mathcal F_i,\nu_i)$ be $\sigma$-finite measure spaces for each $i=1,2,\ldots, n$.
+If $f:\prod_{i=1}^n \Omega_i\rightarrow \bar{\Bbb R}$ is $\bigotimes_{i=1}^n \mathcal F_i/\mathcal B$ measurable and $\nu_1\!\!\otimes \cdots \otimes \!\nu_n$-quasi-integrable then
+\begin{align*}
+ \int_{\prod_{i}\!\Omega_i}\!\!\!f &d\,\nu_1 \!\otimes\cdots\otimes\!\nu_n \\
+ &= \int_{\Omega_{\pi_1}}\!\!\!\!\!\!\!\cdots\! \int_{\Omega_{\pi_n}}\!\!\!\! f(w_1,\ldots, w_n) d\nu_{\pi_n}(w_{\pi_n})\cdots d\nu_{\pi_1}(w_{\pi_1})
+\end{align*}
+for any permutation $\pi$ of $\{1,2,\ldots, n \}$ where the right hand side is interpreted as the iterated integral (starting with the inner most integral with respect to $\nu_{\pi_n}$, then moving outward).
+\end{theorem}
+
+
+\begin{corollary}[{\bf Borel $\sigma$-field and Lebesque measure}]
+$(\Bbb R^d, \mathcal B^{{\Bbb R}^d}, \mathcal L^d ) = (\Bbb R^d, \bigotimes_{i=1}^d \mathcal B^{{\Bbb R}}, \bigotimes_{i=1}^d \mathcal L^1)$
+\end{corollary}
+
+
+
+\begin{corollary}[{\bf Integrate out the joint to get the marginal}]
+\label{cor: integrate out the joint}
+Let $X_1, X_2$ be two random variables on a probability space $(\Omega, \mathcal F, P)$. If the distribution of the random vector $(X_1,X_2)$ has density $f_{X_1, X_2}(x_1,x_2)$ with respect to $\nu_1\otimes \nu_2$ for two $\sigma$-finite measures $\nu_1$, $\nu_2$ on $(\Bbb R, \mathcal B^{\Bbb R})$, then $X_1$ has density $f_{X_1}$ with respect to $\nu_1$ where
+\[ f_{X_1}(x_1):= \int_{\Bbb R}  f_{X_1, X_2}(x_1,x_2) d\nu_2(x_2) . \]
+\end{corollary}
+
+
+
+
+\subsection{Appilcation for random variables: more independence}
+
+% \begin{shaded}
+% \textcolor{red}{I think I can drop this if I work some more general results on sigma fields generated by functions right after measurable functions}
+% \begin{definition}[{\bf The $\sigma$-field generated by r.v.s}]
+% Let $\{X_i: i\in\mathcal I\}$ be a collection of random variables on a probability space $(\Omega, \mathcal F, P)$. Then the \underline{$\sigma$-field generated by $\{X_i: i\in\mathcal I\}$} is defined as
+% \[ \sigma\langle  X_i:i\in \mathcal I \rangle :=  \bigcap_{\shortstack{\text{\small $\mathcal F$ is a $\sigma$-field}  \\
+%  \text{\small each $X_i$ is $\mcirc \mathcal F$ }}}\mathcal F\]
+%  and corresponds to the smallest $\sigma$-field  on $\Omega$ which makes all the random variables $X_i$ measurable.
+%  \end{definition}
+
+% \begin{theorem}[{\bf Facts about $\sigma\langle  X_i:i\in \mathcal I \rangle $}]
+% $\vphantom{asdf}$
+% \begin{itemize}
+% \item For one random variable $X$,
+% \[
+% \sigma\langle  X \rangle = \{ X^{-1}(B)\colon B\in\mathcal B^{\Bbb R}\}.\]
+% %\bigcup_{\shortstack{\text{\tiny $i\in\mathcal I$}  \\
+%  %\text{\tiny $B\in\mathcal B$ }}} X_i^{-1}( B)\] where $X_i^{-1}(\mathcal B):=\{ X_i^{-1}(B): B\in\mathcal B\}$.
+% \item If $\mathcal B^{\Bbb R}=\sigma\langle \mathscr A \rangle$ then,
+% \[\sigma\langle  X_i:i\in \mathcal I \rangle  =\sigma\bigl\langle\{  X_i^{-1}(A)\colon i\in\mathcal I,\,A\in\mathscr A \} \bigr\rangle. \]
+% \item A function $f\colon\Omega\rightarrow \bar{\Bbb R}$ is $\mcirc \sigma\langle  X_i:i\in \mathcal I \rangle/\mathcal B  $ if  and only if there exists a function $g\colon \Bbb R^{\mathcal I}\rightarrow \bar{\Bbb R}$ which is measurable $\bigotimes_{i\in\mathcal I}\mathcal B^{\Bbb R}$ and  $f= g((X_{i})_{i\in\mathcal I})$ (i.e. f is a measurable function of the $X_i$).
+% \end{itemize}
+% \end{theorem}
+
+% \end{shaded}
+
+
+
+
+\begin{theorem}[{\bf `$\otimes$' means independence}]
+Let $X_1,\ldots, X_n$ denote independent random variables on some probability space $(\Omega, \mathcal F, P)$ with  induced marginal distributions $\mu_i$ for $X_i$. Then
+\[ P\bigl((X_1,\ldots,X_n) \in B\bigr) =\mu_1\otimes \cdots \otimes \mu_n(B)\]
+for all $B\in \mathcal B^{\Bbb R^n}$
+\end{theorem}
+
+\begin{theorem}[{\bf Law of total probability for independent r.v.s}]
+\label{thm: Law of total probability}
+If $X=(X_1,\ldots, X_n)$ and $Y=(Y_1,\ldots, Y_k)$ are independent random vectors (i.e. $\sigma\langle X_1,\ldots,X_n\rangle$ is independent of $\sigma\langle Y_1,\ldots, Y_k \rangle$) defined on some probability space $(\Omega, \mathcal F, P)$ with induced distributions $\mu$ and $\nu$ on $\Bbb R^n$ and $\Bbb R^k$, respectively. Then
+\begin{align*}
+P\bigl[(X,Y)\in B\bigr]=\int_{\Bbb R^n} P\bigl[(x,Y)\in B\bigr] d\mu(x)
+\end{align*}
+ for all $B\in\mathcal B^{\Bbb R^{n+d}}$. Moreover
+ \begin{align*}
+P\bigl[X\in A,(X,Y)\in B\bigr]=\int_{A} P\bigl[(x,Y)\in B\bigr] d\mu(x)
+\end{align*}
+ for all $A\in \mathcal B^{\Bbb R^{n}}$ and $B\in\mathcal B^{\Bbb R^{n+d}}$
+\end{theorem}
+
+\begin{theorem}[{\bf Independence factors densities and expected values}]
+Let $X_1,\ldots, X_n$ be a sequence of independent random variables on some probability space $(\Omega, \mathcal F, P)$ with marginal densities $f_i$ with respect to a $\sigma$-finite measure $\nu_i$ on $(\Bbb R, \mathcal B^{\Bbb R})$. Then the random vector $(X_1,\ldots, X_n)$ has density
+\[ f(x_1,\ldots, x_n)=f_1(x_1)\cdots f_n(x_n) \]
+with respect to measure $\nu_1\otimes \cdots\otimes \nu_n$. Moreover
+ if $X_1,\ldots, X_n$ are all either non-negative or integrable then
+ \[ E(X_1\cdots X_n)=E(X_1)\cdots E(X_n). \]
+ \end{theorem}
+
+ \begin{theorem}[{\bf Factoring densities implies independence}]
+ Let $X_1,\ldots, X_n$ be a sequence of random variables on some probability space $(\Omega, \mathcal F, P)$. Suppose the distribution of the random vector $(X_1,\ldots, X_2)$ has density $f(x_1,\ldots, x_n)$ with respect to some product measure $\nu_1\otimes \cdots \otimes \nu_n$ on $(\Bbb R^n,\mathcal B^{\Bbb R^n})$, where each $\nu_i$ is $\sigma$-finite. If
+ \[ f(x_1,\ldots, x_n)=g_1(x_1)\cdots g_n(x_n) \]
+for non-negative functions $g_i$ which are $\mcirc \mathcal B^{\Bbb R}/\mathcal B$ then $X_1,\ldots, X_n$ are independent.
+ \end{theorem}
+
+
+
+
+\begin{shaded}
+\subsection{Appilcation for random variables: computing $E(X^a/Y^b)$ and $E(\log(X))$}
+\end{shaded}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{shaded}
+
+\subsection{Application for random varibles: Complex generating function continued}
+
+
+
+
+The reason we need to wait till after Fubini to get these results is that we need the Law of total probability to get these results (Thm \ref{thm: Law of total probability})
+
+\subsubsection{Characterizing $PX^{-1}$ with $G_X$}
+
+\begin{theorem}
+Suppose $X$ is random variable.  Then
+$G_X(it)$ as a function of $t\in \Bbb R$, characterizes the distribution of $X$.
+\end{theorem}
+
+
+\begin{theorem}
+Suppose $X$ is random variable and  $\mathfrak M_X^o$ contains $0$. Then $G_X(t)$ as a function of $t\in \Bbb R$, characterizes the distribution of $X$.
+\end{theorem}
+
+
+
+
+%  Show that  if there exits an analytic function $\varphi:\{z \colon  |G(z)|<\infty \}^o\rightarrow \Bbb C$ such that  $\varphi(x) =  G(x)$ on $x\in \Bbb R\cap \{z \colon  |G(z)|<\infty \}^o$  then $\varphi(ix)=G(ix)$ is the characteristic function of $\nu$. For example, suppose $\nu$ is Gaussian with MGF $e^{x^2}$. Note that $G(x)$ is simply the MGF $e^{x^2}$. Let $\varphi_1(z) := e^{|z|^2} $ and $\varphi_2(z) := e^{z^2} $. Both $\varphi_1 = \varphi_1 = G$ on $\Bbb R$. Now  $\varphi_1(ix) = e^{x^2}$ and $\varphi_2(ix) = e^{-x^2}$ can't both be the characteristic function since they are different. $\varphi_2(ix) = e^{-x^2}$ is the right one since it is analytic on all of $\Bbb C$.
+
+
+% then the characteristic function of $\nu$ is given by $\varphi(ix)\colon \Bbb R\rightarrow \Bbb C$. A good example is the Gaussian case where we can let
+
+
+
+
+
+\begin{theorem}[{\bf Taylor series of $E(e^{tX})$}]
+Let $M_{X}(t)$ be the moment generating function for the random variable $X$.   If there exists an $\epsilon>0$ such that $(-\epsilon,\epsilon)\subset \mathfrak M_X$ then
+\[ M_{_X}(t)= \sum_{k=0}^\infty \frac{t^k}{k!} E(X^k),\,\,\text{ for $|t|<\epsilon$.} \]
+\end{theorem}
+
+
+\begin{corollary}[{\bf Using the MGF to get moments}]$\phantom{}$
+\begin{itemize}
+\item
+If $Z$ has a standard Gaussian distribution then $M_Z(t)=e^{t^2}$. Moreover, if $k$ is even then $EZ^k=1\times 3\times \cdots \times (k-1)$ and if $k$ is odd then $EZ^k=0$.
+ \item
+If $W$ has an exponential density $f_W(w) = \alpha e^{-\alpha w}$ then $M_W(t)=\frac{\alpha}{\alpha -t}$ whenever $t<\alpha$ and $EW^k= k!\alpha^{-k}$.
+\item If $N$ is a Poisson random variable  with density $f_N(r) =  e^{-\lambda} \lambda^r/(r!)$ with respect to counting measure on $\{0,1,2,\ldots\}$, then $M_N(t)= e^{\lambda(e^t -1)}$ and  $E(N) = \text{var}(N) = \lambda$.
+ \end{itemize}
+\end{corollary}
+
+
+
+
+
+\begin{theorem}[{\bf When do moments characterize the distribution}]
+Let $X$ and $Y$ be random variables. If $E(X^k) = E(Y^k) =: \alpha_k $ for all $k\in \Bbb N$ and the radius of convergence of the power series $\sum_{k=1}^\infty \alpha_k u^k/k!$ is nonzero, then $X$ has the same distribution as $Y$. \textcolor{blue}{use 304 notes 13-11}
+\end{theorem}
+
+
+\textcolor{red}{
+It might be interesting here to include the log-normal example of the same moments but a different distribution.}
+
+
+\textcolor{red}{
+Include an example which uses these results for proving Schoenberg and von Neumann's theorem for radially symmetric positive definite functions on an infinite dimensional Hilbert space (reference: Sterrneman and van Perlo-ten Kleij, {\em Spherical distributions: Schoenberg (1938) revisted})
+.}
+
+
+\end{shaded}

@@ -1,0 +1,1739 @@
+\newcommand{\SlN}{S_n^{\text{\,\tiny$\leq\!\!N$}}}
+\newcommand{\SgN}{S_n^{\text{\,\tiny$>\!\!N$}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% part
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Convergence of probability measures}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Section
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Convergence almost everywhere}
+
+
+\subsection{Basic theory}
+
+
+\begin{sectionassumption} For the remainder of this section, unless stated otherwise, let $X, Y, X_1, X_2, \ldots, $  be random vectors taking values in $\Bbb R^d$ all defined on the same probability space   $(\Omega, \mathcal F, P)$.
+\end{sectionassumption}
+
+
+
+
+\begin{definition}
+ $X_n$ converges to $X$ almost everywhere (or almost surely or with probability one), written $X_n\overset{\small ae} \longrightarrow X$, if $P(X_n\rightarrow X) = 1$.
+\end{definition}
+
+
+Notice that 
+\begin{equation}
+\label{setid}
+\{X_n \not\rightarrow X \} = \bigcup_{\epsilon \in R} \bigl\{\{|X_n - X| >\epsilon\} \io_n \bigr\} 
+\end{equation}
+where $R:=\{ \epsilon\in \Bbb R: \text{ $\epsilon>0$ and $\epsilon$ is rational}\}$. Therefore the sets $\{X_n \not\rightarrow X \}$ and $\{X_n \rightarrow X \}$ are both measurable whenever $X_n, X$ are measurable. Moreover, equation (\ref{setid}) gives the following characterization of almost everywhere convergence.
+
+
+\begin{theorem}[{\bf i.o. characterization}]\label{iochar}
+$X_n\aerightarrow X$ if and only if  $ P\bigl(\{|X_n - X| >\epsilon\} \io_n\bigr) = 0$ for all $\epsilon >0$.
+\end{theorem}
+\begin{proof} Let $R$ be defined as in (\ref{setid}). Then
+\begin{align*} 
+P(X_n  &\rightarrow X )=1 \\
+&\Longleftrightarrow P(X_n  \not\rightarrow X )= 0 \\
+&\Longleftrightarrow  P\Bigl(\bigcup_{\epsilon \in R} \bigl\{\{|X_n - X| >\epsilon\} \io_n \bigr\} \Bigr) = 0\\
+&\Longleftrightarrow \forall \epsilon \in R,\,\,  P\bigl(\{|X_n - X| >\epsilon\} \io_n\bigr) = 0.
+\end{align*}
+For all $\epsilon >0$ consider an irrational $\tau > 0$ and let $\epsilon\in R$ satisfy $\epsilon <\tau$. Now
+\[P\bigl(\{|X_n - X| >\tau\} \io_n\bigr) \leq  P\bigl(\{|X_n - X| >\epsilon\} \io_n\bigr)=0\]
+\end{proof}
+
+
+
+
+\begin{theorem}[{\bf Almost sure uniqueness of limits}]
+If  $X_n\overset{\small ae} \longrightarrow X$ and  $X_n\overset{\small ae} \longrightarrow Y$ then  $X=Y$ almost everywhere.
+\end{theorem}
+\begin{proof}
+For any fixed $\omega \in \Omega$, if $X_n(\omega)\rightarrow X(\omega)$ and  $X_n(\omega)\rightarrow Y(\omega)$ then $X(w)=Y(w)$. Therefore
+\begin{align*} 
+\{X_n\rightarrow X\}\cap \{X_n &\rightarrow Y\}\subset \{X=Y\}.
+\end{align*}
+Since $P(X_n\rightarrow X)= P(X_n\rightarrow Y) = 1$ this implies $P(X=Y)=1$.
+\end{proof}
+
+
+
+\begin{theorem}[{\bf Cauchy criteria for convergence}]
+$X_n$ converges a.e. to some real random vector if and only if for every $\epsilon >0$
+\begin{equation}
+\label{cauchy for ae}
+\lim_{n}\lim_{m} P\Bigl(\, \displaystyle\sup_{n\leq p\leq m} |X_n-X_p| \geq \epsilon \Bigr)=0.
+\end{equation}
+\end{theorem}
+\begin{proof}
+For each $n,m$ define
+\begin{align*}
+I_{n,m} &:= \sup_{n\leq p\leq m} |X_n-X_p| \\
+I_{n,\infty} &:= \sup_{n\leq p< \infty} |X_n-X_p| \\
+I\!I_{n} &:= \sup_{n\leq q, p < \infty} |X_q-X_p|.
+\end{align*}
+Notice that (\ref{cauchy for ae}) is equivalent to $\lim_n\lim_m P(I_{n,m}\geq \epsilon)=0$. We need the following four facts. 
+\begin{align*}
+&\text{\bf \em Fact 1: }\lim_{m} I_{n,m} = I_{n,\infty}. \\
+&\text{\bf \em Fact 2: }0\leq I_{n,\infty} \leq I\!I_{n}\leq 2I_{n,\infty}. \\
+&\text{\bf \em Fact 3: }\lim_n P(I_{n,\infty} >\epsilon) = P\bigl(\{I_{n,\infty} > \epsilon\} \io_n).\\
+&\text{\bf \em Fact 4: }\lim_m P(I_{n,m} >\epsilon) = P(\setlimup{m} \{I_{n,m} >\epsilon\}) = P(I_{n,\infty} > \epsilon).
+\end{align*}
+Fact 3 follows directly from Fatou's lemma and the fact that the monotonicity of $I_{n,\infty}$ implies  $P\bigl(\{I_{n,\infty} > \epsilon\} \io_n\bigr) = P\bigl(\{I_{n,\infty} > \epsilon\} \aall_n\bigr)$.  Now we have 
+\begin{align*}
+&\text{$X_n$ converges a.e. to some real random vector } \\
+&\qquad \Longleftrightarrow\, I\!I_{n} \aerightarrow 0 \\
+&\qquad \Longleftrightarrow\, I_{n,\infty} \aerightarrow 0,\qquad\text{by Fact 2} \\
+&\qquad \Longleftrightarrow\,  \forall \epsilon > 0,\, P\bigl(\{I_{n,\infty} >\epsilon\} \io_n\bigr) = 0 \quad\text{by Theorem \ref{iochar}}\\
+&\qquad \Longleftrightarrow\, \forall \epsilon > 0,\, \lim_n P(I_{n,\infty} >\epsilon) =0 \quad\text{by Fact 3}\\
+&\qquad \Longleftrightarrow\, \forall \epsilon > 0,\,  \lim_n \lim_m P(I_{n,m} >\epsilon) =0 \quad\text{by Fact 4}\\
+&\qquad \Longleftrightarrow\, \forall \epsilon > 0,\,  \lim_n \lim_m P(I_{n,m} \geq \epsilon) =0.
+\end{align*}
+\end{proof}
+
+
+
+\begin{definition}[{\bf $X$-continuous functions}]
+Let $g\colon \Bbb R^d\rightarrow \Bbb R^k$ be a measurable function and define
+\[ C_g:=\{ x\in\Bbb R\colon \text{$g$ is continuous at $x$}\}; \]
+$C_g$ is called the continuity set of $g$. $C_g$ is a Borel set (even if $g$ is not measurable). Say that $g$ is {\bf $X$-continuous} if 
+\[  P(X\in C_g)=1. \]
+\end{definition}
+
+
+\begin{theorem}[{\bf Continuous mapping theorem}]
+Suppose $g\colon\Bbb R\rightarrow\Bbb R$ is measurable and $X$-continuous. Then
+\[X_n \overset{\small ae} \longrightarrow X \Longrightarrow g(X_n) \overset{\small ae} \longrightarrow g(X)\]
+\end{theorem}
+\begin{proof}$\{X_n \rightarrow X\} \cap \{ X\in C_g\} \subset \{g(X_n) \rightarrow g(X)\}$.
+\end{proof}
+
+
+
+
+\begin{exercise}
+Suppose $X_n\aerightarrow X$. Show that for every $\epsilon>0$, $\lim_m P\bigl[ \sup_{n\geq m} |X_n - X|>\epsilon \bigr]=0$.
+\end{exercise}
+\begin{exerciseproof}
+\end{exerciseproof}
+
+\begin{definition}
+$X_n$ is said to {\bf converge almost uniformly to } $X$, written $X_n\overset{au}\longrightarrow X$, if for every $\epsilon>0$ there exists a measubale $U_\epsilon$ such that $P[U_\epsilon^c]\leq \epsilon$ and $X_n(\omega)\rightarrow X(\omega)$ uniformly for all $\omega \in U_\epsilon$. 
+\end{definition}
+
+\begin{exercise}[{\bf Egoroff's Theorem}]
+Show that $X_n\aerightarrow X$ if and only if $X_n\overset{au}\longrightarrow X$. Hint: if $X_n\aerightarrow X$ then there exists a subsequence $n_k$ such that $P(\sup_{n\geq n_k}|X_n - X|> 1/k)< 1/k^2$.
+\end{exercise}
+
+%\begin{theorem}[{\bf Sequential Compactness}]
+%If for all $\epsilon>0$, $P(|X_n-X|\geq \epsilon)\rightarrow 0$ as $n\rightarrow \infty$ then there exists a subsequence $X_{n_k}$ which 
+
+
+% Another typical result one looks for when investigating convergence is that of sequential compactness. In particular, conditions on a collection of random vector s $X_n$ all defined on the same probability space so that there exists a convergent subsequence. 
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Section
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Kolmogorov's SLLN}
+
+
+
+As a warm up to Kolmogorov's strong law lets start with the assumption of finite second moments. 
+\begin{theorem}[{\bf SLLN when $E(X^2)<\infty$}]
+\label{L2 SLLN}
+Let $X_1, X_2,\ldots$ be independent random variables, each distributed like some random variable $X$, all defined on the same probabilty space. Let $S_n:= X_1+\ldots+ X_n$. 
+\begin{itemize}
+\item If $E(X^2)<\infty$ then $S_n/n \aerightarrow E(X)$.
+\end{itemize}
+\end{theorem}
+The main technique here is to use Chebyshev's theorem and the first Borel-Cantelli lemma to get strong convergence of a subsequence, then analyze the discrepancies of the subsequences. This turns out to be useful for the full SLLN, but one needs to perform an extra trucation step.
+\begin{proof}
+Start by setting $\mu := E(X)$. Notice also that it is sufficient to only consider positive $X$. In particular if
+\begin{align*}
+\frac{S_{n,+}}{n}:= \frac{X_1^++ \cdots + X_n^+}{n} \aerightarrow E(X^+) \\
+\frac{S_{n,-}}{n}:= \frac{X_1^-+ \cdots + X_n^-}{n} \aerightarrow E(X^-) 
+\end{align*}
+then $S_n/n = S_{n,+}/n - S_{n,-}/n \aerightarrow E(X^+) - E(X^-) = E(X)$ so the theorem follows. From now on assume $X$ is positive.
+
+By Chebyshev's theorem 
+\begin{align*}
+P\Bigl[\bigl| S_n/n - E(S_n/n)\bigr| \geq \epsilon \Bigr] \leq \frac{\text{var}(S_n/n)}{\epsilon^2}\leq \frac{E(X^2)}{\epsilon^2 n}.
+\end{align*}
+If we consider a subsequence $n_k:= \lceil \alpha^k \rceil$ where $\alpha \in (1,\infty)$ then $\sum_{k=1}^\infty \frac{E(X^2)}{\epsilon^2 n_k} < \infty$. By the first Borel-Cantelli lemma, for all $\epsilon>0$
+\[  P\Bigl[\bigl| S_{n_k}/n_k - E(S_{n_k}/n_k)\bigr| \geq \epsilon \io_k  \Bigr] =0 \]
+Therefore
+\[ S_{n_k}/n_k - \underbrace{E(S_{n_k}/n_k)}_{=\mu} \aerightarrow 0. \]
+as $k\rightarrow \infty$.
+Now we use the positivity of $X$ to show the full sequence $S_n/n$ converges to $\mu$. Notice that when $n_k\leq n\leq n_{k+1}$ we have that 
+\begin{equation}
+\label{lift from sub sequence} 
+\frac{S_{n_k}}{n_{k+1}}\leq \frac{S_n}{n} \leq \frac{S_{n_{k+1}}}{n_k}
+\end{equation}
+so that
+\begin{align*}
+\text{\sl \small LHS} = \frac{S_{n_k}}{n_{k+1}} & =  \frac{S_{n_k}}{n_{k}}\frac{n_k}{n_{k+1}} \aerightarrow \mu/\alpha\\
+\text{\sl \small RHS} = \frac{S_{n_{k+1}}}{n_k} & =  \frac{S_{n_{k+1}}}{n_{k+1}}\frac{n_{k+1}}{n_{k}} \aerightarrow \mu\alpha
+\end{align*}
+where the above is true for every $\alpha\in (1,\infty)$, in particular for every $\alpha \in R:= \{z:z\in \Bbb Q, z>1\}$. Therefore
+\[ P\Bigl[\underbrace{\bigcap_{\alpha \in R} \bigl\{ \mu/\alpha\leq \liminf_n  S_n/n  \leq \limsup_n S_n/n \leq \mu\alpha\bigr\}}_{=\{S_n/n \rightarrow \mu \}}\Bigr] = 1 \]
+\end{proof}
+
+
+
+\begin{theorem}[{\bf Kolmogorov's SLLN}]
+Let $X_1, X_2,\ldots$ be independent random variables, each distributed like some random variable $X$, all defined on the same probabilty space. Let $S_n:= X_1+\ldots+ X_n$.  
+\begin{itemize}
+\item If $X$ is quasi-integrable then $S_n/n \aerightarrow E(X)$.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+The main idea is to mimic arguments for Theorem \ref{L2 SLLN} but with an additional truncation argument. Again we can suppose without loss of generality  that $X$ is positive. 
+
+First consider the case $E(X)<\infty$. The idea is to analyze the truncated average $T_n/n$  instead of $S_n/n$ where
+\[T_n :=\sum_{i=1}^n X_i I_{\{X_i\leq i\}}. \]
+Notice that for large $i$ the terms $X_i I_{\{X_i\leq i\}}$ start to behave more like $X_i$. Moreover the small $i$ terms in $T_n/n$ are downweighted by $1/n$. Therefore once might expect $T_n/n$ to behave like $S_n/n$ for large $n$. To continue the proof we again we use Chebyshev
+\begin{align}
+\nonumber P\Bigl[\bigl| T_n/n - E(T_n/n)\bigr| \geq \epsilon \Bigr] &\leq \frac{\text{var}(T_n/n)}{\epsilon^2} \\
+\nonumber &\leq \frac{1}{\epsilon^2 n^2}\sum_{i=1}^nE(X_i^2 I_{\{X_i\leq i\}}) \\
+\nonumber &\leq \frac{1}{\epsilon^2 n^2}\sum_{i=1}^nE(X_i^2 I_{\{X_i\leq n\}}) \\
+\label{cheb sum} &\leq \frac{E(X^2 I_{\{X\leq n\}}) }{\epsilon^2 n}.
+\end{align}
+We now notice that if we define the subsequence $n_k:= \lceil \alpha^k \rceil$ where $\alpha \in (1,\infty)$ then the right hand side (above) is summable. In particular 
+\begin{align*}
+\sum_{k=1}^\infty \frac{E(X^2 I_{\{X\leq n_k\}})}{n_k} 
+&\underset{\text{\tiny Fubini}} =  E\Bigl(X^2\sum_{k=1}^\infty \frac{1}{n_k}I_{\{X\leq n_k\}}\Bigr) \\
+& =  E\Bigl(X^2\Bigl[0+\cdots 0 + \frac{1}{n_j} + \frac{1}{n_{j+1}} +\cdots \Bigr]\Bigr)
+\end{align*}
+where $j$ is the first index such that $X\leq n_j$, i.e. $\frac{X}{n_j}\leq 1$. Also notice the higher order terms can be bounded as follows 
+\begin{align*}
+\frac{X}{n_{j+m}}  = \frac{X}{\lceil \alpha^{j+m} \rceil}\leq \frac{X}{ \alpha^{j+m} } =  \frac{1}{\alpha^m} \frac{n_j}{\alpha^j} \frac{X}{n_j} \leq   \frac{2}{\alpha^m}.
+\end{align*}
+Therefore
+\begin{align}
+\label{works when X is 0}
+X^2\Bigl[&\frac{1}{n_j} + \frac{1}{n_{j+1}} +\cdots \Bigr] \leq X\Bigl[ \frac{2}{\alpha^0} +\frac{2}{\alpha^1} +\cdots \Bigr]
+\end{align}
+Now since $E(X)<\infty$, the right hand side of (\ref{works when X is 0}) has finite expected value, and hence Borel-Cantelli gives
+\begin{equation}
+\label{SLLN: e1111}
+T_{n_k}/n_k - E(T_{n_k}/n_k) \aerightarrow 0
+\end{equation}
+as $k\rightarrow \infty$.
+Now if we can show that $E(T_{n_k}/n_k)  = \mu + o(1)$ we can 
+apply the same arguments as found in Theorem \ref{L2 SLLN} to get
+\begin{equation}
+\label{SLLN: e1}
+T_{n}/n \aerightarrow \mu
+\end{equation}
+as $n\rightarrow \infty$.
+
+Now we show $E(T_{n}/n)  = \mu + o(1)$ and  $T_{n}/n = S_{n}/n + o(1)$ with probability one. 
+Notice that
+$E(T_{n}/n) = \frac{1}{n} \sum_{i=1}^n E( X_iI_{\{X_i \leq i\}}) $
+ where $\lim_i E( X_iI_{\{X_i \leq i\}}) = \lim_i E( X I_{\{X \leq i\}}) = E(X) = \mu$  by the DCT. Therefore Lemma \ref{lemma: cesar summation} applies with $\mu_i:= E( X_iI_{\{X_i \leq i\}})$ to give
+\begin{equation}
+\label{SLLN: e3}
+E(T_{n}/n)  =  \frac{1}{n} \sum_{i=1}^n \mu_i =  \mu + o(1).
+\end{equation}
+To finish lets analyze the terms in $T_n$ versus the terms in $S_n$
+\[P(X_i \neq X_iI_{\{X_i \leq i\}}) = P(X_i > i ).  \]
+Lemma \ref{lemma: expect ceiling} (below) gives that $\sum_{i=1}^\infty P(X_i > i ) = E(\lceil X \rceil)<\infty$. Borel-Cantelli  then gives $P(X_i \neq X_iI_{\{X_i \leq i\}} \, \io_i) = 0$  which implies that for the high-index terms in $T_n$ are eventually exactly the same as in $S_n$. Therefore
+\begin{equation}
+\label{SLLN: e2}
+T_{n}/n = S_{n}/n + o(1)
+\end{equation}
+with probability one. 
+Equations (\ref{SLLN: e1111}), (\ref{SLLN: e2}) and (\ref{SLLN: e3}) finish the proof of the case when $E(X)<\infty$.
+
+
+
+
+Now  consider the case  $E(X) = \infty$. 
+% For any positive integer $k$ we have
+% \begin{align*}
+% \sum_{n=1}^\infty P(X_n/n > k) = \sum_{n=1}^\infty P(X/k > n) =^* E(\lceil X/k\rceil)=\infty
+% \end{align*}
+% where $=^*$ is due to Lemma \ref{lemma: expect ceiling} below. Since $X_n$ are independent the second Borel-Cantelli lemma applies. In particular  for each integer $k>0$,  $P\bigl(X_n/n > k \io_n \bigr) = 1$. Therefore $P\bigl(\cap_{k=1}^\infty\{ X_n/n > k \io_n\} \bigr) = 1$ which implies 
+% \[\limsup_{n\rightarrow \infty }\frac{X_n}{n}= \infty\quad\text{ a.e.}\]
+% Now since $X_n/n \leq S_n/n$ we also have
+% \[\limsup_{n\rightarrow \infty }\frac{S_n}{n}= \infty\quad\text{ a.e.}\]
+% To finish the proof of this case notice
+We simply show that $\liminf_n S_n/n =\infty$ with probability one (which allows us to conclude that $\liminf_n S_n/n =\limsup_n S_n/n= \lim_n S_n/n = \infty$ with probability one). Indeed
+\begin{align*}
+\liminf_{n\rightarrow \infty }\frac{S_n(w)}{n}
+&\geq \liminf_{n\rightarrow \infty } \frac{X_1(w)\wedge k + \cdots + X_n(w)\wedge k}{n} \\
+&= E(X\wedge k), \quad\text{by the case above}
+\end{align*}
+for all $w\in A_k$ where $P(A_k)=1$. Continuity from below in Big 3 implies $E(X\wedge k)\rightarrow \infty $. Therefore 
+$\liminf_{n\rightarrow \infty }S_n(w)/n = \infty $
+for all $w\in \cap_{k=1}^\infty A_k$ which has probability one. Therefore
+\[S_n/n \aerightarrow \infty. \]
+
+
+
+
+
+
+ \end{proof} % SLLN
+
+
+
+
+
+The following lemma was used in the above proof to analyze the difference between a truncated sum and the non-truncated sum. 
+
+\begin{lemma}[{\bf Expect the ceiling lemma}]
+\label{lemma: expect ceiling}
+If $X$ is a nonnegative random variable, then 
+\begin{equation}
+\label{rtyu}
+ \sum_{i=0}^\infty P(X>i) = E( \lceil X\rceil). 
+ \end{equation}
+\end{lemma}
+\begin{proof}
+\begin{align*}
+\sum_{i=0}^\infty P(X>i)
+& = \sum_{i=0}^\infty E(I_{\{X>i\}})  \underset{\text{\tiny Fubini}} =  E\Bigl(\underbrace{\sum_{i=0}^\infty I_{\{X>i\}}}_{=\lceil X\rceil}\Bigr).
+\end{align*}
+\end{proof}
+
+
+
+The following lemma was used to show that the expected value of a truncated sum, in the most general proof of the SLLN, converges to the non-truncated expected value.
+\begin{lemma}[{\bf Ces\`ar summation lemma}]
+\label{lemma: cesar summation}
+If $\mu_i\rightarrow \mu$ as $i\rightarrow \infty$, then $\bigl(\sum_{i=1}^n \mu_i\bigr)/n\rightarrow \mu$ as $n\rightarrow \infty$.
+\end{lemma}
+\begin{proof}
+\begin{align*}
+\Bigl|\frac{1}{n}\sum_{i=1}^n \mu_i-  \mu\Bigr| 
+& \leq \frac{1}{n}\sum_{i=1}^n |\mu_i - \mu|\\
+& \leq \frac{1}{n}\sum_{i=1}^m |\mu_i - \mu| + \sup_{i > m} |\mu_i - \mu|,\,\, m\leq n\\
+& =: I_{n,m} + I\!I_{m}
+\end{align*}
+Taking a limit as $n\rightarrow \infty$ first one gets $\lim_{n} I_{n,m} = 0$, then take a limit as $m\rightarrow \infty$ to get $\lim_{m} I\!I_{m} = \limsup_{m} |\mu_m - \mu| = 0$.
+\end{proof}
+
+
+
+%--------------------------------------
+\subsubsection{Application: renewal theory}
+
+\begin{theorem}[{\bf Application to renewal theory}]
+Let $X_1, X_2, \ldots$ be iid non-negative random variables with expected value $\mu\in(0,\infty]$. Let $S_n:= X_1+\ldots+X_n$ and for real numbers $t\geq 0$ set
+\[N_t:=\sup\{ n\geq 0\colon S_n\leq t \}.  \]
+Then $N_t/t \rightarrow 1/\mu$ a.e..
+%and $E|N_t/t - 1/\mu|\rightarrow 0$ as $t\rightarrow \infty$.
+\end{theorem}
+Notice that $N_t$ is the number of $X_k$'s which fit between $0$ and $t$. Since each $X_k$ is expected to be $\mu$, one might expect $\mu N_t\approx t$. Indeed, this is the heuristic behind the limit $N_t/t \rightarrow 1/\mu$ as $t\rightarrow \infty$.
+
+\begin{proof}
+First notice that $N_t<\infty$ for each real $t\geq 0$ but  $N_t\aerightarrow \infty$ as $t \rightarrow \infty$. This follows since  $S_n\uparrow \infty$ almost everywhere (because the SLLN gives $S_n/n\aerightarrow \mu$ and $\mu$ is assumed non-zero). 
+
+
+According to the definition of $N_t$ we have $S_{N_t}\leq t < S_{N_t+1}$ and therefore
+\begin{equation}
+\label{eq: renewal thm}
+\frac{S_{N_t}}{N_t}\leq \frac{t}{N_t}< \frac{S_{N_t+1}}{N_t+1}\frac{N_t+1}{N_t}.
+\end{equation}
+Now  letting $t\rightarrow \infty$ so that $N_t\aerightarrow \infty$ gives
+\[
+ \frac{t}{N_t} \aerightarrow \mu.
+\]
+The result follows since $1/x$ is continuous on $x\in [0,\infty]$.
+
+\end{proof}
+
+
+
+
+
+
+\begin{shaded}
+
+
+% \subsection{SLLN in $C(T,\Bbb R)$${}^*$}
+% \subsubsection{Application: strong consistency of the MLE}
+
+\subsection{Glivenko-Cantelli}
+
+\subsection{Ergodic Theory}
+\end{shaded}
+
+
+
+
+
+
+
+\clearpage
+%-----------------------
+%-----------------------
+%-----------------------
+\section{Convergence in probability}
+%-----------------------
+%-----------------------
+%-----------------------
+
+
+
+\subsection{Basic theory}
+
+
+\begin{sectionassumption} For the remainder of this section, unless stated otherwise, let $X, Y, X_1, X_2, \ldots, $  be random vectors taking values in $\Bbb R^d$ all defined on the same probability space   $(\Omega, \mathcal F, P)$.
+\end{sectionassumption}
+
+
+
+
+\begin{definition}
+ $X_n$ converges to $X$ in probability, written $X_n\overset{\small P} \longrightarrow X$, if
+\[\forall \epsilon>0,\, \lim_{n\rightarrow\infty} P(|X_n-X|\geq \epsilon)=0. \]
+\end{definition}
+
+
+\begin{theorem}[{\bf Almost sure uniqueness of limits}]
+If $X_n\overset{\small P} \longrightarrow X$ and  $X_n\overset{\small P} \longrightarrow Y$ then  $X=Y$  almost everywhere.
+\end{theorem}
+
+
+
+In some sense, the difference between $\aerightarrow$ and $\Prightarrow$ is given by the fact that Fatou's lemma is an inequality and not a strict identity. Recall one of the inequalities in Fatou's lemma: $\limsup P(A_n) \leq P(\limsup A_n)$. Since $\limsup_n A_n = \{A_n \io_n \}$ we have
+\begin{align*}
+X_n \aerightarrow X &\iff \text{for all $\epsilon$, $P(\limsup_n \{|X_n-X|\geq \epsilon\}) = 0$}\\
+X_n \Prightarrow X &\iff \text{for all $\epsilon$, $\limsup_n  P(\{|X_n-X|\geq \epsilon\}) = 0$}
+\end{align*}
+This makes it clear that $\aerightarrow$  implies $\Prightarrow$ (by Fatou) but that the otherway around is never possible
+
+
+
+\begin{theorem}[{\bf $ae$ implies $P$}]
+\begin{equation}
+X_n\aerightarrow X 
+\text{ implies } X_n \Prightarrow X.
+\end{equation}
+\end{theorem}
+
+
+There are cases where one can go backwards, but this either requires working with subsequences or additional assumptions such as monotonicity.
+
+
+
+\begin{theorem}[{\bf Monotonicity gives $P$ implies  $a.e.$}]
+If each $X_n$ is a random variable and for almost every $w\in\Omega$, $X_n(w)$ is either nondecreasing in $n$ or nonincreasing in $n$. Then
+\[ X_n \overset{\small ae} \longrightarrow X \Longleftrightarrow  X_n \overset{\small P} \longrightarrow X.\]
+\end{theorem}
+
+
+
+
+
+\begin{theorem}[{\bf Subsequences  gives $P$ implies $a.e.$}]
+$ X_n\overset{\small P} \longrightarrow X$ if and only if every subsequence $\{ n_k\}_{k=1}^\infty$ contains a further subsequence $\{ n_{k_\ell}\}_{\ell=1}^\infty$ such that $ X_{n_{k_\ell}}\overset{\small ae} \longrightarrow X$.
+\end{theorem}
+
+
+As a corollary of the above theorem one gets that  $ X_n\overset{\small P} \longrightarrow X$ implies there exists a subsequence $\{ n_k\}_{k=1}^\infty$ such that $ X_n\aerightarrow X$. One of the nice things about the subsequences theorem is that it allows us to generalize the theorems for taking a.e. limits under the integrals to the probability limits under the expectation.  Here is an example of a theorem that we need later. 
+
+\begin{theorem}[{\bf Probability Sandwich Theorem }]
+\label{thm: Probability Sandwich Theorem}
+Suppose $0 \leq X_n \leq Y_n$ $P$-a.e.,  $X_n\Prightarrow X$,  $Y_n\Prightarrow Y$, $E(Y_n)<\infty$ and $E(Y)<\infty$. If  $E(Y_n) \rightarrow E(Y)$ then $E(X_n)<\infty$, $E(X)<\infty$ and 
+\[E(X_n)\rightarrow E(X).\]
+\end{theorem}
+\begin{proof}
+
+We start by  showing the result under the stronger assumption that $X_n\aerightarrow X$,  $Y_n\aerightarrow Y$. In this case Fatou gives
+\begin{equation}
+\label{Fatou SWT 1}
+E(X) = E(\liminf_n X_n)\leq \liminf_n E(X_n).
+\end{equation}
+Since the above $ RHS \leq \liminf_n E(Y_n)=E(Y)<\infty$ equation (\ref{Fatou SWT 1}) gives $E(X)<\infty$ (we also obviously have $E(X_n)<\infty$ by the inequality assumption).
+We also have that $0\leq Y_n -X_n$ so again Fatou gives
+\begin{align*}
+E(Y)-E(X) &= E(Y-X) \\
+&= E(\liminf_n (Y_n-X_n)) \\
+&\leq \liminf_n E(Y_n - X_n) \\
+&= E(Y)-\limsup_n E(X_n). 
+\end{align*}
+Combined with equation (\ref{Fatou SWT 1}) gives
+\begin{equation}
+\label{eq: sandwhich thm}
+E(X)\leq \liminf_n E(X_n)\leq \limsup_n E(X_n) \leq E(X).
+\end{equation}
+
+Now we can use the subsequence theorem to weaken the assumption to $X_n\Prightarrow X$ and  $Y_n\Prightarrow Y$.
+To show $E(X_n)\rightarrow E(X)$ proceed by contradiction and suppose there exists $\delta>0$ and a subsequence $n_k$ such that $|E(X_{n_k})- E(X)|\geq \delta$. Now, by extracting a further subsequence $n_{k_\ell}$ where $X_{n_{k_\ell}}\aerightarrow X$ and $Y_{n_{k_\ell}}\aerightarrow Y$ we can conclude, by (\ref{eq: sandwhich thm}), that $E(X_{n_{k_\ell}})\rightarrow E(X).$ This is a contradiction and therefore 
+\[
+E(X_n)\rightarrow E(X).
+\]
+\end{proof}
+
+
+\begin{theorem}[{\bf Cauchy criteria for $\Prightarrow$}]
+\label{cauchy for P}
+$X_n$ converges in P to some random variable if and only if
+\begin{equation}
+\lim_{n}\lim_{m}  \sup_{n\leq p\leq m} P\Bigl(\, |X_n-X_p| \geq \epsilon \Bigr)=0.
+\end{equation}
+if and only if
+\begin{equation}
+\lim_{n}\lim_{m}   P\Bigl(\, |X_n-X_m| \geq \epsilon \Bigr)=0.
+\end{equation}
+%\[\forall \epsilon>0,
+%\lim_m\lim_q  \displaystyle\max_{m\leq n\leq q} P\bigl( |X_n-X_m| \geq \epsilon \bigr)=0.\]
+\end{theorem}
+
+
+
+
+\begin{theorem}[{\bf Continuous mapping theorem for $\Prightarrow$}]
+\label{continuous mapping  P}
+Suppose $g\colon\Bbb R^d\rightarrow\Bbb R^k$ is $X$-continuous. Then
+\[X_n \overset{\small P} \longrightarrow X \Longrightarrow g(X_n) \overset{\small P} \longrightarrow g(X) \]
+\end{theorem}
+
+
+
+\begin{exercise}[{\bf Metrizing $\Prightarrow$}]
+Let $\mathfrak R$ be the space of real-valued random variables on $(\Omega, \mathcal F, P)$. Let $d\colon  \mathfrak R \times \mathfrak R \rightarrow [0,1]$ be defined by $d(X,Y):= E(|X-Y|\wedge 1)$. Show the following
+\begin{itemize}
+\item $d$ is a pseudo metric on $\mathfrak R$
+\item $X_n\Prightarrow X$ if and only if $d(X_n, X)\rightarrow 0$
+\item $\mathfrak R$ is speparable if $\mathcal F$ is countably generated (Hint: use Theorem 58 (part 1), Theorem 27 and Exercise 9 from the class notes).
+\item $\mathfrak R$ is complete.
+\end{itemize} 
+\end{exercise}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Section
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Stochastic order notation: $O_p$, $o_p$}
+We will come back to this later when we talk about convergence in distribution but it will be nice to get the notation set and a few restuls done. 
+
+
+\begin{definition}[{\bf little o and big O}]
+Suppose $X_1, X_2, \ldots$ are random vectors and $r_1, r_2, \ldots$ are random variables all defined on $(\Omega,\mathcal F, P)$. Then
+\begin{align*}
+X_n = o_p(r_n)&\Longleftrightarrow X_n/r_n \Prightarrow  0 \\
+X_n = O_p(r_n)&\Longleftrightarrow \text{the {\rm r.v.s} $X_n/r_n$ are tight}
+\end{align*}
+\end{definition}
+
+\begin{claim}
+If $E|X_n|^p=O(1)$ for some $p>0$ then $X_n = O_p(1)$.
+\end{claim}
+
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Section
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Convergence in $L_p$ for $p\in [1,\infty)$}
+
+\begin{warning} We remind the reader that we are exclusively working with random variables or random vectors. In particular, the sample space $\Omega$ is assumed to have finite mass. Results for $L_p$ convergence and $L_p$ spaces with non-finite measures may be different.
+\end{warning}
+
+
+\begin{sectionassumption}
+Thought this section assume $p\in[1,\infty)$, unless explicitly stated otherwise.
+\end{sectionassumption}
+
+
+
+\begin{sectionassumption}
+Thought this section assume, unless stated otherwise, that $Y, X, X_1, X_2,\ldots$ are all random vectors taking values in $\Bbb R^d$ defined on the same probability space $(\Omega, \mathcal F, P)$. 
+\end{sectionassumption}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Section
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Basic theory}
+
+
+
+\begin{definition}
+$ X_n\Lprightarrow X $ if and only if  $E\bigl(|X_n - X|^p \bigr) \rightarrow 0$.
+%When $p=\infty$
+%\[ X_n\Linfrightarrow X  \text{ if and only if } \text{ess}\sup_{\Omega} |X_n - X| \rightarrow 0 \]
+%where $\text{ess}\sup_{\Omega} |X_n - X|:=   \inf \{u\in \Bbb R: |X_n-X|\leq u \text{ a.e.} \} $.
+\end{definition}
+
+
+\begin{theorem}[{\bf Almost sure uniqueness of limits}]
+If $X_n\Lprightarrow X$ and  $X_n\Lprightarrow Y$ then  $X=Y$  almost everywhere.
+\end{theorem}
+\begin{proof}
+First notice 
+\begin{align}
+|x+y|^p &= 2^p \Bigl| \frac{x+y}{2} \Bigr|^p \nonumber \\
+&\leq 2^p \Bigl(\frac{|x|^p + |y|^p}{2} \Bigr)\quad\text{by convexity of $|\cdot|^p$} \nonumber \\
+& \leq 2^{p-1} (|x|^p + |y|^p). \label{convex ineq for normp}
+\end{align}
+Therefore 
+ \begin{equation}
+ \label{convex ineq for normp 2} 
+ 0\leq E|X-Y|^p\leq 2^{p-1}\bigl(E|X-X_n|^p + E|Y-X_n|^p\bigr)\rightarrow 0.
+ \end{equation}
+
+% A similar proof holds for $L_\infty$ after noticing \textcolor{red}{You shoudl re-do this by  working with ess sup's. In particular if your trying to show somethign about a countable collection of rv's, you can simply change all the r-v's ....}
+% \begin{align*}
+% \inf\{u&\colon|X-Y|\leq u\text{ a.e.} \}\\
+%  &\leq  \inf\{u\colon|X_n-X|+|X_n-Y|\leq u\text{ a.e.} \}\\
+%  &\leq  \inf\{a\colon|X_n-X|\leq a\text{ a.e.} \} + \inf\{b\colon|X_n-Y|\leq b\text{ a.e.} \}
+%   \end{align*}
+%   since $|X_n-X|+|X_n-Y|\leq a+b$ if $|X_n-X|\leq a$ and $ |X_n-Y|\leq b$.
+\end{proof}
+
+
+\begin{theorem}[{\bf Cauchy criteria for convergence}]
+\label{cauchy for Lp}
+$X_n$ converges in $L_p$ to some random variable if and only if
+\begin{equation}
+\lim_n \lim_q E (|X_n-X_q|^p)=0.
+\end{equation}
+% Moreover, $X_n$ converges in $L_\infty$ to some random variable if and only if 
+% \begin{equation}
+% \lim_n \sup_{n\leq q} \text{ess}\sup_\Omega |X_n-X_q| = 0.
+% \end{equation}
+\end{theorem}
+\begin{proof}
+($\Longrightarrow$) This follows immediately from the following version of (\ref{convex ineq for normp 2}) 
+\[
+ 0\leq E|X_n-X_q|^p\leq 2^{p-1}\bigl(E|X_n-X|^p + E|X_q-X|^p\bigr).
+\] 
+
+($\Longleftarrow$)
+By Markov's inequality
+\begin{align*}
+P(|X_n - X_q|\geq \epsilon) &\leq \frac{E|X_n - X_q|^p}{\epsilon^p}.
+\end{align*}
+The Cauchy criterion for convergence in probability implies there exists a $X$ such that $X_n\Prightarrow X$. 
+The subsequences theorem says that there exists a subsequence $n_k$ such that $X_{n_k}\aerightarrow X$.
+% Let $\epsilon_k \rightarrow 0$ and recursively choose $n_k>n_{k-1}$ such that  $\sum_k P(|X_{n_k}-X|\geq \epsilon_k)<\infty$. By the first Borel-Cantelli lemma $P\bigl(|X_{n_k}-X|\geq \epsilon_k \io_k\bigr) = 0$ which implies that for a.e.\! $\omega$, $|X_{n_k}(\omega)-X(\omega)|< \epsilon_k$ for all but finitely many $k$. Therefore  $X_{n_k}\aerightarrow X$ as $k\rightarrow \infty$. 
+Since $|X_n(\omega) - \cdot|^p$ is continuous for each $\omega\in \Omega$ we then have $|X_n - X_{n_k}|^p \aerightarrow |X_n - X|^p$ and therefore
+\begin{align*}
+ E|X_n - X|^p &\leq \liminf_k E|X_n - X_{n_k}|^p\quad \text{by Fatou}\\
+ &\leq \limsup_k E|X_n - X_{n_k}|^p\\
+ &\leq \limsup_q E|X_n - X_q|^p.
+ \end{align*}
+ Taking $\lim_n$ on both sides gives the result. 
+
+
+
+ % For case $p=\infty$ see exercise \ref{cauchy for Linf}.
+\end{proof}
+
+
+\begin{theorem}[{\bf $\Lprightarrow$  implies $\Prightarrow$ }]
+\label{thm Lp implies P}
+If $X_n \Lprightarrow X$ then $X_n \Prightarrow X$
+\end{theorem}
+\begin{proof}
+This follows directly from Markov's theorem
+\[
+P(|X_n -X|\geq \epsilon)\leq \frac{E|X_n - X|^p}{\epsilon^p}\rightarrow 0
+\]
+as $n\rightarrow \infty$.
+\end{proof}
+
+
+
+% \begin{theorem}[{\bf $L_1$ convergence and moments}]
+% \label{thm: l1 conv moment}
+% Suppose $E|X_n|<\infty$ for all $n$ and $X_n\Lonerightarrow X$. Then 
+% \begin{itemize}
+% \item $X_n\Prightarrow X$;
+% \item $E|X_n| \rightarrow E|X|<\infty$;
+% \item $EX_n \rightarrow EX$.
+% \end{itemize}
+% \end{theorem}
+% \begin{proof}
+% First notice that $X$ is integrable since
+% \begin{equation}
+% \label{eq: for L1 conv of moments}
+% E|X|\leq E|X_n| + E|X-X_n|
+% \end{equation}
+% where the right hand side is finite for sufficiently large $n$.
+
+% ({\sl Show $E(X_n) \rightarrow E(X)$}) Notice that since $X$ is integrable we can apply Big 3 to get
+% \[
+% |E(X_n)-E(X)| \leq E|X_n-X|\rightarrow 0 
+% \]
+% as $n\rightarrow \infty$.
+
+% ({\sl Show $E|X_n| \rightarrow E|X|$}) Combine equation (\ref{eq: for L1 conv of moments}) with 
+% \begin{align*}
+% E|X_n|\leq E|X| + E|X-X_n|
+% \end{align*}
+% to get
+% \[
+% \bigl|E|X_n| - E|X| \bigr|\leq E|X-X_n|\rightarrow 0.
+% \]
+
+% ({\sl Show $X_n\Prightarrow X$}) This follows directly from Markov's theorem
+% \[
+% P(|X_n -X|\geq \epsilon)\leq \frac{E|X_n - X|}{\epsilon}\rightarrow 0
+% \]
+% as $n\rightarrow \infty$.
+% \end{proof}
+
+
+
+% Recall the definition of uniformly integrable.
+
+% \begin{definition}[{\bf UI}] If $X_n$ is a sequence of random vectors such that 
+% \[  \lim_{c\rightarrow \infty} \sup_n E\bigl(|X_n| I_{\{|X_n| \geq c\}} \bigr)=0\] 
+% then $X_1, X_2, \ldots$ are said to be {\bf uniformly integrable} (UI).
+% \end{definition}
+
+
+% % \begin{definition}[{\bf UAC}]
+% % If $X_n$ is a sequence of random vectors such that 
+% % \[  \lim_{\delta\downarrow 0} \sup_{\substack{F\in\mathcal F:\\ P(F)\leq \delta}}\sup_n E\bigl(|X_n| I_F \bigr)=0\] 
+% % then $X_1, X_2, \ldots$ are said to be {\bf uniformly absolutely continuous} (UAC).
+% % \end{definition}
+
+
+% % \begin{theorem}[{\bf UI = $L_1$-bdd + UAC}]
+% % \label{thm: UI = $L_1$-bdd + UAC}
+% % If $X_n$ is a sequence of random vectors then the following are equivalent
+% % \begin{enumerate}
+% % \item $X_n$ are UI
+% % \item $X_n$ are UAC and $\sup_n E|X_n|\leq \infty$.
+% % \end{enumerate}
+% % \end{theorem}
+
+
+
+% \begin{theorem}[{\bf $L_1$-convergence theorem}]
+% Suppose $E|X_n|<\infty $ for all $n$. The following are equivalent
+% \begin{enumerate}
+% \item\label{L1 cv t 1} $X_n\Lonerightarrow X$
+% \item\label{L1 cv t 2} $X_n\Prightarrow X$ and $E|X_n| \rightarrow E|X|<\infty$
+% \item\label{L1 cv t 3} $X_n\Prightarrow X$ and $|X_n|$'s are UI
+% %\item\label{L1 cv t 4} $X_n\Prightarrow X$ and $|X_n|$'s are UAC
+% \end{enumerate}
+% \end{theorem}
+% \begin{proof}
+% ({\sl \ref{L1 cv t 1}. $\Longleftrightarrow$} \ref{L1 cv t 2}.) One direction was  shown in Theorem \ref{thm: l1 conv moment}.  For the other direction we use the Sandwich theorem. Define
+% \[ Y_n:= |X_n| + |X|,\qquad Y:= 2|X|.\] 
+% Now $Y_n\Prightarrow Y$ and by the Continuous mapping theorem and $Y_n, Y\in L_1$ since $X_n, X\in L_1$. Also notice that $0\leq |X_n-X|\leq Y_n$ and $|X_n - X|\Prightarrow 0$ by the Continuous mapping theorem. Therefore the Sandwich theorem applies and gives $E|X_n - X|\rightarrow 0$.
+
+
+
+% ({\sl \ref{L1 cv t 2}. $\Longrightarrow$} \ref{L1 cv t 3}.) 
+% We use the old UI Converse Theorem \ref{UITHM2} modified for convergence in probability. Proceeding by contradiction suppose the $|X_{n}|$'s are {\it not} UI. In particular,
+% \[
+% \lim_{c\rightarrow \infty} \sup_n E\bigl(|X_{n}|I_{\{|X_{n}|\geq c\}}\bigr) \neq 0.
+% \]
+% Now there exists a $\delta>0$ and a  a sequence of real numbers $c_k\rightarrow \infty$ such that 
+% \[
+%  \sup_n E\bigl(|X_{n}|I_{\{|X_{n}|\geq c_k\}}\bigr) >\delta.
+% \]
+% for all $k$. For each $k$ one can now choose $n_k$ such that 
+% \begin{equation}
+% \label{L1 cv t 2 cont}
+% E\bigl(|X_{n_k}|I_{\{|X_{n_k}|\geq c_k\}}\bigr) >\delta.
+% \end{equation}
+% However, there exists a further subsequence $|X_{n_{k_\ell}}|$ such that  $|X_{n_{k_\ell}}|\aerightarrow |X|$ and  $E|X_{n_{k_\ell}}|\aerightarrow E|X|<\infty$. Applying the old UI Converse Theorem \ref{UITHM2} we then get the $|X_{n_{k_\ell}}|$'s are UI so that 
+% \[
+% \lim_{c\rightarrow \infty} \sup_\ell E\bigl(|X_{n_{k_\ell}}|I_{\{|X_{n_{k_\ell}}|\geq c\}}\bigr) = 0
+% \]
+% which contradicts equation (\ref{L1 cv t 2 cont}). Therefore the $|X_{n}|$'s are UI.
+
+
+
+% ({\sl \ref{L1 cv t 3}. $\Longrightarrow$} \ref{L1 cv t 2}.) 
+% This follows by our old UI Theorem \ref{UITHM}. In particular, by taking subsequences and applying  Theorem  \ref{UITHM} we have $E|X|<\infty$. To show $E|X_{n}|\rightarrow E|X|$ we proceed by contradiction and suppose there exists a subsequence $n_k$ and a $\delta>0$ such that 
+% \begin{equation}
+% \label{L1 cv t 3 cont}
+% \bigl|E|X_{n_k}| - E|X|\bigr|\geq \delta.
+% \end{equation}
+% By taking subsequences we get that $|X_{n_{k_\ell}}|\aerightarrow |X|$ where the $|X_{n_{k_\ell}}|$'s are UI. Now again by Theorem \ref{UITHM} we have that
+%  $E|X_{n_{k_\ell}}|\rightarrow E|X|<\infty$ which contradicts (\ref{L1 cv t 3 cont}).
+
+
+
+% \end{proof}
+
+
+
+% \begin{shaded}
+
+
+% \begin{theorem}[{\bf $L_p$ is closed}]
+% \label{Lp is closed}
+%  If  $X_n\Lprightarrow X$ and  $E(|X_n|^p )<\infty$ for all $n$, then $E(|X|^p) <\infty$  for all $0< q\leq p$.
+% % \begin{itemize}
+% % \item $E(|X|^q) <\infty$  for all $0\leq q\leq p$;
+% % \item $E(|X_n|)\rightarrow E(|X|)$;
+% % \item $E(X_n)\rightarrow E(X)$.
+% % \end{itemize}
+% \end{theorem}
+% \begin{proof}
+% We first show $E(|X|^p)<\infty$. This follows since (\ref{convex ineq for normp}) implies
+% \[ |X|^p \leq 2^{p-1}|X_n|^p +  2^{p-1}|X_n-X|^p  \]
+% where the expected value of the right hand side is finite (for large enough $n$).
+
+% Now we show $E(|X|^q)<\infty$ for any $0\leq q\leq p$. We first need Young's inequality
+% \begin{equation}
+% \label{youngs inquality}
+% a^{w_1}b^{w_2}\leq w_1 a + w_2 b
+% \end{equation}
+% for any $a,b\geq 0$ and $w_1, w_2 >0$ such that $w_1 + w_2 = 1$. Young's inequality follows (after establishing the special cases when $a=0$ or $b=0$) by taking log of both sides and then using concavity to conclude that $w_1 \log(a) + w_2\log(b)\leq \log(w_1a+w_2b)$. The inequality (\ref{youngs inquality}) now gives
+% \begin{equation}
+% \label{p bounds q} 
+% |X|^q = \bigl[|X|^p\bigr]^{\frac{q}{p}} 1^{\frac{p-q}{p}} \leq \frac{q}{p}|X|^p + \frac{p-q}{p}. 
+% \end{equation}
+% Therefore $E(|X|^q)<\infty$ for any $0< q\leq p$.
+
+% % Since $E|X|$ and $E|X_n|$ are both finite it is now clear that 
+% % \[|E(X_n)-E(X)| = |E(X_n-X)|\leq E|X_n - X|\rightarrow 0. \]
+% % \textcolor{red}{but how do you know that $E|X_n - X|\rightarrow 0$? This comes from Holder so you might want to wait for later.}
+% % To finish, notice 
+% % \begin{align*}
+% %  0 \leq |E(|X_n|)- E(|X|)| &\leq  E(||X_n|-|X||)\\
+% %  &\leq E(|X_n-X|)\rightarrow 0. 
+% %  \end{align*}
+% % Therefore $E(|X_n|)\rightarrow E(|X|)$.
+% \end{proof}
+
+
+% \end{shaded}
+
+% \begin{exercise}
+% \label{cauchy for Linf}
+% Show that
+% $X_n$ converges in $L_\infty$ to some random variable if and only if 
+% \begin{equation}
+% \lim_n \sup_{n\leq q} \text{ess}\sup_\Omega |X_n-X_q| = 0.
+% \end{equation}
+% \end{exercise}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% section
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{$L_p$ spaces of random vectors}
+
+
+
+\begin{definition}[{\bf $L_p$ norm}]
+$\|X\|_p:= \bigl[E(|X|^p)\bigr]^{1/p}$.
+\end{definition}
+
+
+
+\begin{definition}[{\bf $L_p$ space}]
+Let $L_p$ denote the collection of all random vectors  $X:\Omega \rightarrow \Bbb R^d$ such that $\| X \|_p<\infty$.
+\end{definition}
+
+\begin{theorem}
+$L_p$ is a linear space. In particular
+\begin{itemize}
+\item $X\in L_p$ and $c\in \Bbb R$ $\Longrightarrow$  $cX \in L_p$;
+\item $X, Y\in L_p$ $\Longrightarrow$  $X + Y \in L_p$.
+\end{itemize}
+\end{theorem}
+\begin{proof}
+The first bullet  follows trivially from the  linear properties of expected value. For the second bullet, use inequality (\ref{convex ineq for normp}).
+\end{proof}
+
+
+\begin{theorem}[{\bf H\"older}]
+Let $X$ and $Y$ be two random variables. If $p, q$ are two positive numbers such that $\frac{1}{p}+\frac{1}{q}=1$ then
+\begin{equation}
+\label{holder}
+E(|X\cdot Y|)\leq \| X\|_p\|Y\|_q.
+\end{equation}
+\end{theorem}
+\begin{proof}
+First recall our convection $0 \cdot \infty = 0$ for the right hand side of (\ref{holder}). Second notice that $\| X\|_p=0$ implies $|X|^p=0$ a.e. (by Theorem \ref{US}) which then implies $E|X\cdot Y|=0$. Therefore inequality (\ref{holder}) holds if any one of the following is true: $ \| X\|_p = 0$, $\| Y\|_q = 0$, $\| X\|_p = \infty$ or $\| Y\|_q = \infty$.
+
+Now we may assume $ \| X\|_p, \|Y \|_q \in (0,\infty)$. Define $Z:= X/\| X\|_p$ and $W := Y/\|Y\|_q$. We need to show $E(|Z\cdot W|)\leq 1$. 
+We first show Young's inequality
+\begin{equation}
+\label{youngs inquality}
+a^{w_1}b^{w_2}\leq w_1 a + w_2 b
+\end{equation}
+for any $a,b\geq 0$ and $w_1, w_2 >0$ such that $w_1 + w_2 = 1$. Young's inequality follows (after establishing the special cases when $a=0$ or $b=0$) by taking log of both sides and then using concavity to conclude that $w_1 \log(a) + w_2\log(b)\leq \log(w_1a+w_2b)$. The inequality (\ref{youngs inquality}) now gives
+\begin{align*}
+E(|Z\cdot W|)&\leq E(|Z||W|),\,\text{Cauchy-Schwarz for vectors} \\
+&=E([|Z|^p]^{\frac{1}{p}}[|W|^q]^{\frac{1}{q}}) \\
+&=E(\frac{1}{p}|Z|^p +\frac{1}{q} |W|^q). 
+\end{align*}
+The result follows after noticing that $E(|Z|^p) = E(|W|^q)=1$ and $\frac{1}{p}+\frac{1}{q}=1$.
+\end{proof}
+
+Notice that the above theorem holds for random variables which are not quasi-integrable. If it is known a priori that $\| X\|_p, \|Y\|_q<\infty$ then equation (\ref{holder}) can be extended to $| E(X\cdot Y) |\leq \| X\|_p\|Y\|_q$.
+
+
+\begin{theorem} If $p\in(1,\infty)$ then  $\|X\|_1 \leq d\|X\|_p$.
+\end{theorem}
+\begin{proof} Use $Y = e_i$ in (\ref{holder}) where $e_1,\ldots, e_d$ is the standard basis for $\Bbb R^d$.
+\end{proof}
+
+
+\begin{theorem} $q<p \Longrightarrow L_q \supset L_p$.
+\end{theorem}
+\begin{proof} 
+For $q<p$
+Young's inequality (\ref{youngs inquality}) gives
+\begin{equation}
+\label{p bounds q} 
+|X|^q = \bigl[|X|^p\bigr]^{\frac{q}{p}} 1^{\frac{p-q}{p}} \leq \frac{q}{p}|X|^p + \frac{p-q}{p}. 
+\end{equation}
+\end{proof}
+
+
+
+\begin{theorem}[{\bf $\|\cdot\|_p$ is a pseudo-norm}]
+\label{pnorm is a pseudo-norm}
+If $p\in [1,\infty)$ then
+$\|\cdot \|_p$ satisfies the following as a function over $L_p$:
+\begin{itemize}
+\item $\| X \|_p \geq 0$ 
+\item $\| X \|_p = 0$ implies $X = 0$ a.e.
+\item $\| c X \|_p = |c| \| X \|_p$ for any $c\in \Bbb R$
+\item $\| X + Y \|_p \leq \| X \|_p + \| X \|_p$ (Minkowski's inequality).
+\end{itemize}
+\end{theorem}
+\begin{proof}
+It has already been noticed that $\| X\|_p=0$ implies $|X|^p=0$ a.e. (by Theorem \ref{US}) which then implies $X=0$ a.e.. The third bullet is trivial from the linear properties of $E$. To prove Minkowski notice
+\begin{align*}
+E(|X+Y|^p)
+& = E\bigl(|X+Y| |X+Y|^{p-1}\bigr) \\
+& \leq E\bigl(|X| |X+Y|^{p-1}\bigr) + E\bigl(|Y| |X+Y|^{p-1}\bigr)\\
+& = E\bigl(|X| |X+Y|^{q(p-1)/q}\bigr) + E\bigl(|Y| |X+Y|^{q(p-1)/q}\bigr)
+\end{align*}
+where $\frac{1}{p} + \frac{1}{q} =1$. Notice  $p = q(p-1)$ which implies $|X+Y|^{q(p-1)/q} = |X+Y|^{p/q}$. Therefore
+\begin{align*}
+E(|X+Y|^p)
+& \leq E\bigl(|X| |X+Y|^{p/q}\bigr) + E\bigl(|Y| |X+Y|^{p/q}\bigr) \\
+&\leq \|X\|_p \| |X+Y |^{p/q}\|_q + \|Y\|_p \| \|X+Y|^{p/q}\|_q \\
+&\leq \bigl(\|X\|_p  + \|Y\|_p\bigr)  \| |X+Y|^{p/q}\|_q 
+\end{align*}
+The proof now follows after noticing that  $E(|X+Y|^p)/ \| |X+Y|^{p/q}\|_q =  \| X+Y\|_p$.
+\end{proof}
+
+\begin{definition}[{\bf distances in $L_p$}]
+The distance between $X\in L_p$ and $X\in L_p$ is defined as $d_p(X, Y):= \|X-Y\|_p$
+\end{definition}
+
+\begin{theorem}[{\bf $d_p$ is a pseudo-metric on $L_p$}]
+If $p\in [1,\infty)$ then for all $X, Y, Z \in L_p$,
+\begin{itemize}
+\item $d_p(X,Y) \geq 0$
+\item $d_p(X,Y)= 0$ implies $X = Y$ a.e.
+\item $d_p(X,Y)= d_p(Y,X)$
+\item $d_p(X,Y)\leq d_p(X,Z) + d_p(Z,Y)$.
+\end{itemize}
+\end{theorem}
+\begin{proof}
+This follows directly from Theorem \ref{pnorm is a pseudo-norm}.
+\end{proof}
+
+
+\begin{theorem}[{\bf Continuity of $\| \cdot\|_p$}]
+\label{Continuity of Lp}
+For any $X,Y\in L_p$,
+$|\|X\|_p - \|Y\|_p|\leq d_p(X,Y)$.
+\end{theorem}
+\begin{proof}
+By Minkowski $\|X \|_p= \|X -Y +Y\|_p\leq \|X -Y\|_p +\|Y\|_p$. Therefore
+\[\|X \|_p -  \|Y\|_p\leq  \|X -Y\|_p. \]
+By symmetry we also have $\|Y \|_p -  \|X\|_p\leq  \|X -Y\|_p$
+which is sufficient to finish the proof.
+\end{proof}
+
+
+
+\begin{theorem}[{\bf $L_p$ is closed}]
+\label{Lp is closed}
+If $\|X_n - X\|_p\rightarrow 0$ and $X_n \in L_p$ then $X\in L_p$.
+\end{theorem}
+\begin{proof} 
+This follows since (\ref{convex ineq for normp}) implies
+\[ |X|^p \leq 2^{p-1}|X_n|^p +  2^{p-1}|X_n-X|^p  \]
+where the expected value of the right hand side is finite (for large enough $n$).
+\end{proof}
+
+
+
+\begin{theorem}[{\bf $L_p$ is complete}]
+Cauchy sequences (in the $d_p$ metric) converge to a member in $L_p$
+\end{theorem}
+\begin{proof} This was already proved in Theorem \ref{cauchy for Lp}.
+\end{proof}
+
+
+\begin{theorem}[{\bf $L_p$ is separable}]
+\label{Lp is separable theorem}
+If the $\sigma$-field $\mathcal F$ is countably generated then there exists a countable dense subset of $L_p$.
+\end{theorem}
+\begin{proof}
+See Exercise \ref{Lp is separable}.
+\end{proof}
+
+\begin{exercise}\label{Lp is separable}
+ (a) Suppose $\mathcal F_0$ is a field generating $\mathcal F$. Show that the set of $\mathcal F_0$-simple functions are dense in $L_p$. (b) Show that $L_p$ is separable  (i.e. there exists a countable) if $\mathcal F$ is countably generated.
+Hint: use Exercise \ref{countablly generated} and Theorem \ref{approximating P with F0}.
+\end{exercise}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% section
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{$L_p$ convergence theorem}
+
+Recall the definition of uniformly integrable.
+
+\begin{definition}[{\bf UI}] If $X_n$ is a sequence of random vectors such that 
+\[  \lim_{c\rightarrow \infty} \sup_n E\bigl(|X_n| I_{\{|X_n| \geq c\}} \bigr)=0\] 
+then $X_1, X_2, \ldots$ are said to be {\bf uniformly integrable} (UI).
+\end{definition}
+
+
+% \begin{definition}[{\bf UAC}]
+% If $X_n$ is a sequence of random vectors such that 
+% \[  \lim_{\delta\downarrow 0} \sup_{\substack{F\in\mathcal F:\\ P(F)\leq \delta}}\sup_n E\bigl(|X_n| I_F \bigr)=0\] 
+% then $X_1, X_2, \ldots$ are said to be {\bf uniformly absolutely continuous} (UAC).
+% \end{definition}
+
+
+% \begin{theorem}[{\bf UI = $L_1$-bdd + UAC}]
+% \label{thm: UI = $L_1$-bdd + UAC}
+% If $X_n$ is a sequence of random vectors then the following are equivalent
+% \begin{enumerate}
+% \item $X_n$ are UI
+% \item $X_n$ are UAC and $\sup_n E|X_n|\leq \infty$.
+% \end{enumerate}
+% \end{theorem}
+
+
+
+\begin{theorem}[{\bf $L_p$ convergence theorem}]
+Suppose $X_n\in L_p $ for all $n$. The following are equivalent
+\begin{enumerate}
+\item\label{L1 cv t 1} $X_n\Lprightarrow X$
+\item\label{L1 cv t 2} $X_n\Prightarrow X$ and $E|X_n|^p \rightarrow E|X|^p<\infty$
+\item\label{L1 cv t 3} $X_n\Prightarrow X$ and $|X_n|^p$'s are UI
+%\item\label{L1 cv t 4} $X_n\Prightarrow X$ and $|X_n|$'s are UAC
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+
+({\sl \ref{L1 cv t 1}. $\Longrightarrow$} \ref{L1 cv t 2}.)
+By Theorem \ref{thm Lp implies P} we know that $X_n\Prightarrow X$. 
+We also know that $E|X|^p<\infty$ since $L_p$ is closed by Theorem \ref{Lp is closed}. 
+Finally  by the continuity result in  Theorem \ref{Continuity of Lp}  we know that $\|X_n \|_p\rightarrow \| X \|_p<\infty$. 
+
+({\sl \ref{L1 cv t 2}. $\Longrightarrow$} \ref{L1 cv t 1}.) We use the Sandwich theorem. Define
+\[ Y_n:= 2^{p-1}(|X_n|^p + |X|^p),\qquad Y:= 2^p|X|^p.\] 
+Notice the following facts
+\begin{itemize}
+\item $Y_n\Prightarrow Y$ by the Continuous mapping theorem;
+\item  $Y_n, Y\in L_1$  since $X_n, X\in L_p$;
+\item $0\leq |X_n-X|^p\leq Y_n$ by equation (\ref{convex ineq for normp});
+\item $E(Y_n)\Prightarrow E(Y)$ by assumption;
+\item $|X_n - X|^p\Prightarrow 0$ by the Continuous mapping theorem.
+\end{itemize}
+Therefore  Sandwich Theorem \ref{thm: Probability Sandwich Theorem}  applies and gives $E|X_n - X|^p\rightarrow 0$.
+
+
+
+({\sl \ref{L1 cv t 2}. $\Longrightarrow$} \ref{L1 cv t 3}.) 
+We use the old UI Converse Theorem \ref{UITHM2} modified for convergence in probability. Proceeding by contradiction suppose the $|X_{n}|^p$'s are {\it not} UI. In particular,
+\[
+\lim_{c\rightarrow \infty} \sup_n E\bigl(|X_{n}|^pI_{\{|X_{n}|^p\geq c\}}\bigr) \neq 0.
+\]
+Now there exists a $\delta>0$ and a  a sequence of real numbers $c_k\rightarrow \infty$ such that 
+\[
+ \sup_n E\bigl(|X_{n}|^pI_{\{|X_{n}|^p\geq c_k\}}\bigr) >\delta.
+\]
+for all $k$. For each $k$ one can now choose $n_k$ such that 
+\begin{equation}
+\label{L1 cv t 2 cont}
+E\bigl(|X_{n_k}|^pI_{\{|X_{n_k}|^p\geq c_k\}}\bigr) >\delta.
+\end{equation}
+However, there exists a further subsequence $|X_{n_{k_\ell}}|^p$ such that  $|X_{n_{k_\ell}}|^p\aerightarrow |X|^p$ and  $E|X_{n_{k_\ell}}|^p\aerightarrow E|X|^p<\infty$. Applying the old UI Converse Theorem \ref{UITHM2} we then get the $|X_{n_{k_\ell}}|^p$'s are UI so that 
+\[
+\lim_{c\rightarrow \infty} \sup_\ell E\bigl(|X_{n_{k_\ell}}|^pI_{\{|X_{n_{k_\ell}}|^p\geq c\}}\bigr) = 0
+\]
+which contradicts equation (\ref{L1 cv t 2 cont}). Therefore the $|X_{n}|^p$'s are UI.
+
+
+
+({\sl \ref{L1 cv t 3}. $\Longrightarrow$} \ref{L1 cv t 2}.) 
+This follows by our old UI Theorem \ref{UITHM}. In particular, by taking subsequences and applying  Theorem  \ref{UITHM} we have $E|X|^p<\infty$. To show $E|X_{n}|^p\rightarrow E|X|^p$ we proceed by contradiction and suppose there exists a subsequence $n_k$ and a $\delta>0$ such that 
+\begin{equation}
+\label{L1 cv t 3 cont}
+\bigl|E|X_{n_k}|^p - E|X|^p\bigr|\geq \delta.
+\end{equation}
+By taking subsequences we get that $|X_{n_{k_\ell}}|^p\aerightarrow |X|^p$ where the $|X_{n_{k_\ell}}|^p$'s are UI. Now again by Theorem \ref{UITHM} we have that
+ $E|X_{n_{k_\ell}}|^p\rightarrow E|X|^p<\infty$ which contradicts (\ref{L1 cv t 3 cont}).
+
+
+
+\end{proof}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% section
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Special geometry of $L_2$}
+
+Notice that for any two $X, Y \in L_2$ one can use H\"older's inquality  to get
+\begin{equation}
+\label{cw}
+ E(|X\cdot Y|) \leq \| X\|_2 \|Y\|_2. 
+ \end{equation}
+In particular $E(X\cdot Y)$ is defined and finite for any two $X, Y \in L_2$. This motivates the following definition of an inner product in $L_2$
+
+\begin{definition}
+For any $X, Y \in L_2$ the inner product of $X$ and $Y$ is defined as
+\begin{equation}
+\label{inner product def} 
+\langle X, Y\rangle := E(X\cdot Y) 
+\end{equation}
+\end{definition}
+
+\begin{theorem}[{\bf Properties of $\langle \cdot,\cdot \rangle$}]
+\label{basic inner product properties}
+For all $X, Y, Z\in L_2$
+\begin{enumerate}
+\item $\langle X,X\rangle \geq 0$
+\item $\langle X,X\rangle > 0$, except when $X = 0$ a.e.
+\item $\langle X,Y\rangle= \langle Y,X\rangle $
+\item $\langle X, Y + \alpha Z \rangle= \langle X, Y \rangle + \alpha\langle X, Z \rangle$ when $\alpha\in \Bbb R$
+\item \label{weak limits} If $X_n \Ltworightarrow X$ then $\langle X_n, Y \rangle \rightarrow \langle X, Y\rangle$ for all $Y$.
+\end{enumerate}
+\end{theorem}
+\begin{proof} The first four statement follow trivially from properties of expected value. For the last that 
+\begin{align*} 
+|\langle X_n, Y\rangle - \langle X,Y\rangle| &= |\langle X_n - X, Y\rangle|
+\leq \| X_n - X\|_2 \|Y\|_2 \rightarrow 0.
+\end{align*}
+\end{proof}
+
+
+\begin{theorem}[{\bf Pythagorean}]
+For any $X, Y\in L_2$, 
+\[ \|X+Y \|_2^2 = \|X \|_2^2 +2\langle X, Y\rangle +\| Y \|_2^2.\]
+\end{theorem}
+\begin{proof}
+This follows trivially from properties of expected value but it's useful to notice that this follows directly from Theorem \ref{basic inner product properties} and the fact that $\langle X, X\rangle = \|X\|_2^2$:
+\begin{align*}
+\|X+Y \|_2^2 
+&= \langle X+Y, X+Y\rangle \\
+&= \langle X+Y, X\rangle + \langle X+Y, Y\rangle,\,\,\text{by linearity}\\
+&= \langle X, X+Y\rangle + \langle Y,  X+Y \rangle,\,\,\text{by symmetry}\\
+&= \langle X, X\rangle +\langle X, Y\rangle + \langle Y,  X \rangle+\langle Y,  Y \rangle,\,\,\text{by linearity}\\
+& =  \|X \|_2^2 +2\langle X, Y\rangle +\| Y \|_2^2.
+\end{align*}
+\end{proof}
+
+
+
+\begin{theorem}[{\bf Parallelogram}]
+For any $X, Y\in L_2$, 
+\[ \|X+Y \|_2^2 + \|X-Y \|_2^2= 2\|X \|_2^2 + 2\| Y \|_2^2.\]
+\end{theorem}
+\begin{proof}
+Add the following two equations:
+\begin{align*}
+\|X+Y \|_2^2 &= \|X \|_2^2 +2\langle X, Y\rangle +\| Y \|_2^2 \\
+\|X-Y \|_2^2 &= \|X \|_2^2 -2\langle X, Y\rangle +\| Y \|_2^2.
+\end{align*}
+\end{proof}
+
+
+
+\begin{definition}[{\bf Orthogonal}]
+$X\in L_2$ is said to be orthogonal to $Y\in L_2$, denoted $X\perp Y$, if $\langle X, Y\rangle = 0$.
+\end{definition}
+
+
+
+\begin{theorem}[{\bf Projection theorem}]
+Let $S$ be a closed linear subspace of $L_2$ and let $Y\in L_2$. Then there exists an almost surely unique member of $S$, denoted $\mathcal P_S Y$, such that
+\begin{equation}
+\label{first char of proj}
+\|Y - \mathcal P_S Y  \|_2 = \inf \{\|Y- X\|_2\colon X \in S  \}.
+\end{equation}
+Moreover, $\mathcal P_S Y$ is characterized by the property that $\mathcal P_S Y\in S$ and
+\begin{equation}
+\label{scnd char of proj}
+X\perp (Y - \mathcal P_S Y )\,\text{ for all $X\in S$}. 
+\end{equation}
+\end{theorem}
+\begin{proof}
+({\sl Existance}) Choose $X_n\in S$ such that $\|Y-X_n\|_2\rightarrow \inf \{\|Y- X\|_2\colon X \in S  \}$. The sequence $X_n$ is Cauchy. In particular, by the Parallelogram equality 
+\[ \|X_n-Y + X_m-Y \|_2^2 + \|X_n-X_m \|_2^2= 2\|X_n-Y  \|_2^2 + 2\| X_m-Y  \|_2^2.\]
+If we set $X = \frac{1}{2}(X_n+X_m)$ then 
+\[ 4\|X -Y \|_2^2 + \|X_n-X_m \|_2^2= 2\|X_n-Y  \|_2^2 + 2\| X_m-Y  \|_2^2.\]
+ Since $X\in S$ one has  $\|X -Y \|_2^2\geq \text{\,inf\,}^2$. Therefore
+\[  \|X_n-X_m \|_2^2 \leq \underbrace{ 2\|X_n-Y  \|_2^2 + 2\| X_m-Y  \|_2^2 - 4\text{\,inf\,}^2}_{\text{ $\rightarrow 0$ as $n,m \rightarrow \infty$}}. \]
+Indeed, $X_n$ is a Cauchy sequence. Therefore there exists a limit, call it $\mathcal P_S Y$, such that   $X_n \Ltworightarrow \mathcal P_SY$ which must be in $S$ since it's closed. Let check that $\|\mathcal P_S Y - Y \|_2 = \text{inf}$. Indeed, $\text{inf}\leq \|\mathcal P_S Y - Y \|_2\leq \|\mathcal P_S Y - X_n \|_2+ \|X_n - Y\|_2 \rightarrow \text{inf}$.
+
+({\sl Uniqueness}) To show uniqueness use the same trick. Suppose $X\in S$ and $\|X-Y\|_2 =  \text{\,inf\,}$. Then by the same Parallelogram equality 
+\[ \|X-Y + P_S Y -Y \|_2^2 + \|X - \mathcal P_S Y \|_2^2= 2\|X - Y  \|_2^2 + 2\| \mathcal P_S Y - Y  \|_2^2.\]
+Since $W := \frac{1}{2}(X+ P_S Y)\in S$ we then have that
+\begin{align*}  
+\|X - \mathcal P_S Y \|_2^2 
+&=   2\text{\,inf\,}^2 +2\text{\,inf\,}^2 - 4\|W - Y \|_2^2  \\
+&\leq  2\text{\,inf\,}^2 +2\text{\,inf\,}^2 - 4\text{\,inf\,}^2  = 0.
+\end{align*}
+Therefore $\|X - \mathcal P_S Y \|_2^2=0$ and hence $\mathcal P_S Y$ is almost surely unique.
+
+((\ref{scnd char of proj}) $ \Rightarrow $ (\ref{first char of proj})) 
+If $\mathcal P_SY$ satisfies (\ref{scnd char of proj}) then for every $X \in S$ one has
+\[ \| X - Y \|_2^2 = \| \mathcal P_S Y -Y \|_2^2 + \| \underbrace{ X }_{\in S} - \underbrace{\mathcal P_S Y }_{\in S}\|_2^2 \]
+Therefore to minimize the left hand side choose $X = \mathcal P_S Y$ and get equation (\ref{first char of proj}).
+
+
+((\ref{first char of proj}) $ \Rightarrow $ (\ref{scnd char of proj})) 
+Let $X\in S$ such that $X \neq 0$ a.e. (otherwise (\ref{scnd char of proj}) is trivially true). The idea is to define
+\[f(c) := \|Y - (\mathcal P_S Y - cX)  \|_2^2  \]
+and notice that the minimum of $f(c)$, call it $c_\text{min}$, can be computed in two ways. The first way is to  notice that $f(c)$ is minimized at $c_\text{min} = 0$ by equation (\ref{first char of proj}). Therefore $c_\text{min} = 0$. The other way to compute $c_\text{min}$ is to use the fact that
+\[f(c) = \|Y - \mathcal P_SY\|^2_2 + 2c\langle Y - \mathcal P_SY, X\rangle + c^2\|X\|^2_2  \]
+which is minimized at $c_\text{min} = \langle Y - \mathcal P_SY, X\rangle / \|X \|^2_2 $ (note we are using the fact that $X \neq 0$ a.e). The two ways to compute $c_\text{min}$ must be the same, or else $\mathcal P_S Y$ would not be unique. Setting two ways to compute $c_\text{min}$ equal to each other gives
+\[ 0 = \frac{\langle Y - \mathcal P_SY, X\rangle} { \|X \|^2_2 }  \]
+which proves (\ref{scnd char of proj}).
+\end{proof}
+
+
+\begin{definition}[{\bf Orthonormal set}]
+A set of random vectors $\{ X_i:i\in I\}\subset L_2$ are said to be orthonormal if $\langle X_i, X_j\rangle = 0$ for all $i\neq j$ and $\| X_i\|_2=1$ for all $i$.
+\end{definition}
+
+
+\begin{definition}[{\bf Infinite sums in $L_2$}]
+Suppose $Y, X_1, X_2, \ldots$ are members of $L_2$ and $c_i$ are real numbers. We write $Y = \sum_{i=1}^\infty c_i X_i$ as short hand for $\| Y - \sum_{i=1}^N c_i X_i \|_2\rightarrow 0$ as $N\rightarrow \infty$.
+\end{definition}
+
+
+
+\begin{theorem}[{\bf Computing a projection}] \label{computing projections}
+Let $X_1, X_2, \ldots $ denote a countable orthonormal set of random variables. Let $S$ denote the collection of $L_2$ limits of finite linear combinations of the $X_i$'s. Then $S$ is a closed linear subset of $L_2$ and for any $Y\in L_2$ the projection of $Y$ onto $S$ is computed as follows
+\[
+\mathcal P_S Y = \sum_{i=1}^\infty \langle X_i, Y\rangle X_i.
+\]
+\end{theorem}
+\begin{proof}
+({\sl S is closed and linear}) Lets first see why $S$ is linear. Let $W, Z \in S$. There must exist $W_n$ and $Z_n$ which are finite linear combinations of the $X_i$'s such that  $W_n \Ltworightarrow W$ and $Z_n\Ltworightarrow Z$. Immediately one now has $aW + bZ\in S$ since  $aW_n + bZ_n \Ltworightarrow aW + bZ$  by Minkowski’s inequality. To see that $S$ is closed suppose $Z_n\in S$ converges to some $Z$. Let $Z^\prime_n$ be a finite linear combination of the $X_i$'s such that $\|Z_n - Z^\prime_n \|_2\leq 1/n$. Then 
+\[ \|Z_n^\prime - Z \|_2 \leq \|Z_n - Z \|_2 + 1/n. \]
+The right hand side converges to zero and therefore $Z_n^\prime \Ltworightarrow Z$, which establishes that $Z\in S$.
+
+
+({\sl $\sum_{i} \langle X_i, Y\rangle X_i$ exists in $L_2$}) Exercise \ref{finite projection} shows that the projection of $Y$ down to the span of $X_1, \ldots, X_n$ is computed as $\sum_{i=1}^n \langle X_i, Y \rangle X_i$. Moreover this projection decreases length so that 
+\[ \textstyle\sum_{i=1}^n \langle X_i, Y \rangle^2 = \bigl\| \textstyle\sum_{i=1}^n \langle X_i, Y \rangle X_i\bigl\|_2^2\leq \| Y \|_2^2<\infty. \]
+This holds for each $n$ which implies $\sum_{i=1}^\infty \langle X_i, Y \rangle^2 <\infty$. This allows us to conclude that $\sum_{i=1}^n \langle X_i, Y\rangle X_i$ is a Cauchy sequence. In particular, 
+\begin{align*}
+\lim_{n}\lim_q\bigl\|{\textstyle\sum_{i=n+1}^q} \langle X_i, Y\rangle X_i \bigr\|_2^2 \leq \lim_{n} \textstyle\sum_{i=n+1}^\infty \langle X_i, Y \rangle^2\rightarrow 0.
+\end{align*}
+Therefore $\sum_{i} \langle X_i, Y\rangle X_i$ exists in $L_2$.
+
+({\sl $\mathcal P_S Y = \sum_{i=1}^\infty  \langle X_i, Y\rangle X_i$}) We use characterization (\ref{scnd char of proj}). Since $\sum_{i=1}^n \langle X_i, Y\rangle X_i\Ltworightarrow \sum_{i=1}^\infty \langle X_i, Y\rangle X_i$ we have
+\[ \underbrace{\bigl\langle X_k, Y - \textstyle\sum_{i=1}^n \langle X_i, Y\rangle X_i \bigl\rangle}_{\text{$=0$ for all $n$}} \rightarrow  \bigl\langle X_k,Y - \textstyle\sum_{i=1}^\infty \langle X_i, Y\rangle X_i\bigr\rangle \]
+by item \ref{weak limits} in Theorem \ref{basic inner product properties}. Therefore $Y - \sum_{i=1}^\infty \langle X_i, Y\rangle X_i$ is orthogonal to all $X_k$ and hence to all S (again using \ref{weak limits} in Theorem \ref{basic inner product properties}). Therefore $\mathcal P_S Y = \sum_{i=1}^\infty \langle X_i, Y\rangle X_i$.
+\end{proof}
+
+
+\begin{definition}[{\bf Orthonormal basis}]
+A set of random variables $\{ X_i:i\in I\}\subset L_2$ are said to be an orthonormal basis if finite linear combinations of $X_i$ are dense in $L_2$.
+\end{definition}
+
+
+
+\begin{theorem}[{\bf Properties of an ONB}]
+If $\{ X_i:i\in I\}\subset L_2$ is an orthonormal set then the following are equivalent:
+\begin{enumerate}
+\item $\{ X_i:i\in I\}\subset L_2$ is a basis
+\item $Y = \sum_{i=1}^\infty \langle X_i, Y\rangle X_i$ for all $Y\in L_2$
+\item $\langle Y, Z\rangle = \sum_{i=1}^\infty a_ib_i $ where $a_i := \langle X_i, Y\rangle$ and $b_i := \langle X_i, Z\rangle$ for all $Y, Z\in L_2$
+\item $\|Y\|_2^2 = \sum_{i=1}^\infty a_i^2$ where $a_i:=\langle X_i, Y\rangle^2 $ for all $Y\in L_2$.
+% \item $Y\perp X_i$ $\forall i$ implies $Y=0$ a.e., for all $Y\in L_2$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+($1.\Longleftrightarrow 2.$) The direction $\Leftarrow$ is obvious. For $\Rightarrow$ it follows immediately from Theorem \ref{computing projections}. Indeed, if the $X_i$'s form a basis then the set of $L_2$ limits of finite linear combinations of the $X_i$'s, $S$, simply equals $L_2$. Therefore
+\[  
+Y = \mathcal P_{L_2}Y = \sum_{i=1}^\infty \langle X_i, Y\rangle X_i.
+\]
+
+($2.\Longrightarrow 3.$) Let $a_i := \langle X_i, Y\rangle$ and $b_i := \langle X_i, Z\rangle$. Then
+\begin{align*}
+\langle Y, Z \rangle 
+&=  \bigl\langle {\textstyle\sum_{i=1}^\infty} a_i X_i, {\textstyle\sum_{j=1}^\infty} b_j X_j \bigr\rangle \\
+&= \lim_n \bigl\langle {\textstyle\sum_{i=1}^n} a_i X_i, {\textstyle\sum_{j=1}^\infty} b_j X_j \bigr\rangle,\,\text{by Theorem \ref{basic inner product properties}} \\
+&= \lim_n {\textstyle\sum_{i=1}^{n}}   a_ib_i.
+\end{align*} 
+
+
+
+($3.\Longrightarrow 4.$) Trivial.
+
+($4.\Longrightarrow 	2.$) Let $S$ be the $L_2$ limits of the finite linear combinations of the $X_i$'s. Considering Theorem \ref{computing projections} it will be sufficient to show that $\|\mathcal P_S Y - Y  \|_2^2 = 0$. By property (\ref{scnd char of proj}) of projections we have
+\begin{align*} 
+\| Y \|_2^2 & = \|Y-\mathcal P_S Y + \mathcal P_SY \|_2^2  =  \|Y-\mathcal P_S Y\|_2^2 + \|\mathcal P_SY \|_2^2.
+\end{align*}
+But now
+\begin{align*}
+\|Y-\mathcal P_S Y  \|_2^2& = \| Y \|_2^2 - \|\mathcal P_SY \|_2^2 \\
+& = {\textstyle\sum_{i=1}^\infty \langle X_i, Y\rangle^2}  - \|\textstyle\sum_{i=1}^\infty \langle X_i, Y\rangle X_i \|_2^2 \\
+& = 0.
+\end{align*}
+\end{proof}
+
+
+\begin{theorem}[{\bf When does $L_2$ have an ONB}]
+If the $\sigma$-field $\mathcal F$ is countably generated then there exists an orthonormal basis of $L_2$.
+\end{theorem}
+\begin{proof}
+Theorem \ref{Lp is separable theorem}  says there exists a dense countable subset. Let $Y\in L_2$ and suppose $Y_n\Ltworightarrow Y$ where each $Y_n$ is in the dense countable subset. Let $\{X_i: i \in \Bbb N \}$ be a gram-schmidt orthogonalization of the dense countable subset. Then for each $Y_n$ there exists a finite linear combination which of the $X_i$'s which equal $Y_n$ and therefore the all the finite linear combinations of the $X_i$'s are dense. This is the definition of an ONB.
+\end{proof}
+
+
+
+\begin{theorem}[{\bf $L_2$ is  a Hilbert space}]
+By identifying every element in $L_2$ with the equivalence class of  $a.e.$-modifications of random variables, the space $L_2$ with inner product defined as in (\ref{inner product def}) is a Hilbert space. 
+In particular, $L_2$ is a complete linear vector space with strictly positive inner product. 
+If, in addition, the $\sigma$-field $\mathcal F$ is countably generated then $L_2$ is a separable Hilbert space.
+\end{theorem}
+
+
+\begin{exercise}
+\label{finite projection}
+For this exercise you are not allowed to use Theorem \ref{computing projections} or any of the results after.
+\begin{enumerate}
+\item Let $S$ be a closed linear subset of $L_2$. Show that projection decreases length:  $\|\mathcal P_S Y \|^2_2 \leq  \| Y \|_2^2$ for all $Y\in L_2$.
+\item Let $X_1, \ldots, X_n$ be an finite set of orthonormal random variables. Let $S_n$ denote the set of linear combinations of the $X_i$'s. Show that $\mathcal P_{S_n} Y = \sum_{i=1}^n \langle X_i, Y\rangle X_i$.
+\end{enumerate}
+\end{exercise}
+
+
+\begin{exercise}
+Show that if Gaussian random variables converge to a random variable with probability one, then that random variable is also Gaussian and the convergence also holds in $L_2$.
+\end{exercise}
+
+
+\subsection{Application: Gaussian conditional expected value as a projection}
+
+Ignoring, for the time being, that we technically have not defined conditional expectation yet, we can use projections to analyze finite dimensional Gaussian conditional expectation. Indeed, Gaussian conditional expectation is simply projection within $L_2$ on to the closed linear space of linear combinations of the observations. In this section we will informally (not rigorously) see the consequences of this and relate our theorems for deriving this conditional. 
+
+Suppose $(\Omega, \mathcal F, P)$ is rich enough to support $n+1$ random variables $Y, X_1, \ldots, X_n$ which are jointly Gaussian with $E(X_k) = E(Y) = 0$. In particular suppose the density the random vector $(Y, X_1, \ldots, X_n)$ on $\Bbb R^{n+1}$ is proportional to $\exp(- (y,x)^t \Sigma^{-1} (y, x)/2)$ where $\Sigma$ is a positive definite matrix and $x\in \Bbb R^n$. Since Gaussian random variables have finite variance it is clear that each $X_i\in L_2$.  By examining the undergraduate characterization of the conditional distribution of $Y$ given $X_1, \ldots, X_n$ as a ratio densities, it becomes clear (after completing the square) that the conditional expectation of $E(Y | X_1, \ldots, X_n)$ must of the form $c_1 X_1  +\cdots + c_nX_n$. Let $S$ denote the closed linear subspace in $L_2$ of finite linear combinations of the $X_i$'s.
+
+Now we can see why $E(Y| X_1, \ldots, X_n) = \mathcal P_S Y$. Let to save notational space we simply write $X:= (X_1, \ldots, X_n)$.
+From our undergraduate understanding of conditional expected value we have that for any $W\in S$
+\begin{align}
+\nonumber
+E\bigl[Y - W\bigr]^2  &= E\bigl[ Y - E(Y|X) + E(Y|X)- W\bigr]^2 \\
+&= E\bigl[ Y - E(Y|X)\bigr]^2 + E\bigl[ E(Y|X)- W\bigr]^2
+\label{upshot}
+\end{align}
+where we have used some undergrad facts like:
+\begin{align*}
+E\Bigl\{ \bigl[ Y &- E(Y|X)\bigr] \bigl[ E(Y|X)- W\bigr]\Bigr\}  \\
+&=  E_{X}E_{Y|X}\Bigl\{\bigl[ Y - E(Y|X)\bigr] \bigl[ E(Y|X)- W\bigr]\Bigr\}  \\
+&=  E_{X} \Bigl\{ \bigl[ E(Y|X)- W\bigr]  \underbrace{E_{Y|X}\bigl[ Y - E(Y|X)\bigr]}_{=0}\Bigr\}
+\end{align*}
+which requires $W\in S$. Anyway, the upshot of (\ref{upshot})  is that
+\[ E(Y|X) = \text{arg}\min_{W\in \mathcal S} E\bigl[Y - W\bigr]^2   \]
+so that $E(Y|X) = \mathcal P_S Y$. Notice that (\ref{scnd char of proj}) now shows that
+\[ Y - \mathcal P_S Y \perp X_1, \ldots, X_n  \]
+which, in turn, implies
+\begin{align}
+\text{var}( Y - \mathcal P_S Y ) & = \text{var}( Y - \mathcal P_S Y|  X  ) = \text{var}( Y | X  ) \label{Gauss variance}.
+\end{align}
+The last equality follows since $\mathcal P_S Y$ is a linear combination of the $X_i$'s  and is therefore a constant conditional on $X_1, \ldots, X_n$.  
+
+
+Notice a few nice consequences. First suppose I want to simulate from $Y|X$ but I only have an algorithm that can do two things: simulate a new pair $(Y^*, X^*)$ with the same law as $(Y,X)$ and compute the projection $E(Y|X)$ for any $Y, X$. To simulate $Y|X$ notice that $Y|X\sim \mathcal N\bigl( E( Y|X), \text{var}(Y|X)\bigr)$. Therefore all I need is to simulate $ Z \sim \mathcal N(0,1)$ and then $E( Y|X) + Z\, \text{std}(Y|X)$ will suffice as a conditional simulation from $Y|X$. But notice that (\ref{Gauss variance}) tells us that $Y^* - \mathcal P_{S^*} Y^*$
+ will have the same variance (and expected value) as $Z\, \text{std}(Y|X)$ where $(Y^*, X^*)$ is an independent simulation of the data and response. Therefore
+ \[ E(Y|X) + Y^* - \mathcal P_{S^*} Y^*\]
+ serves as a conditional simulation of $Y|X$ when we only needed to be able to simulate from the joint measure $(Y, X)$ and compute $E(Y|X)$. 
+
+ Lets also use the fact that we know how to compute projections to easily compute $E(Y|X)$. We need to set down a orthonormal basis of $S$. This is easily done by $Z = \Sigma_{xx}^{-1/2} X$. Indeed $\langle Z_i, Z_j\rangle = \delta_{ij}$. Now projection is easy by (\ref{computing projections})
+ \begin{align*} 
+ E(Y|X) &= \mathcal P_SY = \sum_{i=1}^n \langle Z_i, Y\rangle Z_i = \Sigma_{yx} \Sigma_{xx}^{-1} X
+ \end{align*}
+ where the last line is from Exercise \ref{exercise: gauss projectdion}. It is also easy to compute the conditional variance 
+\begin{align*}
+\text{var}(Y |X) &= \text{var}(Y -\mathcal P_S Y) \\
+&= \| Y \|^2_2 - 2\sum_{i=1}^n \langle Z_i, Y\rangle^2 +  \sum_{i=1}^n \langle Z_i, Y\rangle^2 \\
+&= \| Y \|^2_2 -  \sum_{i=1}^n \langle Z_i, Y\rangle^2 \\
+&= \Sigma_{yy} - \Sigma_{yx} \Sigma_{xx}^{-1} \Sigma_{xy}.
+\end{align*}
+
+
+\begin{exercise}
+\label{exercise: gauss projectdion}
+Using the notation above
+\begin{enumerate}
+\item Show the vector of coefficients $\langle Z_1, Y\rangle \ldots \langle Z_n, Y\rangle$ equals $\Sigma_{xx}^{-1/2} \Sigma_{xy}$.
+\item Show that  $\sum_{i=1}^n \langle Z_i, Y\rangle Z_i  = \Sigma_{yx} \Sigma_{xx}^{-1} X$ .
+\item Show that $\sum_{i=1}^n \langle Z_i, Y\rangle^2 = \Sigma_{yx} \Sigma_{xx}^{-1} \Sigma_{xy}$
+\end{enumerate}
+\end{exercise}
+
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% section
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Weak convergence in $L_p$ when $p\in (1,\infty)$}
+
+In this class we will only prove one theorem from this section:  Riesz's theorem for $L_2$. One of the reasons is that many of the other proofs use the Radon-Nikodym theorem which we have not proved yet. Moreover, we will not have occasion to use this theory much. Indeed, the main reason for this section is to give context to Riesz's theorem (understanding that it naturally lives in the larger theory of weak converges) and that weak convergence in $L_p$ is, I think, the right way to understand the next section on convergence in distribution. 
+
+\begin{shaded}
+
+\begin{definition}[{\bf Dual space of $L_p$}]
+The dual space  $L_p$ is the set of all continuous linear functionals on $L_p$. 
+\end{definition}
+
+\begin{definition}[{\bf Weak convergence in $L_p$}]
+$X_n $ converges weakly to $X$ in $L_p$, denoted $X_n\weakrightarrow_p X$, if $X_n, X\in L_p$ and if $f(X_n)\rightarrow f(X)$ for all functions $f$ in the dual space of $L_p$. We use the shorthand $X_n\weakrightarrow X$ to denote $X_n\weakrightarrow_2 X$.
+\end{definition}
+
+
+
+One of the crucial differences between convergence in $L_p$ and weak convergence in $L_p$ is that $X_n \Ltworightarrow X$ implies $\|X_n\|_p\rightarrow \|X\|_p$ whereas $X_n\weakrightarrow_p X$ does not. The following theorem shows that the two notions of convergence are indeed equivalent when $\|X_n\|_p\rightarrow \|X\|_p$. 
+
+\begin{theorem}[{\bf Relate with $\Lprightarrow$ }]
+Suppose $p\in (1,\infty)$ and $X, X_1, X_2, \ldots \in L_p$. Then $X_n\Lprightarrow X$ if and only if $X_n\weakrightarrow_p X$ and $\| X_n\|_p\rightarrow \| X \|_p$.   
+\end{theorem}
+
+
+\begin{theorem}[{\bf Riesz: dual of $L_p$ is $L_q$}] 
+Suppose $p\in (1,\infty)$. 
+Let $f:L_p\rightarrow \Bbb R$ be continuous and linear. Then there exists an almost surely unique $Y\in L_q$, where $\frac{1}{q}+\frac{1}{p} = 1$ such that $f(X) = \langle X, Y\rangle$ for all $Y\in L_q$.
+\end{theorem}
+
+
+
+\begin{theorem}[{\bf Almost sure uniqueness of limits}]
+\end{theorem}
+
+
+\begin{theorem}[{\bf Cauchy criterion for $\weakrightarrow_p$}]
+If for all $Y\in L_p$ the sequence of numbers $\{\langle X_n, Y\rangle \}_n$ is Cauchy then there exists an almost surely unique $X\in L_p$ such that  and  $X_n\weakrightarrow_p X$.
+\end{theorem}
+
+
+
+\begin{theorem}[{\bf Weak compactness for $L_p$}]
+If $X_n\in L_p$ is a bounded, i.e. there exists a $C$ such that $\| X_n \|_p\leq C$ for all $n$, then there exists a weakly convergent subsequence in $L_p$.
+\end{theorem}
+
+
+
+
+\end{shaded}
+
+
+
+
+\subsection{Special case of $L_2$}
+
+\begin{theorem}[{\bf Riesz for $L_2$}] 
+\label{thm: riesz}
+Let $f:L_2\rightarrow \Bbb R$ be continuous and linear. Then there exists an almost surely unique $Y\in L_2$ such that $f(X) = \langle Y, X\rangle$ for all $X\in L_2$
+\end{theorem}
+\begin{proof}
+Start by defining $N$ to be the null space
+\[  
+N:= \{X\in L_2\colon f(X) = 0\}.
+\]
+The idea is that the orthogonal complement of $N$ is one dimensional and is spanned by a single $Y\in L_2$. Scaling $Y$ appropriately will give $f(X) = \langle Y, X\rangle$ for all $X\in L_2$.
+
+Choose a non-zero $Y\notin N$  (if there is no such $Y$ then $f(X)=0$ for all $X\in L_2$ and the theorem is trivially true). Additionally assume $Y$ is orthogonal to $N$ by projecting it out, if necessary. If $f(X) = \langle Y, X\rangle$ we at least need $f(Y) = \| Y\|_2^2$, so scale $Y$ to satisfy this. Now we can apply the following decomposition for all $X\in L_2$
+\begin{equation}
+X = cY + Z
+\end{equation}
+where $c := f(X)/ \| Y \|_2^2$ and $Z := X - cY$. This will imply $Z\in N$ which will then imply $cY$ is the projection of $X$ down to the space spanned by $Y$. This will be sufficient to establish the proof since it will imply $\frac{\langle Y, X \rangle}{\| Y\|_2^2} = c = \frac{f(X)}{ \| Y \|_2^2}$.
+
+To see why $Z\in N$ notice 
+\[f(Z) = f(X - cY) = f(X) - \textstyle\frac{f(X)}{\,\| Y\|_2^2} f(Y) = 0 \]
+where the last line uses the fact that $f(Y)/\| Y\|_2^2 = 1$. Now, since we picked $Y$ to be orthogonal to $N$ we have $Y \perp Z = X - cY $. This implies that $cY$ is the projection of $X$ into the space generated by $Y$. This establishes that $\frac{\langle Y, X \rangle}{\| Y\|_2^2} = c = \frac{f(X)}{ \| Y \|_2^2}$. Therefore there exist an $Y\in L_2$ such that $f(X) = \langle Y, X\rangle$. To establish uniqueness let $\widetilde Y\in L_2$ which also satisfies $f(X) = \langle \widetilde Y, X\rangle $. Therefore $\langle \widetilde Y - Y, X \rangle=0$ for all $X\in L_2$. To finish simply choose $X :=\widetilde Y - Y $ to get $\| \widetilde Y - Y\|_2^2 = 0$.
+
+\end{proof}
+
+
+
+
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  Section
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Convergence in Distribution}
+This is basically weak convergence in $L_1$ of the densities of $X_n$.
+
+
+
+\subsection{Basic theory}
+
+
+
+\begin{definition}[{\bf Definition of weak convergence of probability measures}]
+Let $P_n$ (for $n\in \Bbb N$) and $P$ be probability measures on $(S,\mathcal B^S)$ for some metric space $S$. Then $P_n$ converges weakly to $P$ as $n\rightarrow \infty$, written $P_n\rightsquigarrow P$, if $\int_S f dP_n\rightarrow  \int_S f dP$  for every bounded and continuous real function $f:S\rightarrow \Bbb R$.
+\end{definition}
+
+
+
+\begin{definition}[{\bf Convergence in distribution for random vectors}]
+If $X_n$ and $X$ are random vectors in $\Bbb R^d$  then $X_n\rightsquigarrow X$ if and only if $Ef(X_n) \rightarrow Ef(X)$ as $n\rightarrow \infty$ for all bounded continuous $f:\Bbb R^d\rightarrow \Bbb R$.
+\end{definition}
+
+
+
+
+Notice that notion of convergence does not require the random vectors $X_n$ and $X$ are all defined on the same probability space.
+
+
+
+
+\begin{theorem}[{\bf Portmanteau I}]
+Let $S$ be a metric space and let $P, P_1, P_2, \ldots$ be probability measures on $(S, \mathcal B^S)$. Then the following statements are equivalent
+\begin{enumerate}
+\item $P_n\rightsquigarrow P$
+\item $\limsup_{n} P_n(F) \leq P(F)$ for all closed $F\subset S$.
+\item $\liminf_{n} P_n(G) \geq P(G)$ for all open $G\subset S$.
+\item $\lim_n P_n(A)= P(A)$ for all $A\in \mathcal B^S$ such that $P(\partial A) = 0$.
+\end{enumerate}
+\end{theorem}
+
+
+\begin{theorem}[{\bf Portmanteau II}]
+Let $X, X_1, X_2$ be random variables (where $X_n$ is defined on $(\Omega_n, \mathcal F_n, P_n)$ and $X$ is defined on $(\Omega, \mathcal F, P)$). Let $F_n(x):= P_n(X_n\leq x)$ and $F(x):= P(X\leq x)$  and $F_n^{-1}$, $F^{-1}$ be the corresponding left-continuous inverse cdf as defined in (\ref{inverse CDF definition}). Then the following are equivalent.
+\begin{enumerate}
+\item $X_n\rightsquigarrow X$
+\item $F_n(x)\rightarrow F(x)$, $\forall x$ s.t.\! $P(X=x)=0$.
+\item $F^{-1}_n(u)\rightarrow F^{-1}(u)$, $\forall u$ s.t.\! $F^{-1}(u)$ is continuous at $u$.
+\end{enumerate}
+\end{theorem}
+
+
+
+\begin{theorem}[{\bf Distributional uniqueness of limits}]
+Let $S$ be a metric space and let $Q, P, P_1, P_2, \ldots$ be probability measures on $(S, \mathcal B^S)$.
+If $P_n\rightsquigarrow P$ and $P_n \rightsquigarrow Q$ then $Q=P$ on $(S, \mathcal B^S)$.
+\end{theorem}
+
+
+
+\begin{theorem}[{\bf Subsequence criterion}]
+Let $S$ be a metric space and let $ P, P_1, P_2, \ldots$ be probability measures on $(S, \mathcal B^S)$. If for every subsequence $n_k$ there exists a further subsequence $n_{k_j}$ such that $P_{n_{k_j}} \rightsquigarrow P$ as $j\rightarrow \infty$, then $P_n \rightsquigarrow P$ as $n\rightarrow \infty$. 
+\end{theorem}
+
+
+\begin{theorem}[{\bf  $P$ implies $\rightsquigarrow$}] Suppose $X, X_n, Y_n$ are random vectors all defined on the same probability space $(\Omega, \mathcal F, P)$. If $Y_n \rightsquigarrow X$ and $|X_n- Y_n|\Prightarrow 0$ then $X_n \rightsquigarrow X$.  
+\end{theorem}
+
+
+
+
+\begin{theorem}[{\bf Skorokhod gives $\rightsquigarrow$ implies $a.e.$}]
+\label{Skorkhod 1}
+If $X_n \rightsquigarrow X$ then there exists on some probability space random variables $X_1^*, X_2^*, \ldots$ and $X^*$ such that $X^*_n\sim X_n$ for each $n$, $X^*\sim X$ and $X_n^*\overset{\small ae} \longrightarrow X^*$
+\end{theorem}
+
+Skorokhod is extremely useful for weakening results for $\aerightarrow$ to $\rightsquigarrow$.
+The following theorem is a classic example.
+
+\begin{theorem}[{\bf Continuous mapping theorem}]
+Suppose $X, X_n$ are random variables and  $g\colon\Bbb R\rightarrow\Bbb R$ is $X$-continuous. Then
+\[X_n \rightsquigarrow X \Longrightarrow g(X_n) \rightsquigarrow g(X).  \]
+\end{theorem}
+
+Here are a few examples where we can extend the results for passing limits under expected values for convergence in distribution. This technique almost universally applies, just so long as the conditions and conclusions (besides $X_n\rightsquigarrow X$) are in terms of marginal distributional properties of $X_n$ and $X$.
+
+\begin{theorem}[{\bf Fatou}]
+Suppose $X, X_n$ are random variables such that  $X_n\geq 0$ a.e. and $X_n\rightsquigarrow X$. Then
+\[
+E(X)\leq \liminf_n E(X_n).
+\]
+\end{theorem}
+
+
+
+\begin{theorem}[{\bf UI}]
+Suppose $X, X_n$ are random variables  such that the $X_n$'s  are UI and $X_n\rightsquigarrow X$. Then $X_n, X\in L_1$ and 
+\[
+E(X_n)\rightarrow E(X)\quad\text{and}\quad E|X_n|\rightarrow E|X|. 
+\]
+\end{theorem}
+
+
+
+\begin{theorem}[{\bf $\Delta$-method}]
+Let $X_1, X_2, \ldots$ and $Z$ be random variables such that 
+\[c_n(X_n - x_0) \rightsquigarrow Z  \]
+as $n\rightarrow \infty$ where $x_0\in \Bbb R$ and $c_n$ is a sequence of positive numbers tending to $\infty$. If $g:\Bbb R \rightarrow \Bbb R $ is differentiable at $x_0$ then 
+\[ c_n(g(X_n) - g(x_0)) \rightsquigarrow g^\prime(x_0)Z.  \]
+\end{theorem}
+
+
+
+
+
+
+
+
+\begin{shaded}
+
+
+
+\begin{theorem}[{\bf Portmanteau III}]
+Let $X_n$ and $X$ be random vectors. 
+Then the following statements are equivalent
+\begin{enumerate}
+\item  $X_n\rightsquigarrow X $
+\item  $ E f(X_n) \rightarrow E f(X)$ for all  bounded $X$-continuous $f$.
+\item  $ E f(X_n) \rightarrow E f(X)$ for all  bounded Lipschitz $f$.
+\end{enumerate}
+\end{theorem}
+
+
+\begin{theorem}[{\bf Portmanteau IV}]
+Let $X_n$ and $X$ be random vectors. 
+Then the following statements are equivalent
+\begin{enumerate}
+\item  $X_n\rightsquigarrow X $
+\item  $ E f(X_n) \rightarrow E f(X)$ for all $f\in \{\sin(x\cdot t)\colon t\in\Bbb R^d \}$.
+\item  $ E f(X_n) \rightarrow E f(X)$ for all $f\in \{\cos(x\cdot t)\colon t\in\Bbb R^d \}$.
+\item  $ E f(X_n) \rightarrow E f(X)$ for all $f\in \{e^{i x\cdot t}\colon t\in\Bbb R^d \}$.
+\end{enumerate}
+\end{theorem}
+
+
+
+\begin{theorem}[{\bf Prohorov's theorem, aka conditions for sequenctial compactness}]
+Let $X_n$ and $X$ be a random vectors in $\Bbb R^k$. Then
+\begin{enumerate}
+\item If $X_n\rightsquigarrow X$ then $X_n = O_p(1)$;
+\item If $X_n = O_p(1)$ then there exists a subsequence with $X_{n_j}\rightsquigarrow X$ as $j\rightarrow \infty$ for some $X$.
+\end{enumerate}
+\end{theorem}
+
+
+
+
+\subsection{Central limit theorems}
+\subsubsection{Stein's method}
+\subsubsection{Berry-Esseen theorems}
+
+
+\subsection{Edgeworth expansions}
+\end{shaded}
+
+
+\clearpage
+\begin{shaded}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Section
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Metrics on spaces of probability measures}
+
+\subsubsection{Metrizing weak convergence}
+
+\subsubsection{Wasserstein, TV, Hellinger, KL}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+%
+% Section
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Mixing convergence types}
+
+
+More on stochastic order notation: $O_p$, $o_p$.
+
+
+\begin{theorem}[{\bf Slutsky's theorem}]
+Suppose $X_n$ and $Y_n$ are real random variables such that $X_n\rightsquigarrow X$ and $Y_n \overset{\small P} \longrightarrow c$ where $c$ is a finite constant. Then 
+\begin{equation}
+\label{slutsky}
+ (X_n, Y_n)\rightsquigarrow (X, c) \text{ in $\Bbb R^2$.}
+ \end{equation} 
+In paritcular, by applying the definition of weak convergence one gets
+\begin{enumerate}
+\item $X_n+Y_n \rightsquigarrow X + c$
+\item $X_nY_n \rightsquigarrow cX$
+\item $X_nY_n \rightsquigarrow X/c$ provided $c\neq 0$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+To show (\ref{slutsky}) use $\mathcal F_X=\{\text{Lipschitz continuous funs }\}$ in theorem ??. To show the consequences use $\mathcal F_X=\{\text{bdd continuous funs }\}$
+\end{proof}
+
+
+\begin{exercise}
+\textcolor{red}{needs editing}
+ Show the following statements:
+\begin{enumerate}
+\item If $X_n$ and $X$ are random vectors in $\Bbb R^k$ then $X_n\overset{\small P} \longrightarrow c$ for a constant $c$ if and only if $X_n\rightsquigarrow c$;
+\item If $X_n\rightsquigarrow X$ and $d(X_n, Y_n)\overset{\small P} \longrightarrow 0$ then $X_n\rightsquigarrow Y$
+\item If  $X_n \overset{\small P} \longrightarrow X$ and  $Y_n \overset{\small P} \longrightarrow Y$ then $(X_n,Y_n)\overset{\small P} \longrightarrow (X,Y)$. 
+\end{enumerate}
+\end{exercise}
+
+
+
+
+\end{shaded}
+
+
+

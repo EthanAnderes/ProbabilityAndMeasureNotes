@@ -1,0 +1,104 @@
+\documentclass[6pt, letterpaper, twocolumn]{article}
+
+\usepackage{bm}
+\usepackage{natbib,graphics,epsfig,rotate,lscape,graphicx,amsmath,amsthm,amssymb,float,amsfonts,amsbsy,hyperref,delarray,sectsty,amsfonts,amscd,pifont}
+\usepackage{multirow}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{microtype}
+\usepackage{geometry,mathrsfs}
+\usepackage{comment}
+
+
+\usepackage{framed}
+\usepackage[usenames,dvipsnames]{color}
+%\definecolor{light-gray}{gray}{0.85}
+%\usepackage{lipsum}
+%\usepackage[dvipsnames]{color}
+%\definecolor{shadecolor}{named}{light-gray}
+\definecolor{shadecolor}{gray}{0.85}
+
+\geometry{letterpaper, left=.4in, right=.4in, top=.8in, bottom=1in}
+\bibliographystyle{plain}
+\allowdisplaybreaks
+%\def\references{\bibliography{C:/hanstex/macros/bib/11-1-11}}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{Prop}{Proposition}
+\newtheorem*{remark}{Remark}
+\newtheorem{claim}{Claim}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem*{sectionassumption}{Section Assumption}
+\newtheorem*{warning}{Warning}
+
+
+\newcommand{\io}{{\,\,\text{\sl i.o.} }}
+\newcommand{\aall}{{\,\,\text{\sl a.a.} }}
+\newcommand{\aerightarrow}{\overset{\small ae} \longrightarrow }
+\newcommand{\Prightarrow}{\overset{\small P} \longrightarrow }
+\newcommand{\Ltworightarrow}{\overset{\small L_2} \longrightarrow }
+\newcommand{\Lonerightarrow}{\overset{\small L_1} \longrightarrow }
+\newcommand{\Linfrightarrow}{\overset{\small L_\infty\,} \longrightarrow }
+\newcommand{\Lprightarrow}{\overset{\small L_p} \longrightarrow }
+\newcommand{\weakprightarrow}{\overset{\small L_p\,} \rightharpoonup }
+\newcommand{\weakrightarrow}{\rightharpoonup}
+\newcommand{\bs}{\boldsymbol}
+\newcommand{\setlimup}[1]{\displaystyle\lim_{#1}\!\!\uparrow}
+\newcommand{\setlimdown}[1]{\displaystyle\lim_{#1}\!\!\downarrow}
+\newcommand{\bR}{\bar{\Bbb R}}
+\newcommand{\mcirc}{\,\textcircled{\it \small m}\,}
+\newcommand\smvee{\hbox{$\scriptstyle\vee$}}
+
+
+\def\stackunder#1#2{\mathrel{\mathop{#2}\limits_{#1}}}
+\renewcommand{\labelenumi}{\small\bf\rm\arabic{enumi}.}
+
+\usepackage{comment}
+
+
+\newcommand{\be}{\begin{eqnarray}}
+\newcommand{\ee}{\end{eqnarray}}
+\renewcommand{\baselinestretch}{1}%{1.7}
+
+%=================================================================================
+\begin{document}
+
+\title{Measure Theoretic Probability}
+\author{Ethan B. Anderes}
+\maketitle
+
+\abstract{
+The majority of these notes are heavily inspired by, and closely follow, a set of class notes developed by Michael Wichura in the Statistics Department at the University of Chicago. These notes had a profound impact on me and to generations of PhD students. All the credit for the organization, exposition and clarity must goes to him. The mistakes, wherever they may be, are entirely due to myself.
+
+Note: These notes are currently work in progress. Many of the theorems are stated without proof (but will be proved in class). I plan to sequentially add proofs and examples as time permits. There are some shaded regions in the notes, which indicated the material is still under construction. Moreover, there are some sections which have no content. These will hopefully be added as time goes on.
+}
+
+\tableofcontents
+
+
+%\excludecomment{proof} % comment this if you want to hide the theorem proofs
+
+\specialcomment{exerciseproof}{\begin{proof}}{\end{proof}}
+\excludecomment{exerciseproof} % comment this if you want to show the exercise proofs
+
+
+\clearpage\input{Measure/Measure.tex}
+\clearpage\input{Integration/Integration.tex}
+\clearpage\input{ConvergenceOfProbabiltyMeasures/ConvergenceOfProbabiltyMeasures.tex}
+\clearpage\input{ConditionalProbability/ConditionalProbability.tex}
+\clearpage\input{Martingales/Martingales.tex}
+\clearpage\input{MarkovChains/MarkovChains.tex}
+\clearpage\input{ProbabilityInequalities/ProbabilityInequalities.tex}
+\clearpage\input{StochasticProcesses/StochasticProcesses.tex}
+\clearpage\input{EmpiricalProcessTheory/EmpiricalProcessTheory.tex}
+
+
+
+\end{document}
