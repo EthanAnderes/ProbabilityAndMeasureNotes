@@ -1,8 +1,6 @@
 
-\part{Measure}
 
 % It might be useful to give a historical motivation for this course. Was it Lebesgue who wanted to see if there existed a consistent definition of length for arbitrary subsets of $\Bbb R$. It turns out the answer is no. Any extension of regular lengths on intervals violates some natural measures of length like, shift invariance and additivity, for example. We'll see this later when we define Lebesgue measure. To start, however, lets prove Borel's normal number theorem which extends the notion of length to a strange set, the set of normal numbers in $(0,1]$. We can prove the theorem in a elementary way and the result hints at a deeper theory. Side note, Borel's original proof contained a mistake and it wasn't corrected till Hausdorff in 1914 [check the facts here].
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -152,7 +150,7 @@ for each $\epsilon>0$.
 %---------section  ---------------'
 %-------------------------------'
 
-\subsection{Basic definitions}
+%\subsection{Basic definitions}
 
 \begin{definition}
 $\Omega$ denotes the {\bf sample space}. Subsets of $\Omega$ are called {\bf events} and $2^\Omega$ denotes the power set of $\Omega$ (i.e. the class of all subsets of $\Omega$).
@@ -880,7 +878,7 @@ since $\{\infty \}\in  \mathcal B^{\bar{\Bbb R}} $ but clearly $\{\infty \}\not\
 %-------------------------------'
 %---------section  ---------------'
 %-------------------------------'
-\section{Probability Measures}
+\section{Measures}
 %-------------------------------'
 %---------section  ---------------'
 %-------------------------------'
@@ -894,10 +892,55 @@ If $\mathcal F_0$ is a field on $\Omega$, then $P:\mathcal F_0\rightarrow [0,1]$
 \end{enumerate}
 \end{definition}
 
-Most of the basic rules of probability follow from  finitely additive properties.
 
-\begin{theorem}[{\bf basic properties of finitely additive probabilities}]
-Suppose $P$ is a  finitely additive probability on field $\mathcal F_0$. Then each of the following statements hold for all $\mathcal F_0$-sets $A, A_1, \ldots, B, B_1, \ldots$
+
+
+\begin{definition}[{\bf probability measure}]
+If $\mathcal F_0$ is a field on $\Omega$, then $P:\mathcal F_0\rightarrow [0,1]$ is said to be a {\bf probability measure on $\mathcal F_0$} if
+\begin{enumerate}
+\item $P(\Omega)=1$
+\item $P\bigl( \bigcup_{k=1}^\infty A_k \bigr)=\sum_{k=1}^\infty P(A_k)$ \\ for all disjoint $A_1, A_2,\ldots \in\mathcal F_0$ such that $\bigcup_{k=1}^\infty A_k \in \mathcal F_0$.
+\end{enumerate}
+\end{definition}
+
+
+
+\begin{definition}[{\bf Measure}]
+If $\mathcal F_0$ is a field of $\Omega$-sets, then $\mu:\mathcal F_0\rightarrow [0,\infty]$ is a {measure} if
+\begin{enumerate}
+\item $\mu(\varnothing)=0$
+\item $\mu\bigl( \bigcup_{k=1}^\infty A_k \bigr)=\sum_{k=1}^\infty \mu(A_k)$ \\ for all disjoint $A_1, A_2,\ldots \in\mathcal F_0$ such that $\bigcup_{k=1}^\infty A_k \in \mathcal F_0$.
+\end{enumerate}
+\end{definition}
+
+
+
+\begin{definition}[{\bf Measurable space}]
+If $\mathcal F$ is a $\sigma$-field on $\Omega$ then the pair $(\Omega, \mathcal F)$  is called a {measurable space}.
+\end{definition}
+
+
+\begin{definition}[{\bf Measure/Probability space}]
+If $\mu$ is a measure on the measurable space $(\Omega, \mathcal F)$ then the triple $(\Omega, \mathcal F, \mu)$ is called a {measure space}.
+If, in addition, $\mu$ is a probability measure then the triple $(\Omega, \mathcal F, \mu)$ is called a {probability space}.
+\end{definition}
+
+
+\begin{definition}[{\bf Finite and $\sigma$-finite}]
+Let $(\Omega, \mathcal F,\mu)$ be a measure space.
+\begin{itemize}
+\item If $\mu(\Omega)<\infty$ then $\mu$ is said to be a {finite} measure;
+\item If $\mu(\Omega)=\infty$ then $\mu$ is said to be an {infinite} measure;
+\item If there exists $\mathcal F$-sets $A_1,A_2,\ldots$ such that $\Omega = \cup_{k=1}^\infty A_k$ and $\mu(A_k)<\infty$ then $\mu$ is said to be a {$\sigma$-finite} measure;
+\item If $\mathscr A\subset \mathcal F$ such that there exists $\mathscr A$-sets $A_1,A_2,\ldots$ such that $\Omega = \cup_{k=1}^\infty A_k$ and $\mu(A_k)<\infty$ then $\mu$ is said to be {$\sigma$-finite on $\mathscr A$}.
+\end{itemize}
+\end{definition}
+
+
+Note that every probability measure is  $\sigma$-finite. Most of the basic rules of probability follow from  finitely additive properties.
+
+\begin{theorem}[{\bf Basic properties of probability measures}]
+Suppose $P$ is a probability measure on field $\mathcal F_0$ of $\Omega$ subsets. Then each of the following statements hold for all $\mathcal F_0$-sets $A, A_1, \ldots, B, B_1, \ldots$
 \begin{enumerate}
 \item $P[A^c] = 1-P[A]$;
 \item $P[\varnothing]=0$;
@@ -905,16 +948,17 @@ Suppose $P$ is a  finitely additive probability on field $\mathcal F_0$. Then ea
 \item\label{bpfa two} {\bf (Increasing)} If $A\subset B$ then  $P[A]\leq P[B]$;
 \item\label{bpfa three} {\bf (Inclusion-exclusion)} $P[A\cup B] = P[A]+P[B]-P[A\cap B]$;
 \item\label{bpfa four} {\bf (Finite additivity)}  If $A_k$'s are disjoint then
-\[ P\bigl[ \bigcup_{k=1}^n A_k \bigr] = \sum_{k=1}^n P[A_k]; \]
-\item\label{bpfa five} {\bf (Finite sub-additivity)}
-\[ P\bigl[ \bigcup_{k=1}^n A_k \bigr] \leq \sum_{k=1}^n P[A_k]; \]
+\\$P\bigl[ \bigcup_{k=1}^n A_k \bigr] = \sum_{k=1}^n P[A_k]$;
+\item\label{bpfa five} {\bf (Finite sub-additivity)}  $P\bigl[ \bigcup_{k=1}^n A_k \bigr] \leq \sum_{k=1}^n P[A_k]$;
 \item\label{bpfa six} {\bf (Approximation)} If $A_k\subset B_k$ then
-\begin{align*}
-P\bigl[ \bigcup_{k=1}^n B_k \bigr] - P\bigl[ \bigcup_{k=1}^n A_k \bigr] &\leq \sum_{k=1}^n P[B_k - A_k] \\
-P\bigl[ \bigcap_{k=1}^n B_k \bigr] - P\bigl[ \bigcap_{k=1}^n A_k \bigr] &\leq \sum_{k=1}^n P[B_k - A_k].
-\end{align*}
+\\$P\bigl[ \bigcup_{k=1}^n B_k \bigr] - P\bigl[ \bigcup_{k=1}^n A_k \bigr] \leq \sum_{k=1}^n P[B_k - A_k]$ and
+$P\bigl[ \bigcap_{k=1}^n B_k \bigr] - P\bigl[ \bigcap_{k=1}^n A_k \bigr] \leq \sum_{k=1}^n P[B_k - A_k]$;
+\item\label{bpfa seven}{(\bf Continuous from below)} \\ If  $A_n\uparrow A\in \mathcal F_0$ then $P[A_n]\uparrow P[A]$;
+\item\label{bpfa eight}{(\bf Continuous from above)} \\ If $A_n\downarrow A\in \mathcal F_0$ then $P[A_n]\downarrow P[A]$;
+\item\label{bpfa nine}{(\bf Countable sub-additivity)}\\  If $\cup_{k=1}^\infty A_k \in \mathcal F_0$  then $P\bigl[\sum_{k=1}^\infty A_k\bigr] \leq \sum_{k=1}^\infty P[A_k]$;
 \end{enumerate}
 \end{theorem}
+
 \begin{proof}
 \textbullet({\sl Show item \ref{bpfa one}}) If $A\subset B$ then $B = A \cup (B-A)$ is a disjoint union. Therefore $P[B] = P[A] + P[B-A]$ which implies $P[B-A]=P[B]-P[A]$.
 \\
@@ -932,16 +976,66 @@ P[A\cup B]&= P[A] + P[B-A\cap B] \\
 \\
 \textbullet({\sl Show item \ref{bpfa six}})
 For the first equation use the fact that $\cup_k B_k - \cup_k A_k$ and $\cap_k B_k - \cap_k A_k$  are covered by $\cup_k(B_k - A_k)$ and then apply sub-additivity.
-
+\\
+\textbullet({\sl Show item \ref{bpfa seven}})
+Assume $A_1, A_2, \ldots \in \mathcal F_0$ and $A_n\uparrow A\in\mathcal F_0$. Then
+ \begin{align*}
+ P[A_n] &= P\big[ \textstyle\bigcup_{k=1}^n A_k \big],\qquad\text{since $A_1\subset A_2\subset \cdots$}\\
+ &= P\big[ \textstyle\bigcup_{k=1}^n \underbrace{A_k - A_{k-1}}_{\text{disjoint}} \big] \\
+ &= \textstyle\sum_{k=1}^nP\big[ A_k - A_{k-1} \big] \\
+ &\uparrow \textstyle\sum_{k=1}^\infty P\big[ A_k - A_{k-1}\big] \\
+ &=P\big[ \textstyle\bigcup_{k=1}^\infty  A_k - A_{k-1} \big],\,\,\text{by item 1.}\\
+ &=P[ A ]
+ \end{align*}
+ \\
+\textbullet({\sl Show item \ref{bpfa eight}})
+Use the fact that $A_n\downarrow A \Longleftrightarrow A_n^c \uparrow A^c$.
+\\
+\textbullet({\sl Show item \ref{bpfa nine}})
+ \begin{align*}
+  P\Bigl[\textstyle\bigcup_{k=1}^\infty A_k \Bigr]
+  & =  P\Bigl[\setlimup{n}\textstyle\bigcup_{k=1}^n A_k \Bigr] \\
+  & =  \setlimup{n} P\Bigl[\textstyle\bigcup_{k=1}^n A_k \Bigr],\,\text{continuity from below}\\
+  & \leq  \setlimup{n} \textstyle\sum_{k=1}^n P\bigl[A_k \bigr],\,\text{finite sub-additivity}\\
+  & =  \textstyle\sum_{k=1}^\infty P\bigl[A_k \bigr].
+ \end{align*}
 \end{proof}
 
-\begin{definition}[{\bf probability measure}]
-If $\mathcal F_0$ is a field on $\Omega$, then $P:\mathcal F_0\rightarrow [0,1]$ is said to be a {\bf probability measure on $\mathcal F_0$} if
+
+
+\begin{theorem}[{\bf Basic properties of measures}]
+Suppose $\mu$ is a probability measure on field $\mathcal F_0$ of $\Omega$ subsets. Then each of the following statements hold for all $\mathcal F_0$-sets $A, A_1, \ldots, B, B_1, \ldots$
 \begin{enumerate}
-\item $P(\Omega)=1$
-\item $P\bigl( \bigcup_{k=1}^\infty A_k \bigr)=\sum_{k=1}^\infty P(A_k)$ \\ for all disjoint $A_1, A_2,\ldots \in\mathcal F_0$ such that $\bigcup_{k=1}^\infty A_k \in \mathcal F_0$.
+\item $\mu[A^c] = \mu[\Omega]-\mu[A]$ if \textcolor{red}{$\mu[\Omega]<\infty$};
+\item\label{bpfa one} If $A\subset B$ and \textcolor{red}{$\mu[A]<\infty$} then $\mu[B-A]=\mu[B]-\mu[A]$;
+\item\label{bpfa two} {\bf (Increasing)} If $A\subset B$ then  $\mu[A]\leq \mu[B]$;
+\item\label{bpfa three} {\bf (Inclusion-exclusion)} $\mu[A\cup B] = \mu[A]+ \mu[B - A\cap B]$ and $\mu[A\cup B] = \mu[A]+ \mu[B] - \mu[A\cap B]$ if \textcolor{red}{$\mu[A\cap B]<\infty$};
+\item\label{bpfa four} {\bf (Finite additivity)}  If $A_k$'s are disjoint then
+$\mu\bigl[ \bigcup_{k=1}^n A_k \bigr] = \sum_{k=1}^n \mu[A_k]$;
+\item\label{bpfa five} {\bf (Finite sub-additivity)}
+$\mu\bigl[ \bigcup_{k=1}^n A_k \bigr] \leq \sum_{k=1}^n \mu[A_k]$.
+\item{(\bf Continuous from below)} \\ If  $A_n\uparrow A\in \mathcal F_0$ then $\mu[A_n]\uparrow \mu[A]$;
+\item{(\bf Continuous from above)} \\ If $A_n\downarrow A\in \mathcal F_0$ and \textcolor{red}{there exists an $n$ such that $\mu[A_n]<\infty$} then $\mu[A_n]\downarrow \mu[A]$.
+\item{(\bf Countable sub-additivity)} If $\cup_{k=1}^\infty A_k \in \mathcal F_0$  then $\mu\bigl[\sum_{k=1}^\infty A_k\bigr] \leq \sum_{k=1}^\infty \mu[A_k]$;
 \end{enumerate}
-\end{definition}
+\end{theorem}
+
+
+
+
+%
+%
+% \begin{theorem}[{\bf Basic measure facts}]
+% Let $(\Omega, \mathcal F, \mu)$ be a measure space. Then
+% \begin{enumerate}
+% \item If $A_1, A_2,\ldots, A_n$ are disjoint $\mathcal F$-sets then \\$\mu\bigl(\sum_{k=1}^n A_k\bigr) = \sum_{k=1}^n \mu(A_k)$.
+% \item If $A\subset B$ are $\mathcal F$-sets then \\$\mu(A)\leq \mu(B)$.
+% \item If $A\subset B$ are $\mathcal F$-sets and {$\mu(A)<\infty$} then \\$\mu(B-A)=\mu(B)-\mu(A)$.
+% \end{enumerate}
+% \end{theorem}
+%
+
+
 
 The following theorem tells us that a consequences of the countable additivity which do not follow from finite additivity.
 
@@ -951,21 +1045,29 @@ The following theorem tells us that a consequences of the countable additivity w
 Let $P:\mathcal F_0\rightarrow [0,1]$ be a finitely additive probability on a field $\mathcal F_0$. Then the following statements are equivalent:
 \begin{enumerate}
 \item $P$ is a probability measure;
-\item ({\bf Continuous from below}) If whenever $A_1, A_2, \ldots \in \mathcal F_0$ and $A_n\uparrow A\in\mathcal F_0$ then $P(A_n)\uparrow P(A)$;
-\item ({\bf Continuous from above})  If whenever $A_1, A_2, \ldots \in \mathcal F_0$ and $A_n\downarrow A\in\mathcal F_0$ then $P(A_n)\downarrow P(A)$;
+\item $P$ is continuous from below;
+\item $P$ is continuous from above;
+%({\bf Continuous from below}) If whenever $A_1, A_2, \ldots \in \mathcal F_0$ and $A_n\uparrow A\in\mathcal F_0$ then $P(A_n)\uparrow P(A)$;
+%\item ({\bf Continuous from above})  If whenever $A_1, A_2, \ldots \in \mathcal F_0$ and $A_n\downarrow A\in\mathcal F_0$ then $P(A_n)\downarrow P(A)$;
 \item ({\bf Continuous from above at $\varnothing$}) If whenever $A_1, A_2, \ldots \in \mathcal F_0$ and $A_n\downarrow  \varnothing$ then $P(A_n)\downarrow 0$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-({\sl 1. $\Longrightarrow $ 2.}) Assume $A_1, A_2, \ldots \in \mathcal F_0$ and $A_n\uparrow A\in\mathcal F_0$. Then
+
+By a previous theorem already have {\sl 1. $\Longrightarrow $ 2. $\Longrightarrow $ 3. $\Longrightarrow $ 4. }
+
+
+
+ ({\sl 4. $\Longrightarrow $ 3.}) Suppose $P$ is continuous from above at $\varnothing$. Now suppose  $A_1, A_2, \ldots \in \mathcal F_0$ and $A_n\downarrow A\in\mathcal F_0$. Now to show item 3 notice
  \begin{align*}
- P[A_n] &= P\Bigl[ \textstyle\bigcup_{k=1}^n A_k \Bigr],\qquad\text{since $A_1\subset A_2\subset \cdots$}\\
- &= P\Bigl[ \textstyle\bigcup_{k=1}^n \underbrace{\{A_k - (A_{k-1}\cap \cdots \cap A_1)\}}_{\text{disjoint}} \Bigr] \\
- &= \textstyle\sum_{k=1}^nP\Bigl[ \{A_k - (A_{k-1}\cap \cdots \cap A_1)\} \Bigr] \\
- &\uparrow \textstyle\sum_{k=1}^\infty P\Bigl[ \{A_k - (A_{k-1}\cap \cdots \cap A_1)\} \Bigr] \\
- &=P\Bigl[ \textstyle\bigcup_{k=1}^\infty \{ A_k - (A_{k-1}\cap \cdots \cap A_1)\} \Bigr],\,\,\text{by item 1.}\\
- &=P[ A ]
+ A_n\downarrow A
+ &\Longrightarrow A_n-A \downarrow \varnothing \\
+ &\Longrightarrow P[A_n]-P[A] = P[A_n-A]   \downarrow 0,\,\,\text{by item 4.} \\
+ &\Longrightarrow P[A_n] \downarrow P[A]  \\
  \end{align*}
+
+
+ ({\sl 2. $\Longleftrightarrow $ 3.}) Use the fact that $A_n\uparrow A \Longleftrightarrow A_n^c \downarrow A^c$ along with the identity $P[A] = 1- P[A^c]$.
 
 
 ({\sl 2. $\Longrightarrow $ 1.}) The only thing to show is countable additivity over disjoint sets which stay in the field. In paritcular suppose $A_1, A_2, \ldots $ are disjoint $\mathcal F_0$-sets  such that $\textstyle\bigcup_{k=1}^\infty A_k \in \mathcal F_0$. Then
@@ -975,80 +1077,10 @@ P\Bigl[\textstyle\bigcup_{k=1}^\infty A_k \Bigr]= P\Bigl[\setlimup{n}\textstyle\
  where the last equality follows by assuming item 2.
 
 
- ({\sl 2. $\Longleftrightarrow $ 3.}) Use the fact that $A_n\uparrow A \Longleftrightarrow A_n^c \downarrow A^c$ along with the identity $P[A] = 1- P[A^c]$.
-
-
- ({\sl 3. $\Longrightarrow $ 4.}) This is clear since $P[\varnothing ]=0$
-
- ({\sl 4. $\Longrightarrow $ 3.}) Suppose $P$ is continuous from above at $\varnothing$. Now suppose  $A_1, A_2, \ldots \in \mathcal F_0$ and $A_n\downarrow A\in\mathcal F_0$. Now to show item 3 notice
- \begin{align*}
- A_n\downarrow A
- &\Longrightarrow A_n-A \downarrow \varnothing \\
- &\Longrightarrow P[A_n]-P[A] = P[A_n-A]   \downarrow 0,\,\,\text{by item 4.} \\
- &\Longrightarrow P[A_n] \downarrow P[A]  \\
- \end{align*}
-\end{proof}
-
-\begin{theorem}[{\bf Countable sub-additivity}]
-Let $P$ be a probability measure on a field $\mathcal F_0$. If $A_1, A_2, \ldots$ are $\mathcal F_0$-sets for which $\bigcup_{k=1}^\infty A_k\in \mathcal F_0$. Then
-\[ P\Bigl[\textstyle\bigcup_{k=1}^\infty A_k \Bigr]\leq \sum_{k=1}^\infty P\bigl[A_k \bigr]. \]
-\end{theorem}
-\begin{proof}
-\begin{align*}
- P\Bigl[\textstyle\bigcup_{k=1}^\infty A_k \Bigr]
- & =  P\Bigl[\setlimup{n}\textstyle\bigcup_{k=1}^n A_k \Bigr] \\
- & =  \setlimup{n} P\Bigl[\textstyle\bigcup_{k=1}^n A_k \Bigr],\,\text{continuity from below}\\
- & \leq  \setlimup{n} \textstyle\sum_{k=1}^n P\bigl[A_k \bigr],\,\text{finite sub-additivity}\\
- & =  \textstyle\sum_{k=1}^\infty P\bigl[A_k \bigr].
-\end{align*}
-\end{proof}
-
-
-%%%%%%
-\begin{theorem}
-\label{thm: Borels P is a measure}
- The mapping $P:\mathcal B_0^{(0,1]}\rightarrow [0,1]$ defined in Definition \ref{l1defP} is a probability measure.
- \end{theorem}
-\begin{proof}
-We will use Theorem \ref{thm: cae} and show that $P$ is continuous from above at $\varnothing.$ Let $A_n \downarrow \varnothing$ where $A_n\in \mathcal B_0^{(0,1]}$ (in particular we have that $\bigcap_{k=1}^\infty A_k =\varnothing$). We show $P[A_n]\downarrow 0$.
-
-Notice first that for all $n\geq N$ we have
-\[ P[A_n]\leq P[A_N] =  P\bigl[ \textstyle\bigcap_{k=1}^N A_k\bigr] \]
-since the $A_k$'s are decreasing. It will then be sufficient to show that for all $\epsilon>0$ there exists  $N_\epsilon$ such that
-\begin{equation}
-\label{eq: show pm for bo}
-P\bigl[ \textstyle\bigcap_{k=1}^{N_\epsilon} A_k\bigr]\leq \epsilon.
-\end{equation}
-
-The following argument doesn't quite work but it will motivate the solution. Let $\epsilon > 0$ and for each $A_k$  find a sequence of closed sets $F_k$ such that $F_k\subset A_k$ and $P[A_k-F_k]\leq \epsilon/2^k$ (If $A_k$ has the form $\bigcup_i (a_i,b_i]$ take $F_k:=\bigcup_i [a_i+\tau,b_i]$ for small enough $\tau$). Since $\bigcap_{k=1}^\infty A_k=\varnothing$ one has that $\bigcap_{k=1}^\infty F_k=\varnothing$.
-By a compactness argument\footnote{For, if not, then there exists $x_n\in \bigcap_{k=1}^n F_k$ for each $n$. Notice
-\begin{equation}
-\label{foot:main eq}
-\text{$\bigcap_{k=1}^n F_k\subset \bigcap_{k=1}^m F_k$ when $m\leq n$}
-\end{equation}
-For one thing, equation (\ref{foot:main eq}) implies that $x_n\in F_1$. Therefore by compactness  there exists a  sub-sequential limit $x=\lim_k x_{n_k} \in F_1$.  Again by (\ref{foot:main eq}) and the assumption  $x_{n_k}\in \bigcap_{k=1}^{n_k} F_k$ one has that for sufficiently large $k$ all  $x_{n_k}$ are eventually within $F_m$. Therefore $x\in F_m$ for each $m$. This contradicts the assumption $\cap_{k=1}^\infty F_k=\varnothing$.  } there exists an $N_\epsilon$ such that $\bigcap_{k=1}^{N_\epsilon} F_k=\varnothing$.
- Therefore
-\[
-P\bigl[ \textstyle\bigcap_{k=1}^{N_\epsilon} A_k\bigr] - \underbrace{P\bigl[ \underbrace{\textstyle\bigcap_{k=1}^{N_\epsilon} F_k}_{=\varnothing}\bigr]}_{=0}\leq  \sum_{k=1}^{N_\epsilon} P\bigl[A_k-F_k \bigr] \leq \sum_{k=1}^{N_\epsilon} \frac{1}{2^k}\leq \epsilon.
-\]
-This would establish (\ref{eq: show pm for bo}) if it weren't for the problem that $P$ isn't defined on the $F_k$'s.
-
-It is clear how to fix this. For each $A_k$ find  closed sets $F_k$ and $\mathcal B_0^{(0,1]}$-sets $A_k^o$ such that $A_k\supset F_k \supset A_k^o$ and $P[A_k-A_k^o]\leq \epsilon / 2^k$. For each $\epsilon>0$ we still have the property that there exists $N_\epsilon$ such that  $\bigcap_{k=1}^{N_\epsilon}F_k = \varnothing$ which  implies $\bigcap_{k=1}^{N_\epsilon}A^o_k = \varnothing$  and now
-\[
-P\bigl[ \textstyle\bigcap_{k=1}^{N_\epsilon} A_k\bigr] - \underbrace{P\bigl[ \underbrace{\textstyle\bigcap_{k=1}^{N_\epsilon} A^o_k}_{=\varnothing}\bigr]}_{=0}\leq  \sum_{k=1}^{N_\epsilon} P\bigl[A_k-A^o_k \bigr] \leq \sum_{k=1}^{N_\epsilon} \frac{1}{2^k}\leq \epsilon.
-\]
 \end{proof}
 
 
 
-\clearpage
-%-------------------------------'
-%---------section  ---------------'
-%-------------------------------'
-\section{Carath\'eodory Extension Theorem}
-%-------------------------------'
-%---------section  ---------------'
-%-------------------------------'
 
 %%%%%%%%%%%%%%%%%
 \begin{theorem}[{\bf Uniqueness for probability measures}]
@@ -1089,6 +1121,235 @@ A\in \mathcal G
 Notice that this last statement could not be proved if the $A_k$'s were not disjoint. This illustrates the necessity of Dynkin's $\pi-\lambda$ theorem.
 
 \end{proof}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%
+\begin{theorem}[{\bf Uniqueness for measures}]
+\label{uui}
+If $\mu_1$ and $\mu_2$ are measures on $(\Omega, \sigma\langle \mathcal P\rangle)$ such that
+\begin{enumerate}
+\item $\mu_1$ and $\mu_2$ agree on $\mathcal P$;
+\item $\mathcal P$ is a $\pi$-system;
+\item \textcolor{red}{$\mu_1$ and $\mu_2$ are $\sigma$-finite on $\mathcal P$},
+\end{enumerate}
+then $\mu_1$ and $\mu_2$ agree on all of $ \sigma\langle \mathcal P\rangle$.
+\end{theorem}
+
+
+
+
+
+\begin{definition}[{\bf $\mu$-null and $\mu$-neg}]
+%$\phantom{asdf}$
+Let $(\Omega,\mathcal F, \mu)$ be a measure space. Then
+%then
+\begin{itemize}
+\item
+A set $A\in \mathcal F$ is said to be {$\mu$-null}  if $\mu(A)=0$.
+\item
+A set $A\in 2^\Omega$ is said to be {$\mu$-negligible} if there exists a $\mu$-null set  $B\in \mathcal F$ such that $A\subset B$.
+\end{itemize}
+\end{definition}
+
+
+
+
+
+\begin{definition}[{\bf Complete}]
+A measure space $(\Omega, \mathcal F, \mu)$ is said to be complete if all the $\mu$-negligible sets belong to $\mathcal F$.
+\end{definition}
+
+
+
+\begin{definition}[{\bf Complete}]
+A probability space $(\Omega, \mathcal F, P)$ is said to be {\bf complete} if all the $P$-negligible sets belong to $\mathcal F$.
+\end{definition}
+
+
+
+\begin{theorem}[{\bf The completion $(\Omega, \bar {\mathcal F},\bar \mu)$}]
+Let $(\Omega,\mathcal F, \mu)$ be a measure space and let $\mathcal N_\mu$ be the collection of $\mu$-negligible sets.
+%Let $\bar {\mathcal F}:=\sigma\langle \mathcal F, \mathcal N_\mu\rangle$ and $\bar \mu$
+Then
+\begin{itemize}
+\item $\bar {\mathcal F}:= \sigma\langle \mathcal F, \mathcal N_\mu\rangle = \{F\cup N: F\in \mathcal F, N\in \mathcal N_\mu  \}$;
+\item The set function $\bar \mu$ on $\bar{\mathcal F}$ defined by $\bar\mu(F\cup N)= \mu(F)$ for $F\in\mathcal F$ and $N\in \mathcal N_\mu$ is the unique extension of $\mu$ to a measure on $(\Omega, \bar{\mathcal F})$;
+\item The measure space $(\Omega, \bar{\mathcal F}, \bar \mu)$ is complete.
+\end{itemize}
+The triple $(\Omega, \bar{\mathcal F}, \bar \mu)$ is called the {completion} of  $(\Omega, \mathcal F, \mu)$.
+\end{theorem}
+
+
+
+
+%%%%%%%%%%%%%%
+\begin{theorem}[{\bf Regularity}]
+\label{oir}
+Let $\mu$ be any measure on $(\Bbb R^d,\mathcal B^{\Bbb R^d})$ which assigns finite measure to bounded sets in $\mathcal B^{\Bbb R^d}$.
+For any  $B\in\mathcal B^{\Bbb R^d}$ and $\epsilon>0$ there exists a closed set $C$ and an open set $O$ such that $C\subset B\subset O$ and
+\[\mathcal \mu(O-C)<\epsilon.\]
+\end{theorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{corollary}
+\label{ir}
+Let $\mu$ be any measure on $(\Bbb R^d,\mathcal B^{\Bbb R^d})$ which assigns finite measure to bounded sets in $\mathcal B^{\Bbb R^d}$. Then
+\begin{align*}
+\mathcal \mu(B)  &= \sup \{ \mathcal \mu(C):  C\subset B,\, \text{$C$ closed}\}\\
+  &=\, \inf \{ \mu(O):  B\subset O,\, \text{$O$ open}\}
+\end{align*}
+%If, in addition,  $\mathcal \mu(B)<\infty$ then
+%\[\mathcal \mu(B) = \sup \{ \mathcal \mu(K):  K\subset B,\, \text{$K$ compact}\} .\]
+\end{corollary}
+
+
+
+
+\begin{exercise}
+Prove Theorem \ref{oir} for $d=1$
+\end{exercise}
+
+
+
+
+\begin{exercise}
+(a) Prove Corollary \ref{ir} for $d=1$.
+(b)
+Give an example of a $\sigma$-finite measure $\mu$ on $\mathcal B^{\Bbb R}$ and a Borel set $B$ such that
+\[ \mu(B-C)= \infty = \mu(O-B) \]
+for every closed subset $C$ of $B$ and every open superset $O$ of $B$.
+\end{exercise}
+
+
+
+
+
+
+
+%%%%%%%%
+\begin{exercise}
+\label{l1}
+Suppose  $\mathcal F_0$ is a field, $\mu$ is a measure on $\sigma\langle \mathcal F_0\rangle$ and $\mu$ is $\sigma$-finite on $\mathcal F_0$.
+\begin{enumerate}
+\item
+Suppose $B\in \sigma\langle\mathcal F_0\rangle$ and $\epsilon>0$. Show that there exists a disjoint sequence of $\mathcal F_0$-sets $A_1, A_2,\ldots$ such that $B\subset \cup_{n=1}^\infty A_n$ and $ \mu\bigl( \cup_{n=1}^\infty A_n -
+ B\bigr)\leq \epsilon$.
+ \item Suppose $B\in \sigma\langle\mathcal F_0\rangle$, $\mu(B)<\infty$ and $\epsilon>0$. Show there exists an $\mathcal F_0$-set $A$ such that $\mu(A \,\triangle\, B)\leq \epsilon$.
+\item Show by example that the conclusion to 2 may fail if $B$ has infinite measure.
+ \end{enumerate}
+\end{exercise}
+
+
+\begin{exerciseproof}
+
+\textbullet({\sl Show 1:})
+Since $\mu$ is $\sigma$-finite on $\mathcal F_0$ and $\mathcal F_0$ is a field, one can find disjoint $\mathcal F_0$-sets $F_1, F_2,\ldots$ such that $\Omega = \cup_{n=1}^\infty F_n$ and $\mu(F_n)<\infty$. We start by supposing $\mu(F_n)>0$ for all $n$ and show at the end of the proof to remove this assumption.
+
+
+Fix $B\in \mathcal F$.
+Define  $ \mu_n(\cdot):= \frac{\mu(\cdot\cap F_n)}{\mu(F_n)} $ on $\mathcal F$. Notice that $\mu_n$ is a probability measure on $\mathcal F$ so that
+\[ \mu_n(B)=\inf\{ \mu_n(D): B\subset D \in \mathcal F^{\uparrow}\}\leq 1. \]
+Therefore one can find a $D_n\in \mathcal F^{\uparrow}$, covering $B$, such that
+$B\subset D_n$ and
+\begin{align}
+\label{aaa}
+\underbrace{\mu_n(D_n)-\mu_n(B)}_{=\mu_n(D_n - B)} &\leq \frac{\epsilon}{2^n \mu(F_n)}.
+\end{align}
+ Now define  $D :=\bigcup_{n=1}^\infty D_n\cap F_n$
+and notice that
+\begin{align*}
+ B\subset D_n, \,\forall n&\Rightarrow (B\cap F_n) \subset (D_n\cap F_n), \,\forall n \\
+ &\Rightarrow \bigcup_{n=1}^\infty  (B\cap  F_n) \subset  \bigcup_{n=1}^\infty (D_n\cap F_n) \\
+ &\Rightarrow B\subset D.
+ \end{align*}
+Notice also that each  $D_n\in\mathcal F^\uparrow$ can be written as a disjoint union of $\mathcal F_0$-sets (exercise). Let $D_n = \cup_{m=1}^\infty A_{n,m}$ be such a decomposition (i.e. the $A_{n,m}$'s are  disjoint across $m$ and $A_{n,m}\in\mathcal F_0$). Then
+\[D =  \bigcup_{(n,m)\in \Bbb N^+\times \Bbb N^+}  A_{n,m}\cap F_n\]
+where the sets $A_{n,m}\cap F_n$ are disjoint (the $F_n$'s are disjoint for different $n$'s and  the $A_{n,m}$'s are disjoint for different $m$'s) and are $\mathcal F_0$-sets. Now
+\begin{align}
+\mu(D - B) &= \mu(\bigcup_{n=1}^\infty D_n\cap F_n \cap B^c)\nonumber\\
+ &= \sum_{n=1}^\infty \mu(D_n\cap F_n \cap B^c)\nonumber\\
+ &=  \sum_{n=1}^\infty \mu(F_n)\mu_n(D_n \cap B^c)\nonumber\\
+  &=  \sum_{n=1}^\infty \mu(F_n)\underbrace{\mu_n(D_n - B)}_{\leq \epsilon/(2^n\mu(F_n))}\nonumber\\
+ &\leq \epsilon.\label{if}
+\end{align}
+Therefore the class $\{ A_{n,m}\cap F_n\}_{(n,m)\in \Bbb N^+\times \Bbb N^+ }$ gives a countable, disjoint $\mathcal F_0$-set covering of $B$ such that $\mu(\bigcup_{(n,m)\in \Bbb N^+\times \Bbb N^+}  A_{n,m}\cap F_n - B )\leq \epsilon$.
+
+It's easy to extend to the case when some of the $\mu(F_n)=0$ by defining $\mu_n (\cdot):=0$ and $D_n:=F_n$ for these $n$. Then (\ref{if}) still follows.
+
+\textbullet({\sl Show 2:})
+Since $\mu(B)<\infty$ we have that
+\begin{equation}
+ \mu(D)-\mu(B)=\mu(D-B)\leq \epsilon.
+\end{equation}
+Therefore $\mu(D)<\infty$
+Moreover $D=\setlimup{n}D_n$, where $D_n\in \mathcal F_0$ are the $n$ partial unions in the defintion of $D$.
+Therefore $\mu(D_n)\uparrow \mu(D)<\infty$ and hence we can fine a
+ a $D_n$ such that $D_n\subset D$ and
+\begin{equation}
+\mu(D) - \mu(D_n)=\mu(D - D_n)\leq \epsilon
+\end{equation}
+Now
+\begin{align*}
+\mu(B\,\triangle\, D_n)
+&\leq \mu(B\cap D_n^c) + \mu(B^c \cap D_n)\\
+&\leq \mu(D \cap D_n^c) + \mu(B^c \cap D)\\
+&= \mu(D - D_n) + \mu(D - A)\\
+&\leq 2\epsilon.
+\end{align*}
+\end{exerciseproof}
+
+
+
+
+
+
+\begin{exercise}
+Suppose that $\mu_1$ and $\mu_2$ are measures on  $\sigma\langle \mathcal F_0\rangle$ generated by a class $\mathcal F_0$. Suppose also that the inequality
+\begin{equation}
+\label{fourteen}
+\mu_1(A)\leq \mu_2(A)
+\end{equation}
+holds for all $A$ in $\mathcal F_0$. (a) Show that if $\mathcal F_0$ is a field and $\mu_1$ and $\mu_2$ are $\sigma$-finite on $\mathcal F_0$, then (\ref{fourteen}) holds for all $A\in\sigma\langle \mathcal F_0\rangle$. (b) Show by examples that (\ref{fourteen}) can fail for some $A\in\sigma\langle \mathcal F_0\rangle$ if: $\mathcal F_0$ is a field but $\mu_1$ and $\mu_2$ are only $\sigma$-finite  overall, not $\sigma$-finite on $\mathcal F_0$; or if $\mu_1$ and $\mu_2$ are $\sigma$-finite on $\mathcal F_0$, but $\mathcal F_0$ is only a $\pi$-system. Hint: for (a) first treat the case where $\mu_2$ is finite.
+\end{exercise}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%
+The following exercises shows that it doesn't matter what order we sum an infinite number of positive terms. This is useful for rigourously showing the measure axioms for counting measure on any $\Omega$. Notice that if there are negative terms, order does matter.
+\begin{exercise}
+Let $I$ be an infinite set and let $f$ be a function from $I$ to $[0,\infty]$. The sum over $f$ over $I$ is defined as
+\[ \sum_{i\in I} f(i):=\sup\Bigl\{ \sum_{i\in H} f(i): \text{ $H\subset I$, $H$ is finite}  \Bigr\}. \]
+Show that: (a) for any partition $I = \bigcup_{k\in K} I_k$ of $I$ into nonempty disjoint subsets $I_k$,
+\[  \sum_{i\in I} f(i) =  \sum_{k\in K}\Bigl(\sum_{i\in I_k} f(i)\Bigr) \]
+and (b) if $I$ is countable, then
+\[  \sum_{i\in I} f(i) = \lim_{n\rightarrow \infty} \sum_{m=1}^n f(i_m) \]
+for any enumeration $i_1,i_2,\ldots$ of the points in $I$.
+\end{exercise}
+
+
+
+
+
+\begin{exercise}
+Let $\Omega = \Bbb R$ and $\mathcal B_0^{\Bbb R}:= f\langle (-\infty,a]: -\infty < a <\infty  \rangle$ be the Borel field of $\Bbb R$. Let $P$ be a finitely additive probability on $\mathcal B_0^{\Bbb R}$. Show that $P$ is a probability measure on  $\mathcal B_0^{\Bbb R}$ if and only if the function defined by $F(x):= P((-\infty, x])$ is non-decreasing, right-continuous and satisfies $\lim_{x\rightarrow -\infty} F(x)=0$ and  $\lim_{x\rightarrow \infty} F(x)=1$.
+%(a) Show that the formula
+%\[ F(x):= P((-\infty,x]) \]
+% establishes  a one-to-one correspondence between the finitely additive probabilities on $\mathcal B_0^{\Bbb R}$ and the set of nondecreasing functions $F:{\Bbb R}\rightarrow \Bbb R$ such that $F(0)=0$ and $F(1)=1$. (b) Show that there is a one-to-one correspondence between the probability measures on $\mathcal B_0^{\Bbb R}$ and the set of nondecreasing functions $F: \Bbb R \rightarrow \Bbb R$ such that $F(0)=0$, $F(1)=1$ and $F$ is right continuous.
+\end{exercise}
+%
+
+
+%-------------------------------'
+%---------section  ---------------'
+%-------------------------------'
+\subsection{Carath\'eodory Extension Theorem}
+%-------------------------------'
+%---------section  ---------------'
+%-------------------------------'
 
 
 \begin{sectionassumption}
@@ -1179,11 +1440,9 @@ For all sets $A, B,C, A_1, \ldots\in 2^\Omega$
 %\[ P^*(\cup_{m=1}^n B_m)- P^*(\cup_{m=1}^n A_m)\leq \sum_{m=1}^n P^*( B_m)- P^*( A_m). \]
 \end{enumerate}
 \end{theorem}
-\begin{shaded}
 \begin{proof}
 These are a tedious and not very insightful so we will skip the proof in this class.
 \end{proof}
-\end{shaded}
 
 
 \begin{theorem}[{\bf Carath\'eodory extension theorem}]
@@ -1362,18 +1621,6 @@ P(A\,\triangle\, A_n^o)
 \end{proof}
 
 
-\begin{definition}[{\bf $P$-null and $P$-neg}]
-$\phantom{asdf}$
-%Let $\mathcal F$ be a $\sigma$-field of $\Omega$-sets and let $P$ be a probability measure on $(\Omega, \mathcal F)$.
-%then
-\begin{itemize}
-\item
-A set $A\subset \Omega$ is  {\bf $P$-null}  if $A\in\mathcal F$ and  $P(A)=0$.
-\item
-A set $A\subset$ is said to be {\bf $P$-negligible} if there exists a $P$-null cover of $A$.
-\end{itemize}
-\end{definition}
-
 
 \begin{theorem}[{\bf Use $P^*$ to find $P$-neg sets}]
 Let $A\subset \Omega$
@@ -1399,15 +1646,6 @@ This follows since the infimum in (\ref{eq: negnull 1}) is attained so that ther
 \end{proof}
 
 The nice  thing about the above theorem is that you can show both $\bar P(A) = 0$ and $A\in \bar{\mathcal F}$ just by establishing $P^*(A)=0$, which you can technically analyze without knowing $A$ is in $\mathcal F$ or $\bar{\mathcal F}$.
-
-\begin{definition}[{\bf Complete}]
-A probability space $(\Omega^\prime, \mathcal F^\prime, P^\prime)$ is said to be {\bf complete} if all the $P^\prime$-negligible sets belong to $\mathcal F^\prime$.
-\end{definition}
-
-\begin{definition}[{\bf The completion}]
-The triple $(\Omega, \bar{\mathcal F}, \bar P)$ is called the {\bf completion} of  $(\Omega, \mathcal F, P)$.
-\end{definition}
-
 
 
 
@@ -1458,6 +1696,67 @@ P[F] &= P_*[F],\quad\text{since $F\in \mathcal F$} \\
 
 
 
+
+
+\begin{exercise}
+(a) Show that $(\Omega, \bar{\mathcal F}, \bar P)$ is the smallest complete extension of $(\Omega, \mathcal F, P)$---that is, if $(\Omega, \mathcal F^\prime, P^\prime)$ is probability space which is a complete extension of $(\Omega, \mathcal F, P)$, then $(\Omega, \mathcal F^\prime, P^\prime)$ is also a complete extension of $(\Omega, \bar{\mathcal F}, \bar P)$. (b) Show by example that $(\Omega, \bar{\mathcal F}, \bar P)$ can have infinitely many different complete extensions (Hint: use a sample space consisting of two points).
+\end{exercise}
+
+
+
+
+
+
+%-------------------------------'
+%---------section  ---------------'
+%-------------------------------'
+\subsection{Application: Lebesque Measure}
+%-------------------------------'
+%---------section  ---------------'
+%-------------------------------'
+
+
+
+
+
+
+%%%%%%
+\begin{theorem}
+\label{thm: Borels P is a measure}
+ The mapping $P:\mathcal B_0^{(0,1]}\rightarrow [0,1]$ defined in Definition \ref{l1defP} is a probability measure.
+ \end{theorem}
+\begin{proof}
+We will use Theorem \ref{thm: cae} and show that $P$ is continuous from above at $\varnothing.$ Let $A_n \downarrow \varnothing$ where $A_n\in \mathcal B_0^{(0,1]}$ (in particular we have that $\bigcap_{k=1}^\infty A_k =\varnothing$). We show $P[A_n]\downarrow 0$.
+
+Notice first that for all $n\geq N$ we have
+\[ P[A_n]\leq P[A_N] =  P\bigl[ \textstyle\bigcap_{k=1}^N A_k\bigr] \]
+since the $A_k$'s are decreasing. It will then be sufficient to show that for all $\epsilon>0$ there exists  $N_\epsilon$ such that
+\begin{equation}
+\label{eq: show pm for bo}
+P\bigl[ \textstyle\bigcap_{k=1}^{N_\epsilon} A_k\bigr]\leq \epsilon.
+\end{equation}
+
+The following argument doesn't quite work but it will motivate the solution. Let $\epsilon > 0$ and for each $A_k$  find a sequence of closed sets $F_k$ such that $F_k\subset A_k$ and $P[A_k-F_k]\leq \epsilon/2^k$ (If $A_k$ has the form $\bigcup_i (a_i,b_i]$ take $F_k:=\bigcup_i [a_i+\tau,b_i]$ for small enough $\tau$). Since $\bigcap_{k=1}^\infty A_k=\varnothing$ one has that $\bigcap_{k=1}^\infty F_k=\varnothing$.
+By a compactness argument\footnote{For, if not, then there exists $x_n\in \bigcap_{k=1}^n F_k$ for each $n$. Notice
+\begin{equation}
+\label{foot:main eq}
+\text{$\bigcap_{k=1}^n F_k\subset \bigcap_{k=1}^m F_k$ when $m\leq n$}
+\end{equation}
+For one thing, equation (\ref{foot:main eq}) implies that $x_n\in F_1$. Therefore by compactness  there exists a  sub-sequential limit $x=\lim_k x_{n_k} \in F_1$.  Again by (\ref{foot:main eq}) and the assumption  $x_{n_k}\in \bigcap_{k=1}^{n_k} F_k$ one has that for sufficiently large $k$ all  $x_{n_k}$ are eventually within $F_m$. Therefore $x\in F_m$ for each $m$. This contradicts the assumption $\cap_{k=1}^\infty F_k=\varnothing$.  } there exists an $N_\epsilon$ such that $\bigcap_{k=1}^{N_\epsilon} F_k=\varnothing$.
+ Therefore
+\[
+P\bigl[ \textstyle\bigcap_{k=1}^{N_\epsilon} A_k\bigr] - \underbrace{P\bigl[ \underbrace{\textstyle\bigcap_{k=1}^{N_\epsilon} F_k}_{=\varnothing}\bigr]}_{=0}\leq  \sum_{k=1}^{N_\epsilon} P\bigl[A_k-F_k \bigr] \leq \sum_{k=1}^{N_\epsilon} \frac{1}{2^k}\leq \epsilon.
+\]
+This would establish (\ref{eq: show pm for bo}) if it weren't for the problem that $P$ isn't defined on the $F_k$'s.
+
+It is clear how to fix this. For each $A_k$ find  closed sets $F_k$ and $\mathcal B_0^{(0,1]}$-sets $A_k^o$ such that $A_k\supset F_k \supset A_k^o$ and $P[A_k-A_k^o]\leq \epsilon / 2^k$. For each $\epsilon>0$ we still have the property that there exists $N_\epsilon$ such that  $\bigcap_{k=1}^{N_\epsilon}F_k = \varnothing$ which  implies $\bigcap_{k=1}^{N_\epsilon}A^o_k = \varnothing$  and now
+\[
+P\bigl[ \textstyle\bigcap_{k=1}^{N_\epsilon} A_k\bigr] - \underbrace{P\bigl[ \underbrace{\textstyle\bigcap_{k=1}^{N_\epsilon} A^o_k}_{=\varnothing}\bigr]}_{=0}\leq  \sum_{k=1}^{N_\epsilon} P\bigl[A_k-A^o_k \bigr] \leq \sum_{k=1}^{N_\epsilon} \frac{1}{2^k}\leq \epsilon.
+\]
+\end{proof}
+
+
+
 \begin{theorem}[{\bf Application to Borel's normal numbers}]
 Let $P:\mathcal B_0^{(0,1]}\rightarrow [0,1]$ be as in Definition \ref{l1defP}. Then
 \begin{enumerate}
@@ -1488,840 +1787,6 @@ for all $\epsilon$. Therefore $P(N^c)=0$ and $P(N)=1$.
 \end{proof}
 
 
-
-%%%%%%%%%%%%%%%%%%%%
-%The following exercises shows that it doesn't matter what order we sum an infinite number of positive terms. Notice that if there are negative terms, order does matter.
-%\begin{exercise}
-%Let $I$ be an infinite set and let $f$ be a function from $I$ to $[0,\infty]$. The sum over $f$ over $I$ is defined as
-%\[ \sum_{i\in I} f(i):=\sup\Bigl\{ \sum_{i\in H} f(i): \text{ $H\subset I$, $H$ is finite}  \Bigr\}. \]
-%Show that: (a) for any partition $I = \bigcup_{k\in K} I_k$ of $I$ into nonempty disjoint subsets $I_k$,
-%\[  \sum_{i\in I} f(i) =  \sum_{k\in K}\Bigl(\sum_{i\in I_k} f(i)\Bigr) \]
-%and (b) if $I$ is countable, then
-%\[  \sum_{i\in I} f(i) = \lim_{n\rightarrow \infty} \sum_{m=1}^n f(i_m) \]
-%for any enumeration $i_1,i_2,\ldots$ of the points in $I$.
-%\end{exercise}
-%
-\begin{exercise}
-Let $\Omega = \Bbb R$ and $\mathcal B_0^{\Bbb R}:= f\langle (-\infty,a]: -\infty < a <\infty  \rangle$ be the Borel field of $\Bbb R$. Let $P$ be a finitely additive probability on $\mathcal B_0^{\Bbb R}$. Show that $P$ is a probability measure on  $\mathcal B_0^{\Bbb R}$ if and only if the function defined by $F(x):= P((-\infty, x])$ is non-decreasing, right-continuous and satisfies $\lim_{x\rightarrow -\infty} F(x)=0$ and  $\lim_{x\rightarrow \infty} F(x)=1$.
-%(a) Show that the formula
-%\[ F(x):= P((-\infty,x]) \]
-% establishes  a one-to-one correspondence between the finitely additive probabilities on $\mathcal B_0^{\Bbb R}$ and the set of nondecreasing functions $F:{\Bbb R}\rightarrow \Bbb R$ such that $F(0)=0$ and $F(1)=1$. (b) Show that there is a one-to-one correspondence between the probability measures on $\mathcal B_0^{\Bbb R}$ and the set of nondecreasing functions $F: \Bbb R \rightarrow \Bbb R$ such that $F(0)=0$, $F(1)=1$ and $F$ is right continuous.
-\end{exercise}
-%
-
-
-
-\begin{exercise}
-(a) Show that $(\Omega, \bar{\mathcal F}, \bar P)$ is the smallest complete extension of $(\Omega, \mathcal F, P)$---that is, if $(\Omega, \mathcal F^\prime, P^\prime)$ is probability space which is a complete extension of $(\Omega, \mathcal F, P)$, then $(\Omega, \mathcal F^\prime, P^\prime)$ is also a complete extension of $(\Omega, \bar{\mathcal F}, \bar P)$. (b) Show by example that $(\Omega, \bar{\mathcal F}, \bar P)$ can have infinitely many different complete extensions (Hint: use a sample space consisting of two points).
-\end{exercise}
-
-
-\clearpage
-%-------------------------------'
-%---------section  ---------------'
-%-------------------------------'
-\section{Independence for classes of events}
-%-------------------------------'
-%---------section  ---------------'
-%-------------------------------'
-
-
-\begin{definition}[{\bf Probability space}]
-If $\Omega$ is a sample space, $\mathcal F$ is a $\sigma$-field on $\Omega$ and $P$ is a probability measure on $\mathcal F$, the triple $(\Omega, \mathcal F, P)$ is called a {probability space}.
-\end{definition}
-
-\begin{sectionassumption}
-Throughout this section let $(\Omega, \mathcal F, P)$ denote a probability space and $\mathcal K$ be an arbitrary index set.
-\end{sectionassumption}
-
-\begin{definition}[{\bf Independent events}]
-%Let $(\Omega, \mathcal F, P)$ be a probability space and $\mathcal K$ be an arbritary index set.
-A collection of $\mathcal F$-sets $\{ A_k \}_{k\in\mathcal K}$ are said to be {independent} if for every finite index set $\mathcal H\subset \mathcal K$ the following identity holds:
-\[ P\Bigl(\bigcap_{h\in\mathcal H}A_h\Bigr) = \prod_{h\in\mathcal H} P(A_h).\]
-\end{definition}
-
-
-\begin{definition}[{\bf Independent classes}]
-%Let $(\Omega, \mathcal F, P)$ be a probability space and $\mathcal K$ be an arbritary index set.
-Let $\mathscr A_k$ be a collection of $\mathcal F$-sets for each $k\in\mathcal K$ (i.e.\! $\mathscr A_k\subset \mathcal F$). Then  $\{ \mathscr A_k\}_{k\in \mathcal K} $ are  {independent classes} if for each choice $A_k\in\mathscr A_k$ the events $\{A_k\}_{k\in\mathcal K}$ are independent.
-\end{definition}
-
-\begin{theorem}{$\phantom{asfd}$}
-%Let $(\Omega, \mathcal F, P)$ be a probability space and $\mathcal K$ be an arbritary index set. Then
-\begin{enumerate}
-\item {\bf (Subclasses).} If $\mathscr A_k\subset \mathscr B_k\subset \mathcal F$ for all $k\in\mathcal K$ and $\{\mathscr B_k\}_{k\in\mathcal K}$ are independent classes then  $\{\mathscr A_k\}_{k\in\mathcal K}$ are independent classes.
-\item   {\bf (Augmentation).} $\bigl\{\mathscr A_k\bigr\}_{k\in\mathcal K}$ are independent classes if and only if  $\bigl\{\mathscr A_k\cup \{ \Omega \}\bigr\}_{k\in\mathcal K}$ are independent classes.
-\item  {\bf (Simplified product). } If $\mathscr A_1,\ldots, \mathscr A_n$ are collections of $\mathcal F$-sets and $\Omega\in\mathscr A_k$ for each $k$, then $\mathscr A_1,\ldots, \mathscr A_n$ are independent classes if and only if
-\[ P\Bigl(\bigcap_{k=1}^nA_k\Bigr) = \prod_{k=1}^n P(A_k).\]
-for each choice $A_k\in\mathscr A_k$.
-\end{enumerate}
-\end{theorem}
-
-\begin{theorem}[{\bf $\pi$-generators are enough}]
-Suppose $\{\mathscr A_k\}_{k\in\mathcal K}$ are independent classes of  $\mathcal F$-sets such that each $\mathscr A_k$ is also a $\pi$-system. Then $\{\sigma\langle \mathscr A_k\rangle \}_{k\in\mathcal K}$ are independent classes.
-\end{theorem}
-
-\begin{theorem}[{\bf ANOVA}] Let $\mathscr A_1, \mathscr A_2,\ldots$ and $\mathscr B_1, \mathscr B_2,\ldots$ be classes of $\mathcal F$-sets which are $\pi$-systems. Then $\mathscr A_1, \mathscr A_2,\ldots,\mathscr B_1, \mathscr B_2,\ldots$ are all independent  if and only if the following three statements hold:
-\begin{enumerate}
-\item $\mathscr A_1, \mathscr A_2,\ldots$ are independent;
-\item $\mathscr B_1, \mathscr B_2,\ldots$ are independent;
-\item $\sigma\langle \mathscr A_1, \mathscr A_2,\ldots \rangle $ is independent of  $\sigma\langle \mathscr
-B_1, \mathscr B_2,\ldots \rangle $.
-\end{enumerate}
-\end{theorem}
-
-
-\begin{theorem}[{\bf ANOVA${}^*$}]
-Consider the following array of $\pi$-systems of $\mathcal F$-sets
-\[
-\begin{array}{ccc}
-\mathscr A_{1,1} & \mathscr A_{1,2} & \cdots \\
-\mathscr A_{2,1} & \mathscr A_{2,2} & \cdots \\
-\mathscr A_{3,1} & \mathscr A_{3,2} & \cdots \\
-\vdots & \vdots & \ddots
-\end{array}
-\]
-Each row may have a different number of columns (finite or infinite) and the number of rows may be finite or infinite.
-Let $\mathscr R_1,\mathscr R_2,\ldots$ denote the $\sigma$-fields generated by the rows: $\mathscr R_i:=\sigma\langle \mathscr A_{i,1}, \mathscr A_{i,2} , \cdots \rangle $.
- Then the full collection  $\{ \mathscr A_{i,k} \}$ of $\pi$-systems are independent  if and only if the following two statements hold:
-\begin{enumerate}
-\item The $\pi$-systems within each row are independent;
-\item The  $\sigma$-fields generated by the rows, $\mathscr R_1,\mathscr R_2,\ldots$, are independent.
-\end{enumerate}
-\end{theorem}
-
-
-
-\begin{theorem}[{\bf Independent binary digits}]\label{ibd}
-Let $H_n:=\{w\in(0,1]: d_n(w)=1  \}$ where $d_n$ denote the $n^\text{th}$ binary (nonterminating) digit from the basic spinner model in Section \ref{Bsec}. Then $H_1, H_2, \ldots$ are independent events under the model $P:\mathcal B_0^{(0,1]}\rightarrow [0,1]$ defined in Section \ref{Bsec}.
-\end{theorem}
-
-\begin{definition}[{\bf Tail events}]
-Let $\mathscr A_1, \mathscr A_2, \ldots$ be classes of $\mathcal F$-sets. Then
-\[ \mathcal T :=\bigcap_{m=1}^\infty \sigma\langle \mathscr A_n: n\geq m\rangle \]
-is called the {tail $\sigma$-field associated with $\mathscr A_1, \mathscr A_2, \ldots$}. Moreover, any event $T\in \mathcal T$ is called a {tail event}.
-\end{definition}
-
-\begin{theorem}[{\bf Kolmogorov's 0-1 Law}]
-Suppose $\{\mathscr A_k\}_{k\in\mathcal K}$ are independent classes of  $\mathcal F$-sets such that each $\mathscr A_k$ is also a $\pi$-system. Then for any tail event $T\in\mathcal T$ either $P(T)=0$ or $P(T)=1$.
-\end{theorem}
-
-\begin{definition}[{\bf$\io$ and $\aall$}] Let $A_1, A_2, \ldots$ be subsets of $\Omega$. Then
-\begin{align*}
-\{A_n\, \io_n\} &:= \bigcap_{m=1}^\infty \bigcup_{n=m}^\infty A_n =: \limsup_{n\rightarrow \infty} A_n\\
-\{A_n\, \aall_n \}&:= \bigcup_{m=1}^\infty \bigcap_{n=m}^\infty A_n =: \liminf_{n\rightarrow \infty} A_n
-\end{align*}
-\end{definition}
-
-\begin{theorem}[{\bf $1^\text{st}$ Borel-Cantelli lemma}]
-Let $A_1, A_2, \ldots$ be $\mathcal F$-sets. Then
-\[ \sum_{n=1}^\infty P(A_n)<\infty \Longrightarrow P(A_n\, \io_n)=0. \]
-\end{theorem}
-
-\begin{theorem}[{\bf Fatou for sets}]
-Let $A_1, A_2, \ldots$ be  $\mathcal F$-sets. Then
-\begin{align*}
-P(A_n\, \aall_n)&\leq \liminf_n P(A_n)\\
-&\leq \limsup_n P(A_n)\leq P(A_n\, \io_n).
-\end{align*}
-\end{theorem}
-
-\begin{theorem}[{\bf $2^\text{nd}$ Borel-Cantelli lemma}]
-Let $A_1, A_2, \ldots$ be independent $\mathcal F$-sets. Then
-\[ \sum_{n=1}^\infty P(A_n)=\infty \Longrightarrow P(A_n\, \io_n)=1. \]
-\end{theorem}
-
-
-
-\begin{exercise}
-Let $\mathscr A_1,\ldots, \mathscr A_n$ be $\pi$-systems of $\mathcal F$-sets such that
-\begin{equation}
-\label{iee}
- P\Bigl( \bigcap_{k=1}^n A_k \Bigr) = \prod_{k=1}^n P(A_k)
-\end{equation}
-for each choice of $A_k\in\mathscr A_k$ for $k=1,\ldots, n$. (a) Show by simple example that the $\mathscr A_k$'s need not be independent. (b) Show that the $\mathscr A_k$'s will be independent if for each $k$, $\Omega$ is the countable union of $\mathscr A_k$-sets. Hint: for fixed $A_2,\ldots, A_n$ use the following general inclusion-exclusion formula to show that  (\ref{iee}) with $A_1$ replaced by any finite union of $\mathscr A_1$-sets. Here is the general inclusion-exclusion formula:
-\[ P\Bigl( \bigcup_{i=1}^n B_i \Bigr)= \sum_{m=1}^n (-1)^{m-1}\sum_{i_1< i_2<\cdots<i_m} P(B_{i_1}\cap B_{i_2}\cap \cdots \cap B_{i_m}) \]
-for any $\mathcal F$-sets $B_1, B_2,\ldots, B_n$.
-\end{exercise}
-
-
-\begin{exercise}
-(a) For each $k=1,\ldots, n$ let $\mathcal P_k$ be a partition of $\Omega$ into countably many $\mathcal F$-sets. Show that the $\sigma$-fields $\sigma\langle\mathcal P_1\rangle,\ldots, \sigma\langle \mathcal P_n\rangle$ are independent if and only if (\ref{iee}) holds for each choice of $A_k$ from $\mathcal P_k$ for $k=1,\ldots, n$. (b) Use part (a) to show that $\mathcal F$-sets $A_1, \ldots, A_n$ are independent if and only if
-\[
- P\Bigl( \bigcap_{k=1}^n B_k \Bigr) = \prod_{k=1}^n P(B_k)
-\]
-for each choice of $B_k$ as $A_k$ or $A_k^c$ for $k=1,\ldots, n$. (c) Use part (b) to show that the events $H_1,\ldots, H_n$ in Theorem \ref{ibd} are independent.
-\end{exercise}
-
-
-
-
-
-
-\begin{exercise}
-Let $A_1, A_2, \ldots$ be $\mathcal F$-sets. Show that $P(A_n\io_n)=1$ if and only if $\sum_{n=1}^\infty P(A_n|A)$ diverges for every $\mathcal F$-set $A$ of nonzero probability. Hint: show $P(A_n\io_n)<1\Longleftrightarrow \sum_{n=1}^\infty P(A_n|A)<\infty$ for some $\mathcal F$-set $A$ with $P(A)>0$.
-\end{exercise}
-\begin{exerciseproof}
-($\Longrightarrow$)
-Suppose $P(A_n\io_n)<1$. Therefore  $P(A_n^c \aall_n) = P(\bigcup_{m=1}^\infty \bigcap_{n=m}^\infty A_n^c )>0$. In particular, there exists an $m_0\geq 1$ such that $ P(\bigcap_{n=m_0}^\infty A_n^c ) > 0$ (to prove this by contradiction just use countable-sub-additivity).
-Now set $A :=  \bigcap_{n=m_0}^\infty A_n^c $. Notice $P(A)>0$ and for all $k> m_0$
-\[P(A_k\cap A) = P(A_k \cap \bigcap_{n=m_0}^\infty A_n^c ) = 0.  \]
-Therefore $\sum_{k=1}^\infty P(A_k \cap A)<\infty$ for some $\mathcal F$-set $A$ with $P(A)>0$.
-
-
-($\Longrightarrow$) Suppose  $\sum_{n=1}^\infty P(A_n|A)<\infty$ for some $\mathcal F$-set $A$ with $P(A)>0$.
-Now
-\begin{align*}
-\sum_{n=1}^\infty P(A_n \cap A)<\infty
-&\Longrightarrow P[A_n\cap A \io_n] =0\\
-&\Longrightarrow P\Bigl[\textstyle\bigcap_{m=1}^\infty \textstyle\bigcap_{n=m}^\infty  A_n\cap A \Bigl] =0\\
-&\Longrightarrow P\Bigl[ A\cap \textstyle\bigcap_{m=1}^\infty \textstyle\bigcap_{n=m}^\infty  A_n \Bigl] =0\\
-&\Longrightarrow P\bigl[ A\cap \{A_n \io_n \} \bigl] =0.
-\end{align*}
-Now if $P[A_n \io_n]=1$ then $0=P[A \cap  \{A_n \io_n \}] = P[A]$ which contradicts our assumption on $P[A]$. Therefore $P[A_n \io_n]<1$.
-\end{exerciseproof}
-
-
-\begin{exercise}
-Let $P$ and $Q$ be probability measures on a $\sigma$-field $\mathcal F$ of subsets of a sample space $\Omega$.
-\begin{itemize}
-\item
-$P$ and $Q$ are said to be {\bf singular}, denoted $P\perp Q$, if and only if there exists a set $F\in\mathcal F$ such that
-\[P(F^c)=0=Q(F).\]
-\item
-P is said to be {\bf absolutely continuous with respect to $Q$}, denoted $P \ll Q$, if and only if
-\[\text{$P(F)=0$ for every $\mathcal F$-set $F$ for which $Q(F)=0$.}  \]
-\end{itemize}
-Show that
-\[P\perp Q \Longleftrightarrow \left[\begin{array}{c}
-\text{there exists $\mathcal F$-sets $F_1, F_2,\ldots$ such that}\\
-\text{$P(F_n^c)\rightarrow 0$ and $Q(F_n)\rightarrow 0$ as $n\rightarrow \infty$}
-\end{array} \right] \]
-and
-\[P\ll Q \Longleftrightarrow  \lim_{\delta\downarrow 0}\Bigl( \sup\{ P(F)\colon \text{$F\in \mathcal F$ with $Q(F)\leq \delta$} \}\Bigr)=0. \]
-\end{exercise}
-\begin{exerciseproof}
-({\sl $P\perp Q \Longrightarrow $ there exists $\mathcal F$-sets...}) Trivial.
-
-
-({\sl  there exists $\mathcal F$-sets... $\Longrightarrow P\perp Q  $}) Choose a subsequence $n_k$ such that
-\begin{align*}
-\textstyle\sum_k Q(F_{n_k}) &< \infty \\
-\textstyle\sum_k P(F^c_{n_k}) &< \infty.
-\end{align*}
-Therefore by the first Borel-Cantelli lemmas we have
-\begin{align*}
-Q(F_{n_k} \io_k) & =  0 \\
-P(F^c_{n_k}\io_k) & =  0.
-\end{align*}
-Now By Fatou's lemma
-\[ P[\{F_{n_k}\io_k\}^c] = P[F^c_{n_k}\aall_k ] \leq P[F^c_{n_k}\io_k ] =0 \]
-Therefore $F:=\{F_{n_k}\io_k\}$ gives the desired set to establish that $P\perp Q$.
-
-({\sl $P\ll Q \Longrightarrow \lim_{\delta\downarrow 0}$...}) \textcolor{red}{The following is a bit longer than it needs to be. Just try reductio.}
-We first notice that the supremum in $\sup\{ P(F)\colon \text{$F\in \mathcal F$ with $Q(F)\leq \delta$}\}$ is attained. To see why let $F_n\in \mathcal F$ such that $Q(F_n)\leq \delta$ and $P(F_n)\rightarrow \sup\{\ldots\}$. By Fatou's lemma
-\[
-Q[F_n \aall_n]\leq \limsup_n Q(F_n)\leq \delta
-\]
-Since  $\{F_n \aall_n\}\in \mathcal F$ we have that
-\begin{equation}
-\label{abs cont from blw, 1}
-P[F_n \aall_n] \leq \sup\{ P(F)\colon \text{$F\in \mathcal F$ with $Q(F)\leq \delta$}\}
-\end{equation}
-Also notice
-\[
-P[F_n \aall_n] =  \lim_m P[\bigcap_{n=m}^\infty F_n]\geq \lim_m P[ F_m] =\sup\{\ldots\}
-\]
-then, when combined with (\ref{abs cont from blw, 1}) gives that the supremum in $\sup\{ P(F)\colon \text{$F\in \mathcal F$ with $Q(F)\leq \delta$}\}$ is attained. Now, for each $\delta> 0$ let $F_\delta$  be the $\mathcal F$-set
- which makes the supermum attained. If we let $\delta_n \downarrow 0$, since $Q(F_{\delta_n})\leq \delta_{n}$ we can find a further sub sequence such that $\sum_k Q[F_{\delta_{n_k}}]<\infty$ so that $Q[F_{\delta_{n_k}} \io_k]=0$. Therefore $P[F_{\delta_{n_k}} \io_k]=0$ by the assumption $P\ll Q$. From Fatou again we have
- \begin{align*}
- 0 &\leq \liminf_k P[F_{\delta_{n_k}}]\leq \limsup_k P[F_{\delta_{n_k}}]\leq P[F_{\delta_{n_k}} \io_k]=0
- \end{align*}
-Therefore
-\[
-\lim_k \sup\{ P(F)\colon \text{$F\in \mathcal F$ with $Q(F)\leq \delta_{n_k}$}\}  =0
-\]
-To finish just notice that $\sup\{ P(F)\colon \text{$F\in \mathcal F$ with $Q(F)\leq \delta$}\}$ is monotonically decreasing in $\delta$ (and therefore a limit exists and that limit must equal every sub-sequential limit, for which we have found one which is zero).
-
-
-
-({\sl $ \lim_{\delta\downarrow 0}\ldots \Longrightarrow P\ll Q$}) This one should be pretty easy. In particular,  let $F_0$ be a $ \mathcal F$-set such that $Q(F_0)=0$. Then to show $P\ll Q$ we need to establish that $P[F_0]=0$. To see why notice that
-\begin{align*}
-P(F_0)
-&\leq  \sup\{ P(F)\colon \underbrace{\text{$F\in \mathcal F$ with $Q(F)\leq \delta$}}_{\text{$F_0$ is one of these}} \}.
-\end{align*}
-Now take the limits of both sides with respect to $\delta\rightarrow 0$. The right hand side limits to zero, by assumption. Therefore $P(F_0) = 0 $.
-\end{exerciseproof}
-
-
-
-
-
-\clearpage
-%-------------------------------'
-%---------section  ---------------'
-%-------------------------------'
-\section{Law of the iterated logarithm for coin flips}
-%-------------------------------'
-%---------section  ---------------'
-%-------------------------------'
-
-
-\begin{sectionassumption}
-Throughout this section let $P:\mathcal B^{(0,1]}\rightarrow [0,1]$ be the probability model developed in Section \ref{Bsec} (and extended from the Carath\'eodory) for a uniform random number in $w\in (0,1]$. Also let $s_n$ be defined as in Section \ref{Bsec}.
-\end{sectionassumption}
-
-
-To motivate the law of the iterated logarithm lets start by discussing the difference between the weak law and strong law of large numbers.
-\begin{align*}
-\text{{\bf Weak law}:   } &\quad \lim_{n\rightarrow \infty} P\Bigl(\bigl|\frac{s_n}{n}\bigr| < \epsilon \Bigr) = 1, \,\text{ for all $\epsilon>0$;}\\
-\text{{\bf Strong law}:   } &\quad  P\Bigl(\lim_{n\rightarrow \infty} \frac{s_n}{n} = 0 \Bigr) = 1.
-\end{align*}
-In some sense the difference can be explained as follows. The weak law fixes each $n$ then analyzes the ensemble of $s_n(\omega)/n$
-over $\omega\in (0,1]$. In particular, the weak law says that for large $n$ it becomes increasingly rare to find $\omega$'s which satisfy $|s_n(\omega)/n| \geq \epsilon$.  Conversely the strong law fixes each $\omega\in (0,1]$ and analyzes the ensemble of $s_n(\omega)/n$  over $n$. In particular for almost all $\omega$,  $s_n(\omega)/n\rightarrow 0$ as $n\rightarrow \infty$.
-
-Now lets make a similar analogy with the central limit theorem and the law of the iterated logarithm. From the strong law we know that   ${s_n(\omega)}/{n}$ converges to $0$ for nearly every $\omega$. We can then ask: at what rate? In particular, can we find a smaller denominator than $n$, call it $\ell_n$, so that  ${s_n}/{\ell_n}$ doesn't converge to zero. An answer is given by the central limit theorem
-\[
-\text{{\bf CLT}:   } \quad \lim_{n\rightarrow \infty} P\Bigl(\frac{s_n}{\sqrt{n}} < x \Bigr) = \Phi(x)
-\]
-where $\Phi(x) = P(Z\leq x)$ and $Z$ is a standard normal random variable. Notice two things. First, this suggests that the  ${s_n(\omega)}/{\sqrt{n}}$ reaches up to $\infty $ and down to $-\infty$ for different values of $\omega$ and $n$.
-In particular for every cut-off $M$, there exists $n$ large enough so that $P\Bigl({s_n}/{\sqrt{n}} \geq M \Bigr)\approx 1- \Phi(M)>0$ to arbitrary precision.
-Also, the central limit theorem is similar to the weak law in that it fixes each $n$ then analyzes the ensemble of $s_n(\omega)/\sqrt{n}$
-over $\omega\in (0,1]$. The question then becomes, can one find an analogous form of the strong law such that  for each fixed $\omega$  one analyzes the ensemble rate of $s_n(\omega)$ as $n\rightarrow \infty$. The law of the iterated logarithm gives the right rate
-\[
-\text{{\bf LIL}:   } \quad P\Bigl(  \displaystyle\limsup_{n\rightarrow\infty} \frac{s_n}{\sqrt{2n\log\log n}} =1\Bigr)=1.
-\]
-
-Another way to think about the rate $\sqrt{2n\log \log n}$ is the effect due to the correlation of between $s_n$ across different values of $n$. The expected maximum of $n$ independent standard Gaussian random variables behaves as $\sqrt{2\log n}$. That maximum occurs uniformly on $\{1,2,\ldots, n \}$ and is therefore is expected to occur at index $n/2$.
-If  $s_n/\sqrt{n}$ was not correlated across $n$, the central limit theorem might suggest that the maximum of $s_k/\sqrt{k}$ over $k\in \{1,2\ldots, n \}$ behaves on the order of $\sqrt{2\log n}$. This loosely suggests the maximum of $s_k$ over $k\in \{1,2\ldots, n \}$  behaves on the order $\sqrt{ n\log n}$. Now, in some sense, the LIIL says that the  correlation across $n$ will dampen the maximum excursions to be at most $\sqrt{ n\log \log n}$.
-
-%%%%%%%%%%%%%%%%%%%
-\begin{lemma}[{\bf Half of large deviation result}]
-\label{LIL: usefull lemma 1}
-For all $n\in \Bbb N$ and $x>0$ one has
-\[
-P\bigl(s_n/\sqrt{n} \geq x\bigr)\leq \exp\Bigl( -\frac{x^2}{2} \Bigr)
-\]
-\end{lemma}
-\begin{proof} This was established in exercise \ref{exp ineq for sn}.
-\end{proof}
-
-The other half of the large deviation result we need is Lemma \ref{LIL: usefull lemma 2}, below. Combined these two lemmas give us  good approximations to   $P\bigl(s_n/\sqrt{n} \geq x_n\bigr)$ for large-ish values of $x_n$: large compared to $0$ but still small compared to $\sqrt{n}$ (if $x_n$ was larger then $\sqrt{n}$ then $P(s_n/\sqrt{n} > x_n)=0$). This is the key for deriving the Law of the Iterated Logarithm.
-Also note that Lemma \ref{LIL: usefull lemma 1} was proved as an exercise but it is typically established using Markov's inequality, the moment generating function and the fact that $\frac{e^x + e^{-x}}{2} \leq \exp\left({x^2/2}\right)$.
-
-
-\begin{lemma}[{\bf Other half of large deviation result}]
-\label{LIL: usefull lemma 2}
-If the sequence $\{x_n\}_{n\in\Bbb N}$ satisfies $0\leq x_n \rightarrow \infty$ and $x_n/\sqrt{n}\rightarrow 0$ as $n\rightarrow \infty$ then
- \[ P\bigl(s_n/\sqrt{n} \geq x_n\bigr)\geq \exp\Bigl( -\frac{x_n^2}{2} (1+o(1))\Bigr).\]
-\end{lemma}
-\begin{proof}
-The general idea is to use the fact that $s_n=2\bigl(\sum_{k=1}^n d_k\bigr) -n$ where $\sum_{k=1}^n d_k\sim \text{Bin}(n,1/2)$.
-Therefore we can write $P(s_n\geq \sqrt{n} x_n)$ as a sum $\sum_{i\in \mathcal I_n}P(s_n = i)$ where $i$ is the set of integers greater than $\sqrt{n} x_n$ and less than or equal to $n$. In fact, since we are trying to construct a lower bound we are free to discard terms in  $\mathcal  I_n$ which will give
-\begin{align*}
-P(&s_n\geq \sqrt{n} x_n) \geq \sum_{i\in\mathcal I_n} P(s_n = i).
-\end{align*}
-The main problem is how to find  $\mathcal I_n$ so that the right hand side is $\exp\bigl( -\frac{x_n^2}{2} (1+o(1))\bigr)$.
-
-Lets start by getting some idea of how many integers we should include in  $\mathcal I_n$ by analysing how $P(s_n = i)$ behaves when $i\approx \sqrt{n}x_n
-$. To make things a bit more precise let $i_n$ be a sequence of integers depending on $n$ such that $i_n\rightarrow \infty$ but $i_n/n \rightarrow 0$.
-\begin{align}
-P(s_n = i_n)
-&=P\Bigl(\sum_{k=1}^n d_k = (i_n +n)/2\Bigr)\nonumber\\
-&=\begin{pmatrix} n \\ (i_n +n)/2 \end{pmatrix} \frac{1}{2^n},\,\,\text{ if $(i_n +n)/2$ is an integer }\nonumber\\
-&=\frac{n!}{\frac{i_n +n}{2}! \frac{n -i_n}{2}! } \frac{1}{2^n}\nonumber\\
-& = \frac{2}{\sqrt{2\pi n}} [1+o(1)] \exp\left( - \frac{(1+o(1)) i_n^2}{2n} \right)\label{isright}
-\end{align}
-To see why (\ref{isright}) is true notice that by Stirling's formula we have $n! = (1+o(1)) \sqrt{2\pi n} n^n e^{-n}$. Therefore
-\begin{align*}
-\frac{n!}{\frac{i_n +n}{2}! \frac{n -i_n}{2}! }  \frac{1}{2^n}
-&= \frac{(1+o(1))}{(1+o(1))^2} \\
-&\qquad\times \frac{\sqrt{2\pi n} }{\sqrt{2\pi (n+i_n)/2}\sqrt{2\pi (n-i_n)/2}  } \\
-&\qquad\times\frac{n^n}{ (n+i_n)^{(n+i_n)/2}(n-i_n)^{(n-i_n)/2}} \\
-&\qquad\times \frac{ e^{-n}}{ e^{-(n+i_n)/2} e^{-(n-i_n)/2}  } \\
-&= \frac{(1+o(1))}{(1+o(1))^2} \\
-&\qquad\times \underbrace{\frac{1 }{\sqrt{2\pi (n+i_n) (n-i_n)/(4n)}  }}_{=:I}\\
-&\qquad\times\underbrace{\left(\frac{n}{n+i_n}\right)^{(n+i_n)/2}\left(\frac{n}{n-i_n}\right)^{(n-i_n)/2}}_{=:I\!I}
-\end{align*}
-Notice
-\begin{align*}
-I&=\frac{1 }{\sqrt{2\pi (n+i_n) (n-i_n)/(4n)}  }\\
- &= \frac{2}{\sqrt{2\pi n}}\times \frac{1}{\sqrt{ (n+i_n) (n-i_n)/(n^2)}}\\
-&= \frac{2}{\sqrt{2\pi n}}\times \frac{1}{\sqrt{1   -(i_n/n)^2}}= \frac{2}{\sqrt{2\pi n}} (1+o(1)).
-\end{align*}
-Secondly notice that $(1+x)\log(1+x)= x +\frac{1}{2}x^2+O(x^3)$ as $x\rightarrow 0$. Therefore
-\begin{align*}
-\log I\!I&= -\frac{1}{2}\bigl[ (n+i_n)\log \bigl(1+\frac{i_n}{n}\bigr) +  (n-i_n)\log \bigl(1-\frac{i_n}{n}\bigr) \bigr] \\
-&=-\frac{n}{2}\bigl[\frac{i_n}{n} +\frac{1}{2}\frac{i_n^2}{n^2} - \frac{i_n}{n} +\frac{1}{2}\frac{i_n^2}{n^2}+O({i^3_n}/{n}^3)  \bigr] \\
-&=-\frac{n}{2}\bigl[  \frac{i_n^2}{n^2}  +O({i^3_n}/{n}^3)  \bigr] = -\frac{i_n^2}{2n}\bigl[ 1  +\underbrace{O({i_n}/{n}}_{o(1)})  \bigr].
-\end{align*}
-To finish notice that   $\frac{(1+o(1))^2}{(1+o(1))^2} = [1+o(1)]$ which implies (\ref{isright}).
-%\begin{align*}
-%P(w\in\Omega:s_n(w) = i_n)& = \frac{2}{\sqrt{2\pi n}} \exp\left( - \frac{(1+o(1)) i_n^2}{2n} \right)\\
-%& = \frac{2}{\sqrt{2\pi n}} \exp\Bigl(-\frac{i_n^2}{2n} \underbrace{\left[-\frac{2n}{i_n^2}o(1)\right]}_{\shortstack{$= o(1)$, \text{since} \\\text{$\sqrt{n}/i_n = o(1)$ }}} - \frac{(1+o(1)) i_n^2}{2n} \Bigr)\\
-%& = \frac{2}{\sqrt{2\pi n}} \exp\left( - \frac{(1+o(1)) i_n^2}{2n} \right)
-%\end{align*}
-%\textcolor{blue}{I still don't see why we need $\sqrt{n}/i_n = o(1)$ for this preliminary step. The results seem to go fine with the approximation $P(w\in\Omega:s_n(w) = i_n) = \frac{2}{\sqrt{2\pi n}}(1+o(1)) \exp\left( - \frac{(1+o(1)) i_n^2}{2n} \right)
-%$ }
-
-
-Now, looking at (\ref{isright}) it is clear that we want $\mathcal I_n$ to contain about $\sqrt{2\pi n}$ terms that are near $\sqrt{n} x_n$ (so that we can apply  (\ref{isright})). In particular $\mathcal I_n$ denote the set of indices between $\sqrt{n}x_n$ and $\sqrt{n}x_n + 2\sqrt{\pi n}$ which have the same parity at $n$ (i.e. that $(i_n + n)/2$ is an integer).  Also let $i_n$ be the maximum integer in $\mathcal I_n$, which implies $i_n = \sqrt{n}x_n + 2\sqrt{\pi n} + O(1)$. Now
-\begin{align*}
-P(&s_n\geq \sqrt{n} x_n)\\
-&\geq \sum_{i\in\mathcal I_n} P(s_n = i)\\
-&\geq [\# \mathcal I_n] P(s_n = i_n),\,\,\text{since $\begin{pmatrix} n \\ (i +n)/2 \end{pmatrix}\geq \begin{pmatrix} n \\ (i_n +n)/2 \end{pmatrix}$}\\
-&= [\sqrt{\pi n}+ O(1)] P(s_n = i_n)\\
-&\geq \sqrt{2}\exp\left( - \frac{(1+o(1)) i_n^2}{2n} \right),\quad\text{by (\ref{isright})}\\
-&\geq \exp\left( - \frac{(1+o(1)) i_n^2}{2n} \right) \\
-&= \exp\left( - \frac{(1+o(1))\bigl[\sqrt{n}x_n +2\sqrt{\pi n} + O(1) \bigr]^2}{2n}  \right) \\
-&= \exp\left( - \frac{x_n^2}{2} (1+o(1)) \right),\quad\text{since $x_n\rightarrow \infty$}.
-\end{align*}
-
-% \begin{align*}
-% P(&s_n\geq \sqrt{n} x_n)\\
-% &\geq \sum_{i\in\mathcal I_n} P(s_n = i)\\
-% &\geq \sum_{i\in\mathcal I_n} P(s_n = i_n),\\
-% &\qquad\qquad\qquad\text{since $\begin{pmatrix} n \\ (i +n)/2 \end{pmatrix}\geq \begin{pmatrix} n \\ (i_n +n)/2 \end{pmatrix}$}\\
-% &= [\sqrt{\pi n}+ O(1)]P(s_n = i_n)\\
-% &=\underbrace{ [\sqrt{\pi n}+ O(1)][1+o(1)]\frac{2}{\sqrt{2\pi n}} }_{ = \sqrt 2 +o(1)} \exp\left( - \frac{(1+o(1)) i_n^2}{2n} \right),\\
-% &\qquad\qquad\qquad \text{by (\ref{isright}) since $i_n/n= O(x_n/\sqrt{n}) \rightarrow 0$} \\
-% %&= [\sqrt{\pi n}+ O(1)]\frac{2}{\sqrt{2\pi n}} \exp\left( - \frac{(1+o(1)) i_n^2}{2n} \right) \\
-% &= \sqrt{2} \exp\left( - \frac{(1+o(1)) i_n^2}{2n} \right)\\
-% &\qquad\qquad\quad + \underbrace{ o(1)\exp\left( - \frac{(1+o(1)) i_n^2}{2n} \right)}_\text{$=o(1)$ since $i_n/\sqrt{n}=O(x_n)\rightarrow \infty$  }\\
-% &\geq \exp\left( - \frac{(1+o(1)) i_n^2}{2n} \right).
-% \end{align*}
-
-
-% To finish the proof simply notice that
-% \begin{align*}
-% - \frac{(1+o(1)) i_n^2}{2n} & = - \frac{(1+o(1)) \bigl[\sqrt{n}x_n +2\sqrt{\pi n} + O(1) \bigr]^2}{2n} \\
-% & = - \frac{x_n^2}{2} (1+o(1)) \bigl[1 + 2\sqrt{\pi}/x_n + O(1/(x_n\sqrt{n}) \bigr]^2 \\
-% & = - \frac{x_n^2}{2} (1+o(1)) ,\quad\text{since $x_n\rightarrow \infty$}.
-% \end{align*}
-% Therefore $P(s_n\geq \sqrt{n} x_n) \geq \exp\bigl[ - \frac{x_n^2}{2} (1+o(1))  \Bigr]$.
-\end{proof}
-
-
-
-
-\begin{lemma}[{\bf Maximal inequality}]
-\label{LIL: usefull lemma 3}
-For all $n\in\Bbb N$ and every nonnegative integer $c$
-\[ P\bigl( \max_{1\leq j\leq n} s_j \geq c \bigr)\leq 2P(s_n\geq c).\]
-\end{lemma}
-\begin{proof}
-First write
-\begin{align*}
-P\bigl( \max_{1\leq j\leq n} s_j \geq c \bigr)&= P\bigl( \max_{1\leq j\leq n} s_j \geq c,\, s_n \geq c \bigr) \\
-&\qquad\qquad+ P\bigl( \max_{1\leq j\leq n} s_j \geq c,\, s_n < c  \bigr)\\
-&= P\bigl( s_n \geq c \bigr) + P\bigl( \max_{1\leq j\leq n} s_j \geq c,\, s_n < c  \bigr).
-\end{align*}
-Therefore all that remains is to show $ P\bigl( \max_{1\leq j\leq n} s_j \geq c,\, s_n < c  \bigr)\leq  P\bigl( s_n \geq c \bigr)$.
-Start by segmenting the event $\{\max_{1\leq j\leq n} s_j \geq c\}$ corresponding to the first indicie $j$ for which $s_j= c$ (this must occur when  $ \max_{1\leq j\leq n} s_j \geq c$ since $s_n$ goes up or down with jumps of size $1$ and $c$ is a nonnegative integer). In particular, write
-\[ \{  \max_{1\leq j\leq n} s_j \geq c \} =\bigcup_{j=1}^n \underbrace{\{s_1<c, \, \ldots,\, s_{j-1}<c,\, s_j= c \}}_{=:F_j} \]
-Now
-\begin{align*}
-\{ &\max_{1\leq j\leq n} s_j \geq c\}\cap\{s_n < c\}\\
-&= \bigcup_{j=1}^n F_j\cap  \{s_n < c\}\\
-&= \bigcup_{j=1}^n \underbrace{F_j\cap  \{s_n - s_j<0\},}_\text{disjoint since the $F_j$'s are}\text{ since $\omega\in F_j$ implies $s_j(\omega)=c$}.
-\end{align*}
-Now notice two things. First $P(s_n - s_j<0)=P(s_n - s_j>0) $ by symmetry. Secondly, since $\{s_n - s_j<0 \}\in \sigma\langle z_{j+1},\ldots, z_n\rangle$ and $F_j\in \sigma\langle z_1,\ldots, z_j\rangle$, the event $\{s_n - s_j<0 \}$ is independent of $F_j$ (by ANOVA).
-Therefore
-\begin{align*}
-P\bigl( &\max_{1\leq j\leq n} s_j \geq c,\, s_n < c \bigr)\\
-&= \sum_{j=1}^n P\bigl( F_j\cap  \{s_n - s_j<0\} \bigr)\\
-& = \sum_{j=1}^n P\bigl( F_j\bigr)P\bigl( s_n - s_j<0 \bigr)\text{ by independence}\\
-& = \sum_{j=1}^n P\bigl( F_j\bigr)P\bigl( s_n - s_j>0 \bigr)\text{ by symmetry}\\
-& = \sum_{j=1}^n P\bigl( F_j \cap \{s_n - s_j>0\} \bigr)\text{ by independence again}\\
-& = \sum_{j=1}^n P\bigl( F_j \cap \{s_n > c\} \bigr)\text{ since $\omega\in F_j$ implies $s_j(\omega)=c$}\\
-&= P\bigl( \max_{1\leq j\leq n} s_j \geq c,\, s_n > c \bigr)\\
-&\leq  P\bigl( s_n > c \bigr) \\
-&\leq  P\bigl( s_n \geq c \bigr).
-\end{align*}
-Therefore $P\bigl( \max_{1\leq j\leq n} s_j \geq c \bigr)\leq 2 P\bigl( s_n \geq c \bigr)$.
-\end{proof}
-
-
-
-\begin{theorem}[{\bf Law of the iterated logarithm for coin flips}]$\phantom{asdf}$
-\label{thm: Law of the iterated logarithm}
-\begin{enumerate}
-\item\label{LIIL} $P\Bigl[  \displaystyle\limsup_{n\rightarrow\infty} \frac{s_n}{\sqrt{2n\log\log n}} =1 \Bigr]=1$;
-\item $P\Bigl[  \displaystyle\liminf_{n\rightarrow\infty}  \frac{s_n}{\sqrt{2n\log\log n}} =-1 \Bigr]=1$.
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-To make the formulas more readable let $\ell_n:=\sqrt{2n\log\log n}$.
-Notice first that
- \begin{align*}
- &\{ \limsup_n \frac{s_n}{\ell_n}=1  \}\\
- &\qquad=\bigcap_{\epsilon\in (0,1)\cap \Bbb Q} \{ {s_n/\ell_n}> (1-\epsilon) \io_n \}\cap \{ {s_n/\ell_n}< (1+\epsilon) \aall_n \}.
- \end{align*}
-  This implies that  $\{\limsup_n (s_n/\ell_n)=1  \}$  and $ \{\liminf_n (s_n/\ell_n)=-1  \}$ are Borel measurable.
-Secondly notice that  by  symmetry we have
-\begin{align*}
-P\bigl[  \displaystyle\limsup_{n\rightarrow\infty} & (s_n/\ell_n) =1 \bigr] \\
-& = P\bigl[  \displaystyle\liminf_{n\rightarrow\infty} (-s_n/\ell_n)  = -1 \bigr] \\
-& = P\bigl[  \displaystyle\liminf_{n\rightarrow\infty} (s_n/\ell_n)  = -1 \bigr].
-\end{align*}
-We can also simply our proof by using countable sub-additivity
-\begin{align*}
-P\bigl[ \bigl\{ \displaystyle\limsup_{n\rightarrow\infty}& (s_n/\ell_n) =1\bigr\}^c \bigr]  \\
-& \leq \sum_{\epsilon\in (0,1)\cap \Bbb Q} P[\{ {s_n/\ell_n}\leq (1-\epsilon) \aall_n \}] \\
-&\qquad + \sum_{\epsilon\in (0,1)\cap \Bbb Q} P[\{ {s_n/\ell_n}\geq (1+\epsilon) \io_n \}].
-\end{align*}
-Therefore the proof will follow by establishing Lemmas \ref{LIIL: io lemma 1}
- and \ref{LIIL: io lemma 2} which state that for all $\epsilon>0$
- \begin{align*}
-P[ s_n/\ell_n \geq  (1+\epsilon) \io_n ] &= 0 \\
-P[ s_n/\ell_n > (1-\epsilon) \io_n ] &= 1
-\end{align*}
-
-\end{proof}
-
-
- Theorem \ref{thm: Law of the iterated logarithm} is interesting for a number of reasons. First, it gives a very detailed analysis of the Central Limit Theorem. Second, it shows the power of the Borel-Cantelli lemmas. Third, it is one of those theorems in probability which is extremely hard to see in simulations: $\sqrt{2n\log\log n}$ grows to slow for modern computers to probe. The following simulation is an attempt at illustrating  Theorem \ref{thm: LII} but we still don't see the required fluctuation from $+1$ to $-1$.
-\begin{figure}[h]
-\includegraphics[height = 2.7in]{Measure/LIL.eps}
-\end{figure}
-
-
-\begin{lemma}
-\label{LIIL: io lemma 1}
-For all $\epsilon > 0 $
-\begin{align*}
-P[ s_n/\ell_n \geq  (1+\epsilon) \io_n ] = 0
-\end{align*}
-\end{lemma}
-\begin{proof}
-The obvious strategy is to use the first Borel-Cantelli lemma. In particular, it would be nice if we could show
-\[
-\sum_{n=1}^\infty P [ s_n/\ell_n \geq  (1+\epsilon)]<\infty
-\]
-which would give us the lemma. By the first half of the large deviation result we know $P [ s_n/\ell_n \geq  (1+\epsilon)]$ converge to zero as $n\rightarrow \infty$. Unfortunately, they do not converge fast enough for the first Borel-Cantelli. Taking a sub-sequence will get something summable but we would need to show that the events are well behaved between the sub-sequence. Fortunatly we can do this since the sets $\{s_n/\ell_n \geq  (1+\epsilon)\}$ overlap a lot. The strategy is to group the events $\{s_n/\ell_n \geq  (1+\epsilon)\}$ by unioning them into blocks, then apply Borel-Cantelli on the blocks. This will be sufficient since  the blocks occur infinity often if and only if the events $s_n/\ell_n \geq  (1+\epsilon)$ occur infinity often.  Controlling the probability of the blocks is done with the maximal inequality.
-
-Let the $k^\text{th}$ block be defined
-\[
-B_k:= \bigcup_{j=n_{k-1}}^{n_k} \{ s_{j}/\ell_{j} \geq  (1+\epsilon) \}
-\]
-  where $n_k$ is  a (yet to be determined) subsequence. We  use maximal inequality  to bound $P[B_k]$ as follows
-\begin{align*}
-P[B_k]  &\leq P[\max_{n_{k-1}\leq j\leq n_k} s_j \geq (1+\epsilon)\min_{n_{k-1}\leq j\leq n_k} \ell_{j}] \\
- &\leq P[\max_{n_{k-1}\leq j\leq n_k} s_j \geq (1+\epsilon) \ell_{n_{k-1}}] \\
- &\leq P[\max_{j\leq n_k} s_j \geq (1+\epsilon) \ell_{n_{k-1}}] \\
- &\leq P[\max_{j\leq n_k} s_j \geq \lceil(1+\epsilon) \ell_{n_{k-1}}\rceil],\quad\text{since $s_j\in\Bbb Z$} \\
- &\leq 2P[ s_{n_k} \geq \lceil(1+\epsilon) \ell_{n_{k-1}}\rceil],\quad\text{maximal ineq} \\
- &\leq 2P[ s_{n_k} \geq (1+\epsilon) \ell_{n_{k-1}}] \\
- &\leq \exp\bigl( - \textstyle\frac{1}{2}(1+\epsilon)^2 \ell^2_{n_{k-1}}/n_{k} \bigr),\quad\text{half of large deviation}\\
- &\leq \exp\bigl( - (1+\epsilon)^2 n_{k-1}\log\log n_{k-1}/n_{k} \bigr)\\
- & = \left(\frac{1}{\log n_{k-1}} \right)^{ (1+\epsilon)^2\frac{n_{k-1}}{n_{k}} }.
-\end{align*}
-Now we just find $n_k$ which makes the last term summable over $k$. If $n_k\approx \theta^k$ one gets
-\begin{align*}
-\left(\frac{1}{\log n_{k-1}} \right)^{ (1+\epsilon)^2\frac{n_{k-1}}{n_{k}} }
-& \approx  \left(\frac{1}{(k-1)\log\theta} \right)^{ (1+\epsilon)^2\frac{1}{\theta} }
-\end{align*}
-which is summable if $(1+\epsilon)^2\frac{1}{\theta} >1$. We also need that   $\theta > 1$  since we need $n_k\rightarrow \infty$ as $k\rightarrow \infty$. Luckily there does exist such a $\theta$ for which $(1+\epsilon)^2> \theta > 1$.
-\end{proof}
-
-\begin{lemma}
-\label{LIIL: io lemma 2}
-For all $\epsilon >0 $
-\begin{align*}
-P[ s_n/\ell_n > (1-\epsilon) \io_n ] = 1
-\end{align*}
-\end{lemma}
-\begin{proof}
-In the previous lemma we presented a technique to adjust the first Borel-Cantelli lemma in the case the summability condition doesn't hold. For this  lemma we want to use the second Borel-Cantelli lemma but, again, it doesn't directly apply since the condition that the events $s_n/\ell_n > (1-\epsilon)$ are independent does not hold. Here is a generic technique to get around this obstacle. Find subsequence $n_k$ and subsets
-\[
-I_k \subset   \{s_{n_k}/\ell_{n_k} > (1-\epsilon)\}
-\]
-such that $I_k$'s  are independent and $\sum_k P[I_k]=\infty$ so that $P[I_k \io_k]=1$ (which would then give the lemma). Unfortunately, even this doesn't work. What ends up working is to find two sets $A_k$ $I_k$ such that
-\begin{align}
-&A_k\cap I_k \subset \{s_{n_k}/\ell_{n_k} > (1-\epsilon)\}  \label{ABns in wwt}\\
-&\text{$I_k$ are independent and $\textstyle\sum_k P[I_k]=\infty$} \label{Bns ind}\\
-&\text{$A_k$ are not independent but $P[A_k \aall_k] = 1$.}\label{Ans Borel}
-\end{align}
-To see why this is sufficient notice that (\ref{Bns ind}) implies $P[I_k \io_k] = 1$ by the second Borel-Cantelli lemma. Then
-\begin{align*}
-&\text{ $P[A_k \aall_k] = 1$ and $P[I_k \io_k]=1$ } \\
-&\qquad\Longrightarrow P[A_k \cap I_k \io_k] = 1 \\
-&\qquad\overset{(\ref{ABns in wwt})}\Longrightarrow  P[s_{n_k}/\ell_{n_k} > (1-\epsilon) \io_k] = 1
-\end{align*}
-Therefore (\ref{ABns in wwt}), (\ref{Bns ind}) and (\ref{Ans Borel}) are sufficient to establish the lemma.
-
-Figuring out how to define $I_k$ and $A_k$ are the tricky parts. The intuition is that if your going to get independent events you need to look at increments of $s_{n}$. Define
-\begin{align*}
-I_k &:= \{s_{n_k}-s_{n_{k-1}} \geq (1-\epsilon/2)\ell_{n_k}  \} \\
-A_k &:= \{ s_{n_{k-1}} > -(\epsilon/2)\ell_{n_k}  \}.
-\end{align*}
-Clearly  $I_k \cap A_k \subset \{s_{n_k}/\ell_{n_k} > (1-\epsilon)\}$ so that (\ref{ABns in wwt}) holds. Moreover, the $I_k$'s  are independent.
-To show (\ref{Ans Borel})
-\begin{align*}
-P[A_k \aall_k] &= P\Bigl[s_{n_{k-1}} > -(\epsilon/2)\ell_{n_k} \aall_k\Bigr] \\
- &= P\Bigl[s_{n_{k-1}} < (\epsilon/2)\ell_{n_k} \aall_k\Bigr],\quad\text{by symmetry} \\
-&= P\Bigl[\frac{s_{n_{k-1}}}{\ell_{n_{k-1}}} < (\epsilon/2)\frac{ \ell_{n_k} }{ \ell_{n_{k-1}} } \aall_k\Bigr] \\
-&= 1- P\Bigl[\frac{s_{n_{k-1}}}{\ell_{n_{k-1}}} \geq (\epsilon/2)\frac{ \ell_{n_k} }{ \ell_{n_{k-1}} } \io_k\Bigr] \\
-&= 1,\,\text{by Lemma \ref{LIIL: io lemma 1} if \textcolor{blue}{$\frac{\ell_{n_k}}{\ell_{n_{k-1}}}\rightarrow \infty$.}}
-\end{align*}
-To show (\ref{Bns ind}) notice
-\begin{align}
-P[I_k] &= P\Bigl[ s_{n_k}-s_{n_{k-1}}\geq(1-\epsilon/2)\ell_{n_k}\Bigr] \nonumber\\
-&= P\Bigl[s_{n_k-n_{k-1}}\geq(1-\epsilon/2)\ell_{n_k}\Bigr] \nonumber\\
-&\geq P\Bigl[\frac{s_{n_k-n_{k-1}}}{\sqrt{n_k - n_{k-1}}}  \geq \frac{(1-\epsilon/2)\ell_{n_k}}{\sqrt{n_k - n_{k-1}}} \Bigr] \nonumber\\
-&\geq \exp\Bigl(-\frac{1}{2}\Bigl[\frac{(1-\epsilon/2)\ell_{n_k}}{\sqrt{n_k - n_{k-1}}}\Bigr]^2(1+o(1))  \Bigr),\label{make this diverge}\\
-&\qquad\qquad\text{\textcolor{blue}{by Lemma \ref{LIL: usefull lemma 2} if:}}\nonumber\\
-&\qquad\qquad\quad\text{ \textcolor{blue}{$\textstyle\frac{\ell_{n_k}}{\sqrt{n_k - n_{k-1}}}\rightarrow \infty$ and  }}\nonumber\\
-&\qquad\qquad\quad\text{ \textcolor{blue}{$\textstyle\frac{1}{\sqrt{n_k - n_{k-1}}}\frac{\ell_{n_k}}{\sqrt{n_k - n_{k-1}}}\rightarrow 0$ and }}\nonumber\\
-&\qquad\qquad\quad\text{ \textcolor{blue}{$n_k - n_{k-1}\rightarrow \infty$. }}\nonumber
-\end{align}
-To finish the proof of (\ref{Ans Borel}) and (\ref{Bns ind}) we need to find $n_k\rightarrow \infty$ such that $\ell_{n_k}$ satisfies the above conditions and the \textcolor{blue}{sum of (\ref{make this diverge}) diverges}.
-
-A subsequence of the form $n_k := \lfloor\exp(k^\theta)\rfloor$ will work. To check the conditions notice
-
-\begin{align*}
-\frac{\ell_{n_k}}{\ell_{n_{k-1}}}
-& \sim \frac{ \sqrt{2 \exp(k^\theta) \log k^\theta} }{\sqrt{2 \exp((k-1)^\theta) \log (k-1)^\theta}} \\
-& =  \exp\Bigl(\frac{k^\theta - (k-1)^\theta}{2}\Bigr) \frac{\log k}{\log (k-1)}  \\
-& =  \exp\Bigl(\frac{\theta(k^*)^{\theta-1}}{2}\Bigr) (1 + o(1)),\quad\text{where $k-1\leq k^*\leq k$} \\
-& \longrightarrow  \infty, \quad\text{\textcolor{red}{if  $\theta > 1$}.}
-\end{align*}
-Also
-\begin{align*}
-n_k - n_{k-1} & \sim  \exp(k^\theta) - \exp((k-1)^\theta) \\
-&= \theta (k^*)^{(\theta-1)} \exp((k^*)^\theta) ,\quad\text{where $k-1\leq k^*\leq k$} \\
-&\longrightarrow \infty,\quad\text{\textcolor{red}{if $\theta > 0 $.}}
-\end{align*}
-And therefore
-\begin{align*}
-\frac{\ell_{n_k}}{\sqrt{n_k - n_{k-1}}}
-& \sim \frac{\sqrt{2 \exp(k^\theta) \log k^\theta}}{\sqrt{ \exp(k^\theta) - \exp((k-1)^\theta) }}   \\
-&  = \frac{\sqrt{2\theta\log k}}{\sqrt{ 1 - \exp((k-1)^\theta-k^\theta)  }}  \\
-& = \frac{\sqrt{2\theta\log k}}{\sqrt{ 1 - o(1)  }}\\
-& \longrightarrow \infty.
-\end{align*}
-Clearly we now have that  $\frac{\ell_{n_k}}{{n_k - n_{k-1}}}  \longrightarrow 0.$
-Finally we need to show that the sum of (\ref{make this diverge}) over $k$ diverges.  The individual terms are
-\begin{align*}
-\exp\Bigl(-\frac{1}{2}\Bigl[&\frac{(1-\epsilon/2)\ell_{n_k}}{\sqrt{n_k - n_{k-1}}}\Bigr]^2(1+o(1))  \Bigr) \\
-& \sim \exp\Bigl(-\frac{(1-\epsilon/2)^2}{2}2\theta \log k   \Bigr) \\
-& = \exp\Bigl(-{(1-\epsilon/2)^2}\theta \log k   \Bigr) \\
-& = k ^ {-{(1-\epsilon/2)^2}\theta}
-\end{align*}
-the sum of the above terms over $k$ diverges if $(1-\epsilon/2)^\theta  < 1$, i.e. \textcolor{red}{ if $\theta < \frac{1}{(1-\epsilon)^2}$}. Now putting all the  conditions on $\theta$ together says that we simply need to choose $\theta$ such that
-\[ 1<\theta <\frac{1}{(1-\epsilon/2)^2} .\]
-\end{proof}
-
-
-
-\clearpage
-%-------------------------------'
-%---------section  ---------------'
-%-------------------------------'
-\section{Measures}
-%-------------------------------'
-%---------section  ---------------'
-%-------------------------------'
-
-\subsection{Basic theory}
-
-
-
-
-
-\begin{definition}[{\bf Measure}]
-If $\mathcal F_0$ is a field of $\Omega$-sets, then $\mu:\mathcal F_0\rightarrow [0,\infty]$ is a {measure} if
-\begin{enumerate}
-\item $\mu(\varnothing)=0$
-\item $\mu\bigl( \bigcup_{k=1}^\infty A_k \bigr)=\sum_{k=1}^\infty \mu(A_k)$ \\ for all disjoint $A_1, A_2,\ldots \in\mathcal F_0$ such that $\bigcup_{k=1}^\infty A_k \in \mathcal F_0$.
-\end{enumerate}
-\end{definition}
-
-
-\begin{definition}[{\bf Measurable space}]
-If $\mathcal F$ is a $\sigma$-field on $\Omega$ then the pair $(\Omega, \mathcal F)$  is called a {measurable space}.
-\end{definition}
-
-
-\begin{definition}[{\bf Measure space}]
-If $\mu$ is a measure on the measurable space $(\Omega, \mathcal F)$ then the triple $(\Omega, \mathcal F, \mu)$ is called a {measure space}.
-%If, in addition, $\mu$ is a probability measure then the triple $(\Omega, \mathcal F, \mu)$ is called a {probability space}.
-\end{definition}
-
-
-
-\begin{definition}[{\bf Finite and $\sigma$-finite}]
-Let $(\Omega, \mathcal F,\mu)$ be a measure space.
-\begin{itemize}
-\item If $\mu(\Omega)<\infty$ then $\mu$ is said to be a {finite} measure;
-\item If $\mu(\Omega)=\infty$ then $\mu$ is said to be an {infinite} measure;
-\item If there exists $\mathcal F$-sets $A_1,A_2,\ldots$ such that $\Omega = \cup_{k=1}^\infty A_k$ and $\mu(A_k)<\infty$ then $\mu$ is said to be a {$\sigma$-finite} measure;
-\item If $\mathscr A\subset \mathcal F$ such that there exists $\mathscr A$-sets $A_1,A_2,\ldots$ such that $\Omega = \cup_{k=1}^\infty A_k$ and $\mu(A_k)<\infty$ then $\mu$ is said to be {$\sigma$-finite on $\mathscr A$}.
-\end{itemize}
-\end{definition}
-
-\begin{theorem}[{\bf Basic measure facts}]
-Let $(\Omega, \mathcal F, \mu)$ be a measure space. Then
-\begin{enumerate}
-\item If $A_1, A_2,\ldots, A_n$ are disjoint $\mathcal F$-sets then \\$\mu\bigl(\sum_{k=1}^n A_k\bigr) = \sum_{k=1}^n \mu(A_k)$.
-\item If $A\subset B$ are $\mathcal F$-sets then \\$\mu(A)\leq \mu(B)$.
-\item If $A\subset B$ are $\mathcal F$-sets and {$\mu(A)<\infty$} then \\$\mu(B-A)=\mu(B)-\mu(A)$.
-\item If $A_1, A_2,\ldots $ are $\mathcal F$-sets then \\$\mu\bigl(\sum_{k=1}^\infty A_k\bigr) \leq \sum_{k=1}^\infty \mu(A_k)$.
-\item If  $A_1, A_2,\ldots $ are $\mathcal F$-sets such that $A_n\uparrow A$ then \\$\mu(A_n)\uparrow \mu(A)$.
-\item If  $A_1, A_2,\ldots $ are $\mathcal F$-sets such that $A_n\downarrow A$ and {$\mu(A_k)<\infty$} for some $k$ then $\mu(A_n)\downarrow \mu(A)$.
-\end{enumerate}
-\end{theorem}
-
-
-%%%%%%%%%%%%%%%%%
-\begin{theorem}[{\bf Uniqueness for measures}]
-\label{uui}
-If $\mu_1$ and $\mu_2$ are measures on $(\Omega, \sigma\langle \mathcal P\rangle)$ such that
-\begin{enumerate}
-\item $\mu_1$ and $\mu_2$ agree on $\mathcal P$;
-\item $\mathcal P$ is a $\pi$-system;
-\item $\mu_1$ and $\mu_2$ are $\sigma$-finite on $\mathcal P$,
-\end{enumerate}
-then $\mu_1$ and $\mu_2$ agree on all of $ \sigma\langle \mathcal P\rangle$.
-\end{theorem}
-
-
-
-
-\begin{definition}[{\bf $\mu$-null and $\mu$-neg}]
-%$\phantom{asdf}$
-Let $(\Omega,\mathcal F, \mu)$ be a measure space. Then
-%then
-\begin{itemize}
-\item
-A set $A\in \mathcal F$ is said to be {$\mu$-null}  if $\mu(A)=0$.
-\item
-A set $A\in 2^\Omega$ is said to be {$\mu$-negligible} if there exists a $\mu$-null set  $B\in \mathcal F$ such that $A\subset B$.
-\end{itemize}
-\end{definition}
-
-
-
-\begin{definition}[{\bf Complete}]
-A measure space $(\Omega^\prime, \mathcal F^\prime, \mu^\prime)$ is said to be complete if all the $\mu^\prime$-negligible sets belong to $\mathcal F^\prime$.
-\end{definition}
-
-\begin{theorem}[{\bf The completion $(\Omega, \bar {\mathcal F},\bar \mu)$}]
-Let $(\Omega,\mathcal F, \mu)$ be a measure space and let $\mathcal N_\mu$ be the collection of $\mu$-negligible sets.
-%Let $\bar {\mathcal F}:=\sigma\langle \mathcal F, \mathcal N_\mu\rangle$ and $\bar \mu$
-Then
-\begin{itemize}
-\item $\bar {\mathcal F}:= \sigma\langle \mathcal F, \mathcal N_\mu\rangle = \{F\cup N: F\in \mathcal F, N\in \mathcal N_\mu  \}$;
-\item The set function $\bar \mu$ on $\bar{\mathcal F}$ defined by $\bar\mu(F\cup N)= \mu(F)$ for $F\in\mathcal F$ and $N\in \mathcal N_\mu$ is the unique extension of $\mu$ to a measure on $(\Omega, \bar{\mathcal F})$;
-\item The measure space $(\Omega, \bar{\mathcal F}, \bar \mu)$ is complete.
-\end{itemize}
-The triple $(\Omega, \bar{\mathcal F}, \bar \mu)$ is called the {completion} of  $(\Omega, \mathcal F, \mu)$.
-\end{theorem}
-
-
-
-
-
-
-
-
-
-%%%%%%%%
-\begin{exercise}
-\label{l1}
-Suppose  $\mathcal F_0$ is a field, $\mu$ is a measure on $\sigma\langle \mathcal F_0\rangle$ and $\mu$ is $\sigma$-finite on $\mathcal F_0$.
-\begin{enumerate}
-\item
-Suppose $B\in \sigma\langle\mathcal F_0\rangle$ and $\epsilon>0$. Show that there exists a disjoint sequence of $\mathcal F_0$-sets $A_1, A_2,\ldots$ such that $B\subset \cup_{n=1}^\infty A_n$ and $ \mu\bigl( \cup_{n=1}^\infty A_n -
- B\bigr)\leq \epsilon$.
- \item Suppose $B\in \sigma\langle\mathcal F_0\rangle$, $\mu(B)<\infty$ and $\epsilon>0$. Show there exists an $\mathcal F_0$-set $A$ such that $\mu(A \,\triangle\, B)\leq \epsilon$.
-\item Show by example that the conclusion to 2 may fail if $B$ has infinite measure.
- \end{enumerate}
-\end{exercise}
-
-
-\begin{exerciseproof}
-
-\textbullet({\sl Show 1:})
-Since $\mu$ is $\sigma$-finite on $\mathcal F_0$ and $\mathcal F_0$ is a field, one can find disjoint $\mathcal F_0$-sets $F_1, F_2,\ldots$ such that $\Omega = \cup_{n=1}^\infty F_n$ and $\mu(F_n)<\infty$. We start by supposing $\mu(F_n)>0$ for all $n$ and show at the end of the proof to remove this assumption.
-
-
-Fix $B\in \mathcal F$.
-Define  $ \mu_n(\cdot):= \frac{\mu(\cdot\cap F_n)}{\mu(F_n)} $ on $\mathcal F$. Notice that $\mu_n$ is a probability measure on $\mathcal F$ so that
-\[ \mu_n(B)=\inf\{ \mu_n(D): B\subset D \in \mathcal F^{\uparrow}\}\leq 1. \]
-Therefore one can find a $D_n\in \mathcal F^{\uparrow}$, covering $B$, such that
-$B\subset D_n$ and
-\begin{align}
-\label{aaa}
-\underbrace{\mu_n(D_n)-\mu_n(B)}_{=\mu_n(D_n - B)} &\leq \frac{\epsilon}{2^n \mu(F_n)}.
-\end{align}
- Now define  $D :=\bigcup_{n=1}^\infty D_n\cap F_n$
-and notice that
-\begin{align*}
- B\subset D_n, \,\forall n&\Rightarrow (B\cap F_n) \subset (D_n\cap F_n), \,\forall n \\
- &\Rightarrow \bigcup_{n=1}^\infty  (B\cap  F_n) \subset  \bigcup_{n=1}^\infty (D_n\cap F_n) \\
- &\Rightarrow B\subset D.
- \end{align*}
-Notice also that each  $D_n\in\mathcal F^\uparrow$ can be written as a disjoint union of $\mathcal F_0$-sets (exercise). Let $D_n = \cup_{m=1}^\infty A_{n,m}$ be such a decomposition (i.e. the $A_{n,m}$'s are  disjoint across $m$ and $A_{n,m}\in\mathcal F_0$). Then
-\[D =  \bigcup_{(n,m)\in \Bbb N^+\times \Bbb N^+}  A_{n,m}\cap F_n\]
-where the sets $A_{n,m}\cap F_n$ are disjoint (the $F_n$'s are disjoint for different $n$'s and  the $A_{n,m}$'s are disjoint for different $m$'s) and are $\mathcal F_0$-sets. Now
-\begin{align}
-\mu(D - B) &= \mu(\bigcup_{n=1}^\infty D_n\cap F_n \cap B^c)\nonumber\\
- &= \sum_{n=1}^\infty \mu(D_n\cap F_n \cap B^c)\nonumber\\
- &=  \sum_{n=1}^\infty \mu(F_n)\mu_n(D_n \cap B^c)\nonumber\\
-  &=  \sum_{n=1}^\infty \mu(F_n)\underbrace{\mu_n(D_n - B)}_{\leq \epsilon/(2^n\mu(F_n))}\nonumber\\
- &\leq \epsilon.\label{if}
-\end{align}
-Therefore the class $\{ A_{n,m}\cap F_n\}_{(n,m)\in \Bbb N^+\times \Bbb N^+ }$ gives a countable, disjoint $\mathcal F_0$-set covering of $B$ such that $\mu(\bigcup_{(n,m)\in \Bbb N^+\times \Bbb N^+}  A_{n,m}\cap F_n - B )\leq \epsilon$.
-
-It's easy to extend to the case when some of the $\mu(F_n)=0$ by defining $\mu_n (\cdot):=0$ and $D_n:=F_n$ for these $n$. Then (\ref{if}) still follows.
-
-\textbullet({\sl Show 2:})
-Since $\mu(B)<\infty$ we have that
-\begin{equation}
- \mu(D)-\mu(B)=\mu(D-B)\leq \epsilon.
-\end{equation}
-Therefore $\mu(D)<\infty$
-Moreover $D=\setlimup{n}D_n$, where $D_n\in \mathcal F_0$ are the $n$ partial unions in the defintion of $D$.
-Therefore $\mu(D_n)\uparrow \mu(D)<\infty$ and hence we can fine a
- a $D_n$ such that $D_n\subset D$ and
-\begin{equation}
-\mu(D) - \mu(D_n)=\mu(D - D_n)\leq \epsilon
-\end{equation}
-Now
-\begin{align*}
-\mu(B\,\triangle\, D_n)
-&\leq \mu(B\cap D_n^c) + \mu(B^c \cap D_n)\\
-&\leq \mu(D \cap D_n^c) + \mu(B^c \cap D)\\
-&= \mu(D - D_n) + \mu(D - A)\\
-&\leq 2\epsilon.
-\end{align*}
-\end{exerciseproof}
-
-
-
-
-
-
-\begin{exercise}
-Suppose that $\mu_1$ and $\mu_2$ are measures on  $\sigma\langle \mathcal F_0\rangle$ generated by a class $\mathcal F_0$. Suppose also that the inequality
-\begin{equation}
-\label{fourteen}
-\mu_1(A)\leq \mu_2(A)
-\end{equation}
-holds for all $A$ in $\mathcal F_0$. (a) Show that if $\mathcal F_0$ is a field and $\mu_1$ and $\mu_2$ are $\sigma$-finite on $\mathcal F_0$, then (\ref{fourteen}) holds for all $A\in\sigma\langle \mathcal F_0\rangle$. (b) Show by examples that (\ref{fourteen}) can fail for some $A\in\sigma\langle \mathcal F_0\rangle$ if: $\mathcal F_0$ is a field but $\mu_1$ and $\mu_2$ are only $\sigma$-finite  overall, not $\sigma$-finite on $\mathcal F_0$; or if $\mu_1$ and $\mu_2$ are $\sigma$-finite on $\mathcal F_0$, but $\mathcal F_0$ is only a $\pi$-system. Hint: for (a) first treat the case where $\mu_2$ is finite.
-\end{exercise}
-
-
-
-%-------------------------------'
-%---------section  ---------------'
-%-------------------------------'
-\subsection{Lebesque Measure}
-%-------------------------------'
-%---------section  ---------------'
-%-------------------------------'
 
 
 
@@ -2451,26 +1916,6 @@ Then $\{A+xt: t\in\Bbb R\}$ is an uncountable class of disjoint subsets of $\mat
 
 
 
-%%%%%%%%%%%%%%
-\begin{theorem}[{\bf Regularity}]
-\label{oir}
-Let $\mu$ be any measure on $(\Bbb R^d,\mathcal B^{\Bbb R^d})$ which assigns finite measure to bounded sets in $\mathcal B^{\Bbb R^d}$.
-For any  $B\in\mathcal B^{\Bbb R^d}$ and $\epsilon>0$ there exists a closed set $C$ and an open set $O$ such that $C\subset B\subset O$ and
-\[\mathcal \mu(O-C)<\epsilon.\]
-\end{theorem}
-
-%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{corollary}
-\label{ir}
-Let $\mu$ be any measure on $(\Bbb R^d,\mathcal B^{\Bbb R^d})$ which assigns finite measure to bounded sets in $\mathcal B^{\Bbb R^d}$. Then
-\begin{align*}
-\mathcal \mu(B)  &= \sup \{ \mathcal \mu(C):  C\subset B,\, \text{$C$ closed}\}\\
-  &=\, \inf \{ \mu(O):  B\subset O,\, \text{$O$ open}\}
-\end{align*}
-%If, in addition,  $\mathcal \mu(B)<\infty$ then
-%\[\mathcal \mu(B) = \sup \{ \mathcal \mu(K):  K\subset B,\, \text{$K$ compact}\} .\]
-\end{corollary}
-
 
 \begin{definition}[{\bf Borel versus Lebesque measurable sets}]
 Let $\bigl(\Omega,\overline{\mathcal B^{\Bbb R^d}},\overline{\mathcal L^d}\bigr)$ be the completion of $(\Omega, \mathcal B^{\Bbb R^d},\mathcal L^d)$. If $A\in \mathcal B^{\Bbb R^d}$ then $A$ is said to be {Borel measurable}. If $A\in \overline{\mathcal B^{\Bbb R^d}}$ then $A$ is said to be {Lebesque measurable}.
@@ -2483,614 +1928,3 @@ $\phantom{asdf}$
 \item It is impossible to put a measure on $2^\Bbb R$ which is translation invariant and which assigns normal length to finite intervals. Put another way---there is no Lebesque measure on all of $2^\Bbb R$. Or another way---it is impossible to consistently assign a length to all subsets of $\Bbb R$.
 \end{itemize}
 \end{theorem}
-
-
-
-
-
-\begin{exercise}
-Prove Theorem \ref{oir} for $d=1$
-\end{exercise}
-
-
-
-
-\begin{exercise}
-(a) Prove Corollary \ref{ir} for $d=1$.
-(b)
-Give an example of a $\sigma$-finite measure $\mu$ on $\mathcal B^{\Bbb R}$ and a Borel set $B$ such that
-\[ \mu(B-C)= \infty = \mu(O-B) \]
-for every closed subset $C$ of $B$ and every open superset $O$ of $B$.
-\end{exercise}
-
-
-\clearpage
-%-------------------------------'
-%---------section  ---------------'
-%-------------------------------'
-\section{Measurable functions}
-%-------------------------------'
-%---------section  ---------------'
-%-------------------------------'
-
-\subsection{Basic theory}
-
-\begin{definition}[{\bf Measurable functions}]
-If $(\Omega_1, \mathcal F_1)$ and $(\Omega_2,\mathcal F_2)$ are measurable spaces then $f\colon \Omega_1 \rightarrow \Omega_2$ is said to be {measurable between $\mathcal F_1$ and $\mathcal F_2$} (written $f\mcirc \mathcal F_1/\mathcal F_2$) if and only if
-\[ f^{-1}(A)\in \mathcal F_1,\quad\forall A\in\mathcal F_2\]
-where $ f^{-1}(A):=\{w\in\Omega_1: f(w)\in A \}$.
-\end{definition}
-
-
-\begin{theorem}[{\bf Basic facts about pull backs}]
-\label{thm pull back basic facts}
-Let $f\colon \Omega_1 \rightarrow \Omega_2$. Let $A, A_1, A_2, \ldots \subset \Omega_2$. Then
-\begin{itemize}
-\item $f^{-1}(\Omega_2) = \Omega_1$
-\item $f^{-1}(\varnothing) = \varnothing$
-\item $f^{-1}(\Omega_2 - A) = \Omega_1 - f^{-1}(A)$
-\item $f^{-1}(\cup_i A_i) =  \cup_i  f^{-1}(A_i)$
-\item $f^{-1}(\cap_i A_i) = \cap_i  f^{-1}(A_i)$.
-\end{itemize}
-\end{theorem}
-\begin{proof} These are very easy to check. For example  to see why $f^{-1}(\cup_i A_i) \subset  \cup_i  f^{-1}(A_i)$ notice that
-\begin{align*}
-\omega \in f^{-1}(\cup_i A_i)
-&\Longrightarrow f(\omega) \in \cup_i A_i \\
-&\Longrightarrow \text{$f(\omega) \in A_i$ for some $i$ }\\
-&\Longrightarrow \text{$\omega \in f^{-1}(A_i)$ for some $i$ }\\
-&\Longrightarrow \omega \in \cup_i f^{-1}(A_i).
-\end{align*}
-The other arguments are exactly similar.
-\end{proof}
-
-
-\begin{theorem}[{\bf Generators are enough}]
-\label{thm: GaE}
-Let $(\Omega_1, \mathcal F_1)$ and $(\Omega_2,\mathcal F_2)$ be  measurable spaces where $\mathcal F_2$ is generated by some class $\mathcal A\subset 2^{\Omega_2}$ (i.e. $\mathcal F_2=\sigma\langle \mathcal A\rangle$). If $f:\Omega_1\rightarrow \Omega_2$ then
-\[ f \mcirc \mathcal F_1/\mathcal F_2 \Longleftrightarrow f^{-1}(A)\in\mathcal F_1,\,\, \forall A\in\mathcal A.\]
-\end{theorem}
-
-
-
-\begin{corollary}[{\bf Monotone real maps are measurable}]
-Any monotone map $f\colon \Bbb R\rightarrow \Bbb R$ is measurable $\mathcal B^{\Bbb R}/\mathcal B^{\Bbb R}$.
-\end{corollary}
-
-\begin{corollary}[{\bf Continuous real maps are measurable}]
-Any continuous map $f\colon \Bbb R^d\rightarrow \Bbb R^k$ is measurable $\mathcal B^{\Bbb R^d}/\mathcal B^{\Bbb R^k}$.
-\end{corollary}
-
-
-
-
-\begin{theorem}[{\bf Composition of $\mcirc$ functions is $\mcirc$}]
-\label{thm: composition of measurable}
-Let $(\Omega_1,\mathcal F_1)$, $(\Omega_2,\mathcal F_2)$ and $(\Omega_3,\mathcal F_3)$ be measurable spaces. Suppose $f$ and $g$ are functions sending $\Omega_1\overset{f} \longmapsto \Omega_2 \overset{g}\longmapsto \Omega_3$. If $f\mcirc \mathcal F_1/\mathcal F_2$ and $g\mcirc  \mathcal F_2/\mathcal F_3$ then $g\circ f \mcirc\mathcal F_1/\mathcal F_3$.
-\end{theorem}
-
-
-\begin{corollary}[{\bf Just check that each coordinate is $\mcirc$}]
-\label{coordM}
-Let $(\Omega,\mathcal F)$ be a measurable space and $f:\Omega\rightarrow \Bbb R^d$. Let $f=(f_1,\ldots, f_d)$ decompose $f$ into the coordinate functions (so that $f_k:\Omega\rightarrow \Bbb R$). Then
-\[ f\mcirc \mathcal F/\mathcal B^{\Bbb R^d}\Longleftrightarrow  f_k\mcirc \mathcal F/\mathcal B^{\Bbb R}, \text{ for each $k$.} \]
-\end{corollary}
-
-
-
-\begin{theorem}[{\bf Scissors and paste}]
-Let $(\Omega_1, \mathcal F_1)$ and $(\Omega_2,\mathcal F_2)$ be measurable spaces and $f\colon \Omega_1 \rightarrow \Omega_2$.  In addition, suppose there exists $\mathcal F_1$-sets $A_1,A_2,\ldots$ such that $\Omega_1 = \cup_{k=1}^\infty A_k$. Then
-\[ f\mcirc \mathcal F_1/\mathcal F_2 \Longleftrightarrow  f\bigr|_{A_k} \mcirc (\mathcal F_1\!\cap\! A_k)/\mathcal F_2, \text{ for each $k$.} \]
-\end{theorem}
-
-\begin{corollary}[{\bf Piecewise-continuous real maps are measurable}]
-Any map $f\colon \Bbb R^d\rightarrow \Bbb R^k$ which is piecewise continuous on each piece of a  countable-measurable-partition of $\Bbb R^d$  is measurable $\mathcal B^{\Bbb R^d}/\mathcal B^{\Bbb R^k}$.
-\end{corollary}
-
-
-\begin{theorem}[{\bf Metric-continuous functions  are measurable}]
-Suppose $\Omega_1$ and $\Omega_2$ are metric spaces and $f$ is a function mapping $\Omega_1$ into $\Omega_2$.
-If there exists $\mathcal B^{\Omega_1}$ sets $A_1,A_2,\ldots$ such that $\Omega_1=\cup_{k=1}^\infty A_k$ and $f\bigr|_{A_k}$ is continuous (with respect to the induced metrics) on each $A_k$ then $f$ is measurable $\mathcal B^{\Omega_1}/\mathcal B^{\Omega_2}$.
-\end{theorem}
-
-
-\begin{theorem}[{\bf Just check Borel $\mcirc$ on the range}]
-Let $(\Omega_1, \mathcal F_1)$ be a measurable space and $\Omega_2$ be a metric space.
-Suppose $f$ is a function which maps $\Omega_1$ into $\Omega_{2}^o\subset \Omega_2$. Then
-\[ f\mcirc \mathcal F_1/\mathcal B^{\Omega_2^o} \Longleftrightarrow f\mcirc \mathcal F_1/\mathcal B^{\Omega_2}  \]
-where the metric used to define $\mathcal B^{\Omega_2^o}$ is the one induced by the metric on $\Omega_2$.
-\end{theorem}
-
-\begin{definition}[{\bf Nomenclature for the extended reals}]\label{nonmen}
-$\vphantom{asdf}$
-\begin{itemize}
-\item $\mathcal B$ is shorthand notation for $\mathcal B^{\bar{\Bbb R}}$.
-\item If $(\Omega, \mathcal F)$  is a measurable space and $f:\Omega \rightarrow \bar{\Bbb R}$ we use the nomenclature  `$\mcirc \mathcal F$' or just `measurable $\mathcal F$' as short hand for $\mcirc \mathcal F/\mathcal B$.
-\item We say that a function $f$ is `Borel measurable' or just `measurable' if $f:\Bbb R^d \rightarrow \bar{\Bbb R}$ and $f$ is $\mcirc {\mathcal B^{\Bbb R^d}}/\mathcal B$.
-\item We say that a function $f$ is `Lebesque measurable'  if $f:\Bbb R^d \rightarrow \bar{\Bbb R}$ and $f$ is $\mcirc \overline{\mathcal B^{\Bbb R^d}}/\mathcal B$.
-\end{itemize}
-\end{definition}
-
-\begin{definition}[{\bf Defining algebraic operations with $\infty$}]
-$\vphantom{asdf}$
-\begin{itemize}
-\item $\infty + c := \infty$  for any $-\infty< c\leq \infty$.
-\item $\infty\cdot 0 =0\cdot\infty:=0$.
-\item $\infty\cdot \infty := \infty$.
-\item $\frac{c}{\infty}:=0$ when $c\in \Bbb R$.
-\item $\frac{c}{0}$, $\frac{\pm\infty}{\pm\infty}$,  $\infty - \infty$ and $-\infty + \infty$ are not defined.
-\end{itemize}
-\end{definition}
-
-\begin{theorem}[{\bf Closure theorem for $\mcirc$ functions}]
-If $(\Omega, \mathcal F)$ is a measurable space then
-\begin{enumerate}
-\item If $f$ and $g$ are  $\mcirc \mathcal F$ functions then $cf$ (c is a constant), $f+g$, $fg$, $f/g$, $f\vee g$, $f\wedge g$, $f^+$, $f^-$ are each $\mcirc \mathcal F$, provided the composite function are defined at every $w\in\Omega$.
-\item If $f_1, f_2,\ldots $  $\mcirc \mathcal F$ functions then $\sup_n f_n$, $\inf_n f_n$, $\limsup_n f_n$, $\liminf_n f_n$ are each $\mcirc \mathcal F$.
-\end{enumerate}
-\end{theorem}
-
-
-
-\begin{definition}[{\bf Simple functions}]
-Let $(\Omega, \mathcal F)$ denote a measurable space. Then
-any function $f\colon \Omega \rightarrow \bar{\Bbb R}$ which is $\mcirc \mathcal F$ and has a finite range is called a {simple function}.
-\end{definition}
-
-
-\begin{definition}[{\bf Characterization of simple functions}]
-Let $(\Omega, \mathcal F)$ denote a measurable space and suppose  $f\colon \Omega \rightarrow \bar{\Bbb R}$. Then $f$ is a simple function if and only if there exists a finite partition of $\Omega$ into disjoint $\mathcal F$-sets $A_1,\ldots, A_n$
-and a finite list of extended real numbers $c_1,\ldots, c_n$
- such that $f=\sum_{k=1}^n c_k I_{A_k}$.
-\end{definition}
-
-
-
-
-
-\begin{definition}[{\bf $\mathscr N_s$ and $\mathscr N$}]
-Let $(\Omega, \mathcal F)$ denote a measurable space. Then
-\begin{itemize}
-\item $\mathscr N_s$ denotes the set of non-negative simple functions \mbox{$f:\Omega\rightarrow \bR$}.
-\item $\mathscr N$ denotes the set of non-negative functions $f:\Omega\rightarrow \bR$ which are  $\mcirc \mathcal F$.
-\end{itemize}
-\end{definition}
-
-
-
-\begin{theorem}[{\bf The structure theorem}]
-\label{thm: structure thm}
-Let $(\Omega, \mathcal F)$ be a measurable space and suppose $f\colon \Omega\rightarrow \bar{\Bbb R}$ is $\mcirc \mathcal F$. Then
-\begin{enumerate}
-\item There exists bounded simple functions $f_1, f_2,\ldots $ such that $\lim_n f_n(w)= f(w)$ for each $w\in \Omega$.
-\item If, in addition,  $f\in\mathscr N$  then there exists bounded $f_1, f_2, \ldots \in\mathscr N_s$ such that $ f_n(w)\uparrow f(w)$ for each $w\in \Omega$.
-\end{enumerate}
-\end{theorem}
-
-
-\begin{exercise} Show that Corollary \ref{coordM} holds for functions mapping into $\bar{\Bbb R}^d$.
-\end{exercise}
-
-
-\begin{exercise}
-Let $(\Omega, \mathcal F)$ be a measure space and let $f_0, f_1,\ldots$ be an infinite sequence of $\mathcal F$-measurable functions of $\Omega$. Show that the radius $R$ of convergence of the random power series $\sum_{k=0}^\infty f_k x^k$ is an $\mathcal F$-measurable function of $\Omega$.
-\end{exercise}
-
-
-\begin{exercise}
-Give an example of two measurable spaces $(\Omega_1, \mathcal F_1)$,  $(\Omega_2,\mathcal F_2)$, a $\mcirc \mathcal F_1/\mathcal F_2$ mapping $f:\Omega_1\rightarrow \Omega_2$,  and an event $B\in\mathcal F_1$ such that $f(B)\notin \mathcal F_2$.
-\end{exercise}
-
-
-%%%%%%%%%%%%%%%%%
-%
-%  random variable subsection
-%
-%%%%%%%%%%%%%%%%%%%%%
-\subsection{Application for random variables: definition and distribution functions }
-
-
-
-\begin{theorem}[{\bf Induced measures}]
-Let $(\Omega_1, \mathcal F_1)$ and $(\Omega_2,\mathcal F_2)$ be two measurable spaces. Suppose $f:\Omega_1\rightarrow \Omega_2$ is $\mcirc \mathcal F_1/\mathcal F_2$ and $\mu$ is a measure on $\Omega_1$. Then the set function defined by
-\[ \mu f^{-1}(B):=\mu(f^{-1}(B)),\quad\text{for all $B\in\mathcal F_2$}\]
- is a measure on $(\Omega_2,\mathcal F_2)$ and is called the {\bf induced measure} on $(\Omega_2,\mathcal F_2)$. Moreover,
- \begin{align*}
- &\bullet\text{$\mu$ is a probability measure} \Longrightarrow  \text{$\mu f^{-1}$ is a probability measure;}\\
- &\bullet\text{$\mu$ is a finite measure} \Longrightarrow  \text{$\mu f^{-1}$ is a finite measure;} \\
- &\bullet\text{$\mu$ is a $\sigma$-finite measure} \not\Longrightarrow  \text{$\mu f^{-1}$ is a $\sigma$-finite measure.}
- \end{align*}
-\end{theorem}
-
-
-Give example of where the induced measure is not $\sigma$-finite but the base measure is.
-
-
-
-\begin{definition}[{\bf Random variable}]
-Any function $X\colon \Omega \rightarrow \Bbb R$ which is measurable $\mathcal F/\mathcal B^{\Bbb R}$  is said to be a {\bf random variable}.
-\end{definition}
-
-Distribution function are useful for making random variables with the specified induced distribution.
-
-\begin{definition}[{\bf Distribution function on $\Bbb R$}]
-A function $F\colon\Bbb R\rightarrow\Bbb R$ if called a {\bf distribution function} if $F$ satisfies the following three requirements:
-\begin{itemize}
-\item $F$ is non-decreasing;
-\item $F$ is right continuous;
-\item $\lim_{x\rightarrow \infty} F(x)=1$ and $\lim_{x\rightarrow -\infty} F(x)=0$.
-\end{itemize}
-\end{definition}
-
-
-\begin{theorem}[{\bf Df's determine $PX^{-1}$}]
-If $F$ is a distribution function then there exists a random variable $X$ defined on some probability space $(\Omega, \mathcal F, P)$ such that
-\[ P(X\leq x) = F(x)\text{ for all $x\in\Bbb R$}. \]
-Moreover, the distribution of $X$ is uniquely determined by $F$.
-\end{theorem}
-
-
-\begin{theorem}[{\bf $F^{-1}(U)\sim X$}]
-Let $X$ be a random variable and define $F(x):=P(X\leq x)$. Let $U$ be a random variable uniformly distributed over $(0,1)$.  Then $F$ is a distribution function and $F^{-1}(U)\sim X$ (i.e. $F^{-1}(U)$ and $X$ have the same induced distribution on $\Bbb R$) where
-\begin{equation}
-\label{inverse CDF definition}
-F^{-1}(u):=\inf\{x\in\Bbb R\colon u\leq F(x)  \}.
-\end{equation}
-\end{theorem}
-
-
-\begin{theorem}[{\bf  $F(X)\sim U$}]
-Let $X$ be a random variable with distribution function $F(x)=P(X\leq x)$. Then
-\[ P(F(X)\leq u)\leq u\text{ for all $0<u<1$.} \]
-Moreover, $F$ is continuous if and only if $P(F(X)\leq u)= u$ for all $0<u<1$.
-\end{theorem}
-
-
-
-
-\clearpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%  section
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{$\sigma$-fields generated by functions}
-
-
-
-The results here will be used often in the later text. We will use them for generating a product measure, for Fubini's theorem and for conditional expected value.
-
-
-
-\subsection{Basic theory}
-
-
-\begin{definition}[{\bf The $\sigma$-field generated by functions}]
-\label{def: sig generated by funs}
-Let $\mathcal I$ be an arbitrary index set.
-Let $(\Omega_i, \mathcal F_i)$ be a collection of measurable spaces indexed by $i\in \mathcal I$.
-Let $f_i:\Omega \rightarrow \Omega_i$ be a  collection of functions indexed by $i\in \mathcal I$. Then the {\bf $\sigma$-field generated by $\{f_i: i\in\mathcal I\}$} is defined as
-\[ \sigma\langle  f_i, \mathcal F_i:i\in \mathcal I \rangle :=  \bigcap_{\shortstack{\text{\small $\mathcal F$ is a $\sigma$-field on $\Omega$}  \\
- \text{\small each $X_i$ is $\mcirc \mathcal F/\mathcal F_i$ }}}\mathcal F\]
- and corresponds to the smallest $\sigma$-field  on $\Omega$ which makes all the random variables $f_i$ measurable.
- \end{definition}
-
-
-When $\mathcal F_i$ are clear from context we may, and do, write
-\[
-\text{
-$\sigma\langle f_i\colon i\in\mathcal I \rangle$ as shorthand for $\sigma\langle f_i, \mathcal F_i\colon i\in\mathcal I \rangle$.
-}
-\]
-
-
-\begin{theorem}[{\bf Pull back for one map}]
-For a single function $f_1:\Omega \rightarrow \Omega_1$ where $(\Omega_1, \mathcal F_1)$ is a measurable space one has that $\sigma \langle f_1,\mathcal F_1\rangle = f^{-1}(\mathcal F_1):= \{f^{-1}(F)\colon F\in \mathcal F_1 \}$.
-\end{theorem}
-\begin{proof}
-We immediately have that $f^{-1}(\mathcal F_1)\subset \sigma \langle f_1,\mathcal F_1\rangle$ since by definition $f$ is  $\mcirc \sigma \langle f_1,\mathcal F_1\rangle/\mathcal F_1$.
-To show $\sigma \langle f_1,\mathcal F_1\rangle\subset f^{-1}(\mathcal F_1)$, all we need is to establish that $f^{-1}(\mathcal F_1)$ is a $\sigma$-field (since trivially $f$ is  $\mcirc f^{-1}(\mathcal F_1)/\mathcal F_1$). This is easily checked by the properties of pull-back sets given in Theorem \ref{thm pull back basic facts}.
-\end{proof}
-
-
-\begin{theorem}[{\bf Generators are enough}]
-If, in addition to the assumptions presented in Definition \ref{def: sig generated by funs}, one has that each $\mathcal F_i = \sigma\langle \mathcal A_i \rangle$, then
-\[\sigma\langle f_i, \mathcal F_i\colon i\in \mathcal I\rangle = \sigma \bigl\langle f_i^{-1}(A_i)\colon A_i\in \mathcal A_i, i\in \mathcal I \bigr\rangle. \]
-\end{theorem}
-\begin{proof}
-The only interesting direction is to show $\sigma\langle f_i, \mathcal F_i\colon i\in \mathcal I\rangle \subset \sigma \bigl\langle f_i^{-1}(A_i)\colon A_i\in \mathcal A_i, i\in \mathcal I \bigr\rangle$. By ``good sets'' we just need to show that each $f_i$ is $\mcirc \sigma \bigl\langle f_i^{-1}(A_i)\colon A_i\in \mathcal A_i, i\in \mathcal I \bigr\rangle / \sigma\langle\mathcal A_i\rangle$. This follows immediately from Theorem \ref{thm: GaE} (generators are enough).
-\end{proof}
-
-
-
-
-\begin{definition}[{\bf The product $\sigma$-field}]
-Let $\mathcal I$ be an arbitrary index set. Let $(\Omega_i, \mathcal F_i)$ be a collection of measurable spaces indexed by $i\in \mathcal I$. Define the product $\sigma$-field on $\prod_{i\in \mathcal I}\Omega_i$  to be
-\[
-\textstyle\bigotimes_{i\in\mathcal I} \mathcal F_i := \sigma\langle \pi_i,\mathcal F_i\colon i\in \mathcal I \rangle
-\]
-where $\pi_i\colon \Omega \rightarrow \Omega_i$ is defined as the $i^\text{th}$ coordinate mapping (e.g. $\pi_i(\omega_1, \omega_2,\ldots) = \omega_i$).
- \end{definition}
-
-
-\begin{theorem}[{\bf Clump $f_i$ into a vector map}]
-\label{thm: clump}
-Let $(\Omega, \mathcal F)$ be a measurable space.
-Let $(\Omega_i, \mathcal F_i)$ be a collection of measurable spaces indexed by an arbitrary index set $\mathcal I$ and let $f_i:\Omega\rightarrow \Omega_i$. Define $\vec f\colon \Omega \rightarrow \prod_{i\in \mathcal I} \Omega_i$ to be the map which sends $\omega \overset{\vec f}\mapsto (f_i(\omega))_{i\in\mathcal I}$. Then
-\[
-\text{$\vec f$ is $\mcirc \mathcal F / \textstyle\bigotimes_{i\in\mathcal I} \mathcal F_i$}
-\Longleftrightarrow
-\text{each $f_i \mcirc \mathcal F/\mathcal F_i$}.
-\] Moreover, $\sigma\langle f_i,\mathcal F_i\colon i\in\mathcal I \rangle = \vec f^{-1}\bigl(\bigotimes_{i\in\mathcal I} \mathcal F_i\bigr)$.
-\end{theorem}
-
-
-\begin{theorem}[{\bf Measurable with respect to $\sigma\langle f_i \rangle$}]
-\label{thm: f = g(vec f)}
-Using the same assumptions and notation as in Definition \ref{def: sig generated by funs},
-a function $f\colon\Omega\rightarrow \bar{\Bbb R}$ is measurable $\sigma\langle  f_i, \mathcal F_i:i\in \mathcal I \rangle$ if and only if there exists a function $g\colon \prod_{i\in \mathcal I} \Omega_i\rightarrow \bar{\Bbb R}$ which is measurable $\bigotimes_{i\in\mathcal I}\mathcal F_i$ and  $f= g((f_{i})_{i\in\mathcal I})$.
-\end{theorem}
-\begin{proof}
-($\Longleftarrow$) This follows directly from Theorem \ref{thm: clump} (clump theorem) and Theorem \ref{thm: composition of measurable} (composition of measurable is measurable).
-
-($\Longrightarrow$) This follow by an application of the $1-2-3$ argument. In particular, we show the result for simple function, then extend by taking point-wise limits. To start let $\vec f := (f_i)_{i\in \mathcal I}$ denote the clumped vector map. To summarize what is know from the assumptions and  \ref{thm: clump}
-\begin{itemize}
-\item $f\colon \Omega \rightarrow \bar{\Bbb R}$ is $\mcirc \sigma\langle f_i, \mathcal F_i\colon i\in\mathcal I \rangle/\mathcal B$;
-\item $\vec f\colon \Omega \rightarrow \prod_{i\in\mathcal I}\Omega_i$ is $\mcirc \sigma\langle f_i, \mathcal F_i\colon i\in\mathcal I \rangle/\bigotimes_{i\in \mathcal I} \mathcal F_i$.
-\item $\sigma\langle f_i, \mathcal F_i\colon i\in\mathcal I \rangle = \vec f^{-1}\bigl(\bigotimes_{i\in \mathcal I} \mathcal F_i\bigr)$
-\end{itemize}
-
-
-Suppose that $f=\sum_{k=1}^n c_k I_{A_k}$ for $A_k\in \sigma\langle f_i, \mathcal F_i\colon i\in\mathcal I \rangle = \vec f^{-1}\bigl(\bigotimes_{i\in \mathcal I} \mathcal F_i\bigr)$. Since $\sigma\langle f_i, \mathcal F_i\colon i\in\mathcal I \rangle = \vec f^{-1}\bigl(\bigotimes_{i\in \mathcal I} \mathcal F_i\bigr)$ we can write $A_k= \vec f^{-1} (F_k)$ where $F_k\in \bigotimes_{i\in \mathcal I} \mathcal F_i$. Now
-\begin{align*}
-f=\sum_{k=1}^n c_k I_{A_k} =\sum_{k=1}^n c_k I_{\vec f^{-1} (F_k)} =\sum_{k=1}^n c_k I_{F_k} \circ \vec f= g \circ \vec f
-\end{align*}
-where $g:=\sum_{k=1}^n c_k I_{F_k}$.
-Certainly $g$ is $\mcirc \bigotimes_{i\in \mathcal I} \mathcal F_i / \mathcal B$ as was to be shown.
-
-To finish let $f$ be a arbitrary $\mcirc \sigma\langle f_i, \mathcal F_i\colon i\in\mathcal I \rangle/\mathcal B$ function. By Theorem \ref{thm: structure thm} (the structure theorem) we can write $f(\omega) = \lim f_n(\omega)$ where $f_n$ are bounded simple functions. Therefore, from the preivous case, there exists $g_n$ which are $\mcirc \bigotimes_{i\in \mathcal I} \mathcal F_i / \mathcal B$ and $f_n(\omega) = g_n(\vec f(\omega))$. We definitely have that $f(\omega) = \lim f_n(\omega) = \lim g_n(\vec f(\omega))$ at each $\omega$. However we are not exactly done since there is no reason that $\lim_n g_n(v)$ exists for $v$'s which are not of the form $v=\vec f(\omega)$ (and therefore setting $g(v):=\lim g_n(v)$ only defines $g$ on the range of $\vec f$ ). To get around this set
-\[
-g(v):=\begin{cases}
-\limsup_ng_n(v), &\text{when $\limsup_ng_n(v) =  \liminf_ng_n(v)$}\\
-0, &\text{otherwise}.
-\end{cases}
-\]
-This $g$ definitely satisfies $f = g \circ \vec f$ and it is measurable since $\limsup_ng_n(v)$ is measurable (since the $g_n$'s are and the closure properties of measurable functions) and the event $\{v\colon \limsup_ng_n(v) =  \liminf_ng_n(v)  \}$ is also measurable.
-\end{proof}
-
-
-
-The following is a corollary of Theorem \ref{thm: f = g(vec f)} which will be important when we define conditional expected value. In particular $E(X | Y_1,\ldots, Y_n)$ will be required to be measurable with respect to $\sigma\langle Y_1, \ldots, Y_n\rangle$. The following corollary says that $E(X | Y_1,\ldots, Y_n)$ must then be of the form $g(Y_1,\ldots, Y_n)$ where $g$ is Borel measurable.
-\begin{corollary}
-\label{cor: funs of measurable funs}
-Let $X, Y_1, \ldots, Y_n$ be functions which map $\Omega$ into $\bar{\Bbb R}$.
-Then
-\[
-\text{$X$ is  $\mcirc \sigma\langle  Y_1, \ldots, Y_n \rangle \Longleftrightarrow X = g(Y_1,\ldots, Y_n)$ where $g$ is $\mcirc$}.
-\]
-\end{corollary}
-
-
-
-\begin{exercise}
-Show that $\textstyle\bigotimes_{i\in \mathcal I} \mathcal F_i$ equals $\sigma\left\langle \Pi_{h\in \mathcal H} B_h \colon  B_h\in \mathcal F_h, \text{countable $\mathcal H\subset \mathcal I$}\right\rangle $.
-\end{exercise}
-
-\begin{exercise} Show that
-$\mathcal B^{{\Bbb R}^d}= \bigotimes_{i=1}^d \mathcal B^{{\Bbb R}}$ and $\mathcal B^{\bar{\Bbb R}^d}= \bigotimes_{i=1}^d \mathcal B^{\bar{\Bbb R}}$
-\end{exercise}
-
-
-%%%%%%%%%%%%%%%%%
-%
-%  random variable subsection
-%
-%%%%%%%%%%%%%%%%%%%%%
-\subsection{Application for random variables: independence}
-
-
-
-
-\begin{sectionassumption} For the rest of this section let $(\Omega, \mathcal F, P)$ denote a probability space.
-\end{sectionassumption}
-
-
-
-
-
-\begin{definition}[{\bf Independence for random variables}]
-A collection of random variables $\{X_i: i\in\mathcal I\}$ are said to be {\bf independent} if and only if the collection of $\sigma$-fields $\{\sigma\langle X_i\rangle\colon i\in\mathcal I \}$ are independent.
-\end{definition}
-
-
-
-
-\begin{theorem}[{\bf ANOVA for random variables}]
-Consider the following array of random variables all defined on the same probability space $(\Omega, \mathcal F, P)$
-\[
-\begin{array}{ccc}
- X_{1,1} &  X_{1,2} & \cdots \\
- X_{2,1} & X_{2,2} & \cdots \\
- X_{3,1} & X_{3,2} & \cdots \\
-\vdots & \vdots & \ddots
-\end{array}
-\]
-Each row may have a different number of columns (finite or infinite) and the number of rows may be finite or infinite.
-Let $\mathscr R_1,\mathscr R_2,\ldots$ denote the $\sigma$-fields generated by the rows: $\mathscr R_i:=\sigma\langle X_{i,1}, X_{i,2} , \cdots \rangle $.
- Then the full collection  $\{ X_{i,k} \}$ of random variables are independent  if and only if the following two statements hold:
-\begin{enumerate}
-\item The random variables within each row are independent;
-\item The  $\sigma$-fields generated by the rows, $\mathscr R_1,\mathscr R_2,\ldots$, are independent.
-\end{enumerate}
-\end{theorem}
-
-% The following theorem gives the first nontrivial extension to the finite dimensional product measures in Definition \ref{def: Product measure of higher order}. For the existence of stochastic processes we need even more.
-
-\begin{theorem}[{\bf Existence of independent $X_1, X_2,\ldots$}]
-\label{thm: existance of independent rvs}
-Let $\mu_1,\mu_2,\ldots$ be a finite or infinite sequence of probability measures on $(\Bbb R, \mathcal B^{\Bbb R})$. Then there exists on some probability space $(\Omega, \mathcal F, P)$ a sequence of independent random variables $X_1,X_2,\ldots$ such that $X_i$ has distribution $\mu_i$ for each $i$.
-\end{theorem}
-
-
-
-
-
-
-
-%\begin{definition}[{\bf Tail $\sigma$-field generated by r.v.s}]
-%Let $X_1, X_2, \ldots$ be an infinite sequence of random variables on a probability space $(\Omega, \mathcal F, P)$. The tail $\sigma$-field generated by the $X_1, X_2, \ldots$ is defined as follows:
-%\[\mathcal T:= \bigcap_{n=1}^\infty \sigma\langle X_n, X_{n+1},\ldots \rangle.  \]
-%\end{definition}
-
-\begin{theorem}[{\bf Kolmogorov's 0-1 law for random variables}]
-Let $X_1, X_2, \ldots$ be an infinite sequence of {\sl independent} random variables on a probability space $(\Omega, \mathcal F, P)$. Then all tail events in the tail $\sigma$-field $\mathcal T:= \bigcap_{n=1}^\infty \sigma\langle X_n, X_{n+1},\ldots \rangle$ have probability either $0$ or $1$ and all functions $f:\Omega \rightarrow \bar{\Bbb R}$ which are $\mcirc \mathcal T/\mathcal B$ are almost surely constant.
-\end{theorem}
-%\subsection{Some concentration inequalities}
-
-\begin{shaded}
-\begin{definition}[{\bf Symmetric function}]
-Let $X_1,X_2,\ldots$ be a sequence of independent identically distributed random variables defined on some probability space $(\Omega, \mathcal F, P)$.  Another random variable $Y$ on $(\Omega, \mathcal F, P)$ is said to be a {\bf symmetric function} of the $X_n$'s if $Y=f(X_1,X_2,\ldots)$ where $f\colon\Bbb R^\infty \rightarrow \Bbb R$ is $\mcirc \bigotimes_{i=1}^\infty \mathcal B^{\Bbb R}/\mathcal B^{\Bbb R}$ and $f(x_1,x_2,\ldots)=f(x_{\pi_1},x_{\pi_2},\ldots)$ whenever $\pi$ is a permutation that permutes a finite number coordinates. We say an event $A\in\mathcal F$ {\bf depends symmetrically} on the $X_n$'s if the indicator function $I_A(w)$, for $w\in\Omega$, is a symmetric function of the $X_n$'s.
-\end{definition}
-\end{shaded}
-
-\begin{shaded}
-\begin{theorem}[{\bf Hewitt-Savage 0-1 law}]
-Let $X_1,X_2,\ldots$ be a sequence of independent identically distributed random variables defined on some probability space $(\Omega, \mathcal F, P)$. Each event that depends symmetrically on the $X_n$'s has probability 0 or 1, and each random variable that is a symmetric function of the $X_n$'s is almost surely constant
-\end{theorem}
-\end{shaded}
-
-
-
-\begin{exercise}
-Suppose that $Y_1, Y_2, \ldots$ is an infinite sequence of independent random variables, all defined on the same probability space $(\Omega, \mathcal F, P)$, taking the values $0$ and $1$ with probability $1/2$ each. Show that $U:= \sum_{k=1}^\infty 2^{-k} Y_k$ is uniformly distributed on $[0,1]$. Hint: show
-\[
-P[U \leq x] =\begin{cases}
-x & \text{when $x\in [0,1]$}; \\
-1 & \text{when $x>1$}; \\
-0 & \text{when $x<0$}.
-\end{cases}
-\] for all $x\in \Bbb R$ by analyzing $P[U_n \leq x]$ as $n\rightarrow \infty$ where $U_n:=\sum_{k=1}^n 2^{-k} Y_k$.
-\end{exercise}
-
-\begin{exerciseproof}
-
-We first notice that $U:= \sum_{k=1}^\infty 2^{-k} Y_k$  is a well defined random variable because:
-\begin{itemize}
-\item $\sum_{k=1}^\infty 2^{-k} Y_k(\omega)$ is defined for all $\omega\in\Omega$ since the sumands are positive.
-\item  $\sum_{k=1}^\infty 2^{-k} Y_k$  is measurable since
-\begin{align*}
-\text{$Y_k$'s are  $\mcirc$ }
-&\Longrightarrow \text{$\sum_{k=1}^n 2^{-k} Y_k$ is $\mcirc$ by closure thm}\\
-&\Longrightarrow \text{$\limsup_{n\rightarrow \infty}\sum_{k=1}^n 2^{-k} Y_k$ is  $\mcirc$ by closure thm} \\
-&\Longrightarrow \text{$\sum_{k=1}^\infty 2^{-k} Y_k$ is  $\mcirc$.}
-\end{align*}
-\item $\sum_{k=1}^\infty 2^{-k} Y_k(\omega)\leq \sum_{k=1}^\infty 2^{-k} = 1$. In particular $U$ takes values in $\Bbb R$.
-\end{itemize}
-This gives that $U$ is a well defined random variable.
-
-Next lets analyze the random variable $U_n:=\sum_{k=1}^n 2^{-k} Y_k$. Notice first that $U_n$ takes values in the dyadic integers of rank $n$, $\{0,\ldots, \frac{k}{2^n},\ldots, \frac{2^n-1}{2^n}\}$. Each dyadic integer corresponds to a unique tuple of values for $(y_1,\ldots, y_n)\in \{0,1\}^n$. Notice that also that for any $(y_1,\ldots, y_n)\in \{0,1\}^n$ we have
-\[P[Y_1 = y_1, \ldots, Y_n=y_n] = \frac{1}{2^n}  \]
-by independence and the marginal distributions of $Y_k$. Therefore $U_n$ is uniform on $\mathcal Y_n:= \{0,\ldots, \frac{k}{2^n},\ldots, \frac{2^n-1}{2^n}\}$. Indeed when $x\in [0,1]$ we have
-\begin{align*}
-P[U_n \leq x ]
-&= \sum_{u\in \mathcal Y_n: u\leq x}  \frac{1}{2^n} \\
-&= \frac{\# \{u\in \mathcal Y_n: u\leq x\}}{2^n} \\
-&= \frac{x2^n +O(1)}{2^n} \\
-&\rightarrow x,\quad\text{as $n\rightarrow \infty$}
-\end{align*}
-
-To finish  suppose $x\in [0,1]$. Notice that $U_n\uparrow U$ which implies $\{U_n\leq x\}\downarrow \{U\leq x \}$ (remark: it is {\em not} true that $\{U_n< x\}\downarrow \{U< x \}$). Therefore by CFA for probability measures
-\begin{align*}
-P[U\leq x] =  \lim_n P[U_n\leq x] = x
-\end{align*}
-Since $U$ only takes values in $[0,1]$ we must have $P[U\leq x] = 0$ when $x<0$ and $P[U\leq x] = 1$ when $x>1$.
-
-\end{exerciseproof}
-
-
-Suppose $X$ and $Y$ are two random variables, not necessarily defined on the same probability space. $Y$ is said to be {\bf stochastically larger} than $X$ if $P[X\leq x]\geq P[Y\leq x]$ for all $x\in \Bbb R$.
-
-\begin{exercise}
-Suppose $X$ and $Y$ are random variables and that $Y$ is stochastically larger than $X$. Show there exists random variables $X^*$ and $Y^*$ defined on a common probability space $(\Omega, \mathcal F, P)$ such that $X^*\sim X$, $Y^*\sim Y$ and $X^*(\omega)\leq Y^*(\omega)$ for all $\omega\in \Omega$.
-\end{exercise}
-\begin{exerciseproof}
-Let
-\begin{align*}
-F_X(x)&:=P[X\leq x] \\
-F_Y(x)&:=P[Y\leq x]
-\end{align*}
-be the distribution functions for $X$ and $Y$, respectively. Let $(\Omega^*, \mathcal F^*, P^*) = ((0,1), \mathcal B^{(0,1)}, \mathcal L^1)$ be the uniform probability measure on $(0,1)$. Let $X^*(\omega) :=F_X^{-1}(\omega)$ and $Y^*(\omega):= F_Y^{-1}(\omega)$ be random variables on $\Omega^*$ such that $X^*\sim X$ and $Y^*\sim Y$.
-
-By assumption, $F_Y(x)\leq F_X(x)$ for all $x\in\Bbb R$. All we need to show is $F_X^{-1}(\omega)\leq F^{-1}_Y(\omega)$ for all $\omega\in \Omega^*$. Since
-\begin{align*}
-F_X^{-1}(\omega)&:=\inf\{x: F_X(x)\geq \omega \} \\
-F_Y^{-1}(\omega)&:=\inf\{x: F_Y(x)\geq \omega \}
-\end{align*}
-all we need to show is that $\{x: F_Y(x)\geq \omega \} \subset \{x: F_X(x)\geq \omega \}$ which clearly follows by $F_Y(x)\leq F_X(x)$.
-\end{exerciseproof}
-
-
-
-Let $\mathcal I$ be an arbitrary index set and let $X_i, i\in \mathcal I$ be a family of random variables where each $X_i$ is defined on a probability space $(\Omega_i, \mathcal F_i, P_i)$. Let $F_i(x):= P_i(X_i\leq x)$ be the distribution function of $X_i$. The $X_i$'s  are said to be {\bf stochastically dominated} by a random variable $X$ if $X$ is stochastically larger than $|X_i|$ for each $i\in \mathcal I$. The $X_i$'s are said to be {\bf pointwise dominated} by  $X$ if all the random variables $X, X_i$, for $i\in \mathcal I$, are defined on the same probability space and $|X_i(\omega)|\leq X(\omega)$ for each $w\in \Omega$ and for each $i\in \mathcal I$.
-The distribution functions $F_i$ are said to be {\bf tight} if the following two equalities hold
-\begin{align*}
-\lim_{x\rightarrow-\infty} \sup_{i\in \mathcal I} F_i(x) &= 0 \\
-\lim_{y\rightarrow+\infty} \inf_{i\in \mathcal I} F_i(y) &= 1.
-\end{align*}
-
-\begin{exercise}
-Let
-$X_i, i\in \mathcal I$, be a family of random variables where each $X_i$ is defined on a probability space $(\Omega_i, \mathcal F_i, P_i)$. Show that the following are equivalent
-\begin{enumerate}
-\item\label{ex: stcho: item 1} The $X_i$'s  are stochastically dominated by some random variable;
-\item\label{ex: stcho: item 2} The corresponding distribution functions $F_i$ are tight;
-\item\label{ex: stcho: item 3} There exists random variables $X^*_i$, $i\in \mathcal I$, all defined on a common probability space such that $X^*_i\sim X_i$ for each $i\in \mathcal I$ and the $X_i^*$'s are pointwise dominated by some random variable.
-\end{enumerate}
-\end{exercise}
-\begin{exerciseproof}
-(\ref{ex: stcho: item 2} $\Longrightarrow$ \ref{ex: stcho: item 3}) Suppose $F_i$'s are tight.  Let the probability space $(\Omega^*, \mathcal F^*, P^*) = ((0,1), \mathcal B^{(0,1)}, \mathcal L^1)$ be the uniform probability measure on $(0,1)$. For each $\omega\in\Omega^*$ define
-\begin{align*}
-X_i^* &:= F_i^{-1}(\omega)\\
-X^*   &:= \sup_{i\in \mathcal I} (X_i^*)^+ + \sup_{i\in \mathcal I} (X_i^*)^-.
-\end{align*}
-{\em Remark:} the reason we are defining $X^*$ this way is that it is not clear how to show $\sup_{i\in \mathcal I} |X_i^*|$ is measurable. We need to show
-\begin{itemize}
-\item[$(i)$] $|X^*_i(\omega)|\leq X^*(\omega)$ for all $\omega\in \Omega^*$.
-\item[$(ii)$] $X^*$ takes values in $\Bbb R$.
-\item[$(iii)$] $X^*$ is measurable.
-\end{itemize}
-Clearly $(i)$ holds.
-Let's see why $(iii)$ is true. For each $i\in\mathcal I$, $F^{-1}_i(\omega)$ is non-decreasing in $\omega \in (0,1)$ and hence $(F^{-1}_i(\omega))^+$ is non-decreasing and   $(F^{-1}_i(\omega))^-$  is non-increasing. Therefore $\sup_{i\in \mathcal I} (F_i^{-1}(\omega))^+$ is non-decreasing and $\sup_{i\in \mathcal I} (F_i^{-1}(\omega))^-$ is non-increasing and therefore measurable.\\
-To see why $(ii)$ is true suppose there exists an $\omega\in\Omega^*$ such that either
-\[
- \sup_{i\in \mathcal I} (F_i^{-1}(\omega))^+=\infty \qquad\text{or}\qquad \sup_{i\in \mathcal I} (F_i^{-1}(\omega))^- = \infty.
-\]
-Now
-\begin{align*}
-\sup_{i\in \mathcal I} (F_i^{-1}(\omega))^+=\infty
-&\Longrightarrow \text{$\exists i_n\in\mathcal I$ s.t. $F_{i_n}^{-1}(\omega)^+>n, \forall n$ }\\
-&\Longrightarrow \text{$\exists i_n\in\mathcal I$ s.t.  $F_{i_n}^{-1}(\omega)>n, \forall n$} \\
-&\Longrightarrow \text{$\exists i_n\in\mathcal I$ s.t.  $\omega>F_{i_n}(n), \forall n$}\\
-&\qquad\qquad\qquad\qquad\text{the switching formula.}
-\end{align*}
-This contradicts the tightness assumption.
-
-(\ref{ex: stcho: item 3} $\Longrightarrow$ \ref{ex: stcho: item 1}) Trivial.
-
-
-(\ref{ex: stcho: item 1} $\Longrightarrow$ \ref{ex: stcho: item 2})
-We are assuming $P(X\leq x)\leq P(|X_i|\leq x)$. To show  $\lim_{x\rightarrow-\infty} \sup_{i\in \mathcal I} F_i(x) = 0$ notice that when $x < 0$ we have
-\begin{align*}
-P(X_i\leq x) &= \text{left tail} \\
-&\leq 1 - P(|X_i|\leq |x|) \\
-&\rightarrow 0,\quad\text{as $x\rightarrow -\infty$.}
-\end{align*}
-The other direction follows noticing that when $y>0$
-\begin{align*}
-P(X_i\leq y) &= 1-\text{right tail} \\
-&\geq P(|X_i|\leq y) \\
-&\rightarrow 1,\quad\text{as $y\rightarrow \infty$.}
-\end{align*}
-
-
-\end{exerciseproof}

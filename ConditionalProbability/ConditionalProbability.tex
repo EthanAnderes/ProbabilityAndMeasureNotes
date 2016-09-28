@@ -1,7 +1,5 @@
 
 
-\part{Conditional probability}
-
 
 This part of the notes develops conditional expectation and probability. To motivate all this deep mathematics notice the following paradox. Suppose $X$ and $Y$ are independent random variables, each with a uniform distribution on $(0,1)$. For a Borel set $B$ consider how to compute $P[X\in B| X=Y]$. There are a number of ways one might approach this problem. First, define $Z := X-Y$,  use transformation of densities to find the density $f_{X, Z}(x,z)$, and then set $P[X\in B| X=Y]=P[X\in B| Z=0]=\frac{f_{X,Z}(x,0)}{f_Z(0)}$ where $f_Z$ is the marginal density of $Z$. Another way is to define $W := X/Y$ and then set $P[X\in B| X=Y]=P[X\in B| W=1]=\frac{f_{X,W}(x,1)}{f_W(1)}$. The big problem is that these give different answers. Even more astounding is that, in some sense, neither approach is fundamentally wrong.
 \textcolor{red}{Add a detailed example where one observes a random field with either multiplicative numerical truncation and one with additive numerical truncation}
@@ -341,6 +339,12 @@ Referring to the proof of Theorem \ref{thm: rn1} show that $f_P$ and $f_Q$ are b
 Prove Theorem \ref{thm: props of rn}.
 \end{exercise}
 % use the 0-1-2 argument to show that $E_W X \geq 2 E_PX$ over all $X\in \mathcal N$.
+
+
+
+\subsection{Application: $dP/dQ$ for random fields}
+
+
 
 
 \clearpage
@@ -951,3 +955,7 @@ E\bigl(f| Y\in B_{y_0}^\epsilon\bigr) &= \frac{E\bigl[f(X)I_{B_{y_0}^\epsilon}(Y
 \end{align*}
 Be sure to be precise about what $E\bigl(f|Y=y \bigr)$ denotes.
 \end{exercise}
+
+
+
+\subsection{Application: $L_2$ Wasserstein metric, optimal coupling, disintegration}
